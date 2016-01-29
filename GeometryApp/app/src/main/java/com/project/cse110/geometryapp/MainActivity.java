@@ -45,8 +45,8 @@ public class MainActivity extends AppCompatActivity {
 
         switch(v.getId()) {
 
-            case R.id.firstButton:
-                System.out.println("First Button Clicked");
+            //case R.id.firstButton:
+              //  System.out.println("First Button Clicked");
 
         }
     }
