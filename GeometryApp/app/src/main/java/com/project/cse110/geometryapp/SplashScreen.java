@@ -32,7 +32,7 @@ public class SplashScreen extends Activity {
 
                 } finally {
                     // Start the next intent, the MainActivity
-                    Intent intent = new Intent(SplashScreen.this, MainActivity.class);
+                    Intent intent = new Intent(SplashScreen.this, Main.class);
                     startActivity(intent);
 
                 }

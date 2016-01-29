@@ -8,6 +8,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -26,8 +27,29 @@ public class MainActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+
+//        Button first = (Button) findViewById(R.id.firstButton);
+//        first.setOnClickListener(new View.OnClickListener()){
+//            @Override
+//                    public void onClick(View v){
+//
+//                first
+//            }
+
+        //};
     }
 
+
+
+    public void onClick(View v) {
+
+        switch(v.getId()) {
+
+            case R.id.firstButton:
+                System.out.println("First Button Clicked");
+
+        }
+    }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
