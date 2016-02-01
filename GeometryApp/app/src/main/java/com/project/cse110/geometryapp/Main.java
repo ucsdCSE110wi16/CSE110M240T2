@@ -17,12 +17,11 @@ public class Main extends Activity {
      * ATTENTION: This was auto-generated to implement the App Indexing API.
      * See https://g.co/AppIndexing/AndroidStudio for more information.
      */
-    //private GoogleApiClient client;
     @Override
     public void onCreate(Bundle savedInstance) {
         super.onCreate(savedInstance);
         System.out.println("Inside OnCreate main");
-        setContentView(R.layout.content_main);
+        setContentView(R.layout.activity_main);
 
         Button first = (Button) findViewById(R.id.topic1);
         Button second = (Button) findViewById(R.id.topic2);

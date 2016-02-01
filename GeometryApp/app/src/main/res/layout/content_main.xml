@@ -1,68 +1,87 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_below="@+id/action_bar"
     >
-    <TextView
-        android:id="@+id/title"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:textSize="15dp"
-        android:text="Geometry App"
-        />
 
     <TableLayout
-        android:layout_below="@+id/title"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:weightSum="8">
-    <Button
-        android:id="@+id/topic1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Topic 1"
-        android:layout_weight="1"
-        android:layout_centerHorizontal="true"
-        android:background="@color/yellow"
-        android:layout_marginTop="50dp"
-        />
+        android:layout_marginTop="150dp">
 
-    <Button
-        android:id="@+id/topic2"
-        android:text="Topic 2"
-        android:layout_weight="1"
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
-        android:layout_below="@+id/topic1"
-        android:layout_centerHorizontal="true"
-        android:background="@color/colorPrimary"
-        android:layout_marginTop="25dp"
-        />
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-    <Button
-        android:id="@+id/topic3"
-        android:text="Topic 3"
-        android:layout_weight="1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/topic2"
-        android:layout_centerHorizontal="true"
-        android:background="@color/colorPrimary"
-        android:layout_marginTop="25dp"/>
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="New Button"
+                android:id="@+id/topic1"
+                android:layout_column="1" />
+        </TableRow>
 
-    <Button
-        android:id="@+id/topic4"
-        android:text="Topic 4"
-        android:layout_weight="1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/topic3"
-        android:layout_centerHorizontal="true"
-        android:background="@color/darkRed"
-        android:layout_marginTop="25dp"
-        />
+        <Space
+            android:layout_width="20px"
+            android:layout_height="80px" />
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="New Button"
+                android:id="@+id/topic2" />
+        </TableRow>
+
+        <Space
+            android:layout_width="20px"
+            android:layout_height="80px" />
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="New Button"
+                android:id="@+id/topic3"
+                android:layout_column="2" />
+        </TableRow>
+
+        <Space
+            android:layout_width="20px"
+            android:layout_height="80px" />
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="New Button"
+                android:id="@+id/topic4" />
+        </TableRow>
+
+        <Space
+            android:layout_width="20px"
+            android:layout_height="80px" />
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="New Button"
+                android:id="@+id/topic5"
+                android:layout_column="2" />
+        </TableRow>
     </TableLayout>
-
-</RelativeLayout>
+</LinearLayout>
