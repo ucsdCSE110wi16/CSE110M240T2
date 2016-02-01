@@ -8,7 +8,7 @@
     <TableLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="150dp">
+        android:layout_marginTop="120dp">
 
         <TableRow
             android:layout_width="match_parent"
@@ -17,14 +17,15 @@
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="New Button"
+                android:text="Lines"
+                android:textSize="30dp"
                 android:id="@+id/topic1"
                 android:layout_column="1" />
         </TableRow>
 
         <Space
             android:layout_width="20px"
-            android:layout_height="80px" />
+            android:layout_height="100px" />
 
         <TableRow
             android:layout_width="match_parent"
@@ -33,13 +34,14 @@
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="New Button"
-                android:id="@+id/topic2" />
+                android:text="Angles"
+                android:id="@+id/topic2"
+                android:textSize="30dp"/>
         </TableRow>
 
         <Space
             android:layout_width="20px"
-            android:layout_height="80px" />
+            android:layout_height="100px" />
 
         <TableRow
             android:layout_width="match_parent"
@@ -48,14 +50,15 @@
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="New Button"
+                android:text="Shapes"
+                android:textSize="30dp"
                 android:id="@+id/topic3"
                 android:layout_column="2" />
         </TableRow>
 
         <Space
             android:layout_width="20px"
-            android:layout_height="80px" />
+            android:layout_height="100px" />
 
         <TableRow
             android:layout_width="match_parent"
@@ -64,13 +67,14 @@
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="New Button"
+                android:text="Area"
+                android:textSize="30dp"
                 android:id="@+id/topic4" />
         </TableRow>
 
         <Space
             android:layout_width="20px"
-            android:layout_height="80px" />
+            android:layout_height="100px" />
 
         <TableRow
             android:layout_width="match_parent"
@@ -79,7 +83,8 @@
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="New Button"
+                android:text="Volume"
+                android:textSize="30dp"
                 android:id="@+id/topic5"
                 android:layout_column="2" />
         </TableRow>

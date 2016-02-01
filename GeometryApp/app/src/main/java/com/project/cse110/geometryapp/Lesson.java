@@ -12,5 +12,7 @@ public class Lesson extends Activity {
     public void onCreate(Bundle savedInstance) {
         super.onCreate(savedInstance);
 
+        setContentView(R.layout.lesson_content);
+
     }
 }
