@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<chapter title='Tools of Geometry'>
+    <lesson title='Lines, Line Segments, Rays'></lesson>
+        <body>Lines: A line is a straight one-dimensional geometric object that extends infinitely in both directions.\n
+            Line Segment: A line segment is a straight one-dimensional geometric object that has fixed starting and ending points.\n
+            Ray: A ray is a straight one-dimensional geometric object that has a fixed starting point, but extends infinitely.\n
+        </body>
+        <test>
+            <question number='1'>
+                <image>.png</image>
+                <answer>1</answer>
+            </question>
+            <question number='2'>
+                <image>.png</image>
+                <answer>1</answer>
+            </question>
+            <question number='3'>
+                <image>.png</image>
+                <answer>1,2,3</answer>
+            </question>
+            <question number='4'>
+                <image>.png</image>
+                <answer>1,2</answer>
+            </question>
+            <question number='5'>
+                <image>.png</image>
+                <answer>1,3</answer>
+            </question>
+            <question number='6'>
+                <image>.png</image>
+                <answer>Ray</answer>
+            </question>
+            <question number='7'>
+                <image>.png</image>
+                <answer>True</answer>
+            </question>
+            <question number='8'>
+                <image>.png</image>
+                <answer>True</answer>
+            </question>
+        </test>
+    <lesson title='Points, Lines, Planes'></lesson>
+</chapter>
