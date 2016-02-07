@@ -8,35 +8,42 @@
         <test>
             <question number='1'>
                 <image>.png</image>
+                <responses>A,B,C</responses>
                 <answer>1</answer>
             </question>
             <question number='2'>
                 <image>.png</image>
+                <responses>A,B,C</responses>
                 <answer>1</answer>
             </question>
             <question number='3'>
                 <image>.png</image>
+                <responses>BC,DE,AC</responses>
                 <answer>1,2,3</answer>
             </question>
             <question number='4'>
                 <image>.png</image>
+                <responses>AB,CE,AC</responses>
                 <answer>1,2</answer>
             </question>
             <question number='5'>
                 <image>.png</image>
+                <responses>BC,AB,DE</responses>
                 <answer>1,3</answer>
             </question>
             <question number='6'>
                 <image>.png</image>
-                <answer>Ray</answer>
+                <responses>A line, A ray, A line segment</responses>
+                <answer>2</answer>
             </question>
             <question number='7'>
                 <image>.png</image>
-                <answer>True</answer>
+                <responses>A,B,C</responses>
+                <answer>2</answer>
             </question>
             <question number='8'>
                 <image>.png</image>
-                <answer>True</answer>
+                <answer>1</answer>
             </question>
         </test>
     <lesson title='Points, Lines, Planes'></lesson>
