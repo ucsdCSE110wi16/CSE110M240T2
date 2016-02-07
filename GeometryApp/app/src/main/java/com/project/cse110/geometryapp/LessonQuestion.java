@@ -10,7 +10,7 @@ import android.widget.Button;
 /**
  * Created by devinhickey on 1/31/16.
  */
-public class Lesson extends Activity {
+public class LessonQuestion extends Activity {
 
     AlertDialog answerAlert;
     AlertDialog.Builder dialogBuilder;
@@ -19,7 +19,7 @@ public class Lesson extends Activity {
     public void onCreate(Bundle savedInstance) {
         super.onCreate(savedInstance);
 
-        setContentView(R.layout.lesson_content);
+        setContentView(R.layout.lesson_question);
 
         // Create the dialog builder
         dialogBuilder = new AlertDialog.Builder(this);
