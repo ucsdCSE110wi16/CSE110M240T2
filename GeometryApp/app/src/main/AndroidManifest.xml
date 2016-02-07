@@ -30,13 +30,24 @@
         </activity>
 
         <activity
-            android:name=".topic1"
+            android:name=".LessonList"
             android:label="@string/app_name">
 
         </activity>
 
         <activity
-            android:name=".Lesson"
+            android:name=".LessonQuestion"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <!--<action android:name="android.intent.action.MAIN" />-->
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".LessonDescription"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>

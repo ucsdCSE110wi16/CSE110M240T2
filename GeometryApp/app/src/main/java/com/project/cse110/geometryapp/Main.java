@@ -28,7 +28,7 @@ public class Main extends Activity {
         first.setOnClickListener(
                 new Button.OnClickListener() {
                     public void onClick(View v) {
-                        Intent topic1Intent = new Intent(Main.this, topic1.class);
+                        Intent topic1Intent = new Intent(Main.this, LessonList.class);
                         startActivity(topic1Intent);
                     }
                 }
