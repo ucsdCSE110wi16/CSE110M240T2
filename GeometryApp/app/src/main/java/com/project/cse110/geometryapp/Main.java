@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 
@@ -21,12 +22,12 @@ public class Main extends Activity {
     public void onCreate(Bundle savedInstance) {
         super.onCreate(savedInstance);
         System.out.println("Inside OnCreate main");
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.content_main);
 
-        Button first = (Button) findViewById(R.id.topic1);
-        Button second = (Button) findViewById(R.id.topic2);
+        ImageButton first = (ImageButton) findViewById(R.id.topic1);
+        ImageButton second = (ImageButton) findViewById(R.id.topic2);
         first.setOnClickListener(
-                new Button.OnClickListener() {
+                new ImageButton.OnClickListener() {
                     public void onClick(View v) {
                         Intent topic1Intent = new Intent(Main.this, LessonList.class);
                         startActivity(topic1Intent);
@@ -34,7 +35,7 @@ public class Main extends Activity {
                 }
         );
         second.setOnClickListener(
-                new Button.OnClickListener() {
+                new ImageButton.OnClickListener() {
                     public void onClick(View v) {
                     }
                 }
