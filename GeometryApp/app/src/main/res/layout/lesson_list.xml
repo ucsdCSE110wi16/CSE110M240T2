@@ -6,7 +6,6 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Lesson 1"
         android:id="@+id/lesson1"
         android:layout_gravity="center"
         android:textSize="30dp" />
@@ -14,7 +13,6 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Lesson 2"
         android:id="@+id/lesson2"
         android:layout_gravity="center"
         android:textSize="30dp" />

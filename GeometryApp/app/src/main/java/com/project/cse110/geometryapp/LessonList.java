@@ -19,14 +19,26 @@ public class LessonList extends Activity {
         setContentView(R.layout.lesson_list);
 
         Button lesson1Button = (Button) findViewById(R.id.lesson1);
+        lesson1Button.setText("Lines, line segments, and rays");
+        Button lesson2Button = (Button) findViewById(R.id.lesson2);
+        lesson2Button.setText("Points, lines, and planes");
 
         lesson1Button.setOnClickListener(
                 new Button.OnClickListener() {
-            public void onClick(View v){
-                Intent newIntent = new Intent(LessonList.this, LessonDescription.class);
-                startActivity(newIntent);
+                    public void onClick(View v) {
+                        Intent newIntent = new Intent(LessonList.this, LessonDescription.class);
+                        startActivity(newIntent);
 
-            }
+                    }
+
+                });
+
+        lesson2Button.setOnClickListener(new Button.OnClickListener() {
+                public void onClick(View v) {
+                    Intent lesson2Intent = new Intent(LessonList.this, LessonDescription.class);
+                    startActivity(lesson2Intent);
+
+                }
 
         });
     }
