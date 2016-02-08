@@ -20,13 +20,23 @@ public class LessonList extends Activity {
 
         Button lesson1Button = (Button) findViewById(R.id.lesson1);
         lesson1Button.setText("Lines, line segments, and rays");
-        Button lesson2Button = (Button) findViewById(R.id.lesson2);
+        final Button lesson2Button = (Button) findViewById(R.id.lesson2);
         lesson2Button.setText("Points, lines, and planes");
+
 
         lesson1Button.setOnClickListener(
                 new Button.OnClickListener() {
                     public void onClick(View v) {
                         Intent newIntent = new Intent(LessonList.this, LessonDescription.class);
+                        // Grab text from xml FIXME
+                        String intentString = "Lines: A line is a straight one-dimensional geometric object that extends infinitely in both directions.\n"
+                                +
+                                "Line Segment: A line segment is a straight one-dimensional geometric object that has fixed starting and ending points.\n"
+                                +
+                                "Ray: A ray is a straight one-dimensional geometric object that has a fixed starting point, but extends infinitely.";
+
+                        newIntent.putExtra("body", intentString);
+
                         startActivity(newIntent);
 
                     }
@@ -35,8 +45,11 @@ public class LessonList extends Activity {
 
         lesson2Button.setOnClickListener(new Button.OnClickListener() {
                 public void onClick(View v) {
-                    Intent lesson2Intent = new Intent(LessonList.this, LessonDescription.class);
-                    startActivity(lesson2Intent);
+                    Intent newIntent = new Intent(LessonList.this, LessonDescription.class);
+
+                    String intentString = "Other Description";
+                    newIntent.putExtra("body", intentString);
+                    startActivity(newIntent);
 
                 }
 

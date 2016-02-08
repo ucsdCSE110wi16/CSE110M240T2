@@ -9,7 +9,7 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Lesson Description Here"
-        android:id="@+id/textView2"
+        android:id="@+id/textView"
         android:layout_gravity="center_horizontal"
         android:layout_weight="0.75" />
 

@@ -8,42 +8,40 @@
         android:layout_height="wrap_content"
         android:id="@+id/imageView"
         android:layout_gravity="center_horizontal"
-        android:src="@drawable/lines1"/>
+        />
 
-    <TextView
+    <!--<TextView-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:textAppearance="?android:attr/textAppearanceLarge"-->
+        <!--android:id="@+id/textView"-->
+        <!--android:textSize="30dp"-->
+        <!--android:layout_gravity="center_horizontal" />-->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="center_horizontal">
+
+    <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Which figure from above is an example of Parallel Lines?"
-        android:id="@+id/textView"
-        android:textSize="30dp"
+        android:id="@+id/mc1"
         android:layout_gravity="center_horizontal" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Figure 1"
-        android:id="@+id/figure1"
+        android:id="@+id/mc2"
         android:layout_gravity="center_horizontal" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Figure 2"
-        android:id="@+id/figure2"
+        android:id="@+id/mc3"
         android:layout_gravity="center_horizontal" />
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Figure 3"
-        android:id="@+id/figure3"
-        android:layout_gravity="center_horizontal" />
+    </LinearLayout>
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Figure 4"
-        android:id="@+id/figure4"
-        android:layout_gravity="center_horizontal" />
 </LinearLayout>
