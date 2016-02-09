@@ -1,50 +1,87 @@
 <?xml version="1.0" encoding="utf-8"?>
-<chapter title='Tools of Geometry'>
-    <lesson title='Lines, Line Segments, Rays'>
-        <body>Lines: A line is a straight one-dimensional geometric object that extends infinitely in both directions.\n
-            Line Segment: A line segment is a straight one-dimensional geometric object that has fixed starting and ending points.\n
-            Ray: A ray is a straight one-dimensional geometric object that has a fixed starting point, but extends infinitely.\n
+<chapter title=''>
+    <lesson title=''>
+        <body>
         </body>
         <test>
             !types: MCQ = Multiple Choice, Check -> Check Boxes, Text -> Free response
-            <question number='1' type='MCQ'>
-                <image>C1L1Q1.png</image>
-                <responses>A,B,C</responses>
+            <question number='1' type=''>
+                <image>C2L1Q1.png</image>
+                <responses></responses>
                 <answer>1</answer>
             </question>
-            <question number='2' type='MCQ'>
-                <image>C1L1Q2.png</image>
-                <responses>A,B,C</responses>
-                <answer>1</answer>
+            <question number='2' type=''>
+                <image>C2L1Q2.png</image>
+                <responses></responses>
+                <answer></answer>
             </question>
-            <question number='3' type='Check'>
-                <image>C1L1Q3.png</image>
-                <responses>BC,DE,AC</responses>
-                <answer>1,2,3</answer>
+            <question number='3' type=''>
+                <image>C2L1Q3.png</image>
+                <responses></responses>
+                <answer></answer>
             </question>
-            <question number='4' type='Check'>
-                <image>C1L1Q4.png</image>
-                <responses>AB,CE,AC</responses>
-                <answer>1,2</answer>
+            <question number='4' type=''>
+                <image>C2L1Q4.png</image>
+                <responses></responses>
+                <answer></answer>
             </question>
-            <question number='5' type='Check'>
-                <image>C1L1Q5.png</image>
-                <responses>BC,AB,DE</responses>
-                <answer>1,3</answer>
+            <question number='5' type=''>
+                <image>C2L1Q5.png</image>
+                <responses></responses>
+                <answer></answer>
             </question>
-            <question number='6' type='MCQ'>
-                <image>C1L1Q6.png</image>
-                <responses>A line, A ray, A line segment</responses>
-                <answer>2</answer>
+            <question number='6' type=''>
+                <image>C2L1Q6.png</image>
+                <responses></responses>
+                <answer></answer>
             </question>
-            <question number='7' type='MCQ'>
-                <image>C1L1Q7.png</image>
-                <responses>A,B,C</responses>
-                <answer>2</answer>
+            <question number='7' type=''>
+                <image>C2L1Q7.png</image>
+                <responses></responses>
+                <answer></answer>
             </question>
         </test>
     </lesson>
-    <lesson title='Points, Lines, Planes'>
-
+    <lesson title=''>
+        <body>
+        </body>
+        <test>
+            !types: MCQ = Multiple Choice, Check -> Check Boxes, Text -> Free response
+            <question number='1' type=''>
+                <image>C2L2Q1.png</image>
+                <responses></responses>
+                <answer>1</answer>
+            </question>
+            <question number='2' type=''>
+                <image>C2L2Q2.png</image>
+                <responses></responses>
+                <answer></answer>
+            </question>
+            <question number='3' type=''>
+                <image>C2L2Q3.png</image>
+                <responses></responses>
+                <answer></answer>
+            </question>
+            <question number='4' type=''>
+                <image>C2L2Q4.png</image>
+                <responses></responses>
+                <answer></answer>
+            </question>
+            <question number='5' type=''>
+                <image>C2L2Q5.png</image>
+                <responses></responses>
+                <answer></answer>
+            </question>
+            <question number='6' type=''>
+                <image>C2L2Q6.png</image>
+                <responses></responses>
+                <answer></answer>
+            </question>
+            <question number='7' type=''>
+                <image>C2L2Q7.png</image>
+                <responses></responses>
+                <answer></answer>
+            </question>
+        </test>
     </lesson>
 </chapter>
