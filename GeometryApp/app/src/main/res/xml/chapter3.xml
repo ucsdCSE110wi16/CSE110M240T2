@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<chapter title='Quadrilaterals'>
+    <lesson title='Types of Quadrilaterals'>
+        <body>"Quad" means "four" and "lateral" means "line." A quadrilateral is literally
+            a shape with four sides (lines) and four angles that add to 360 degrees.\n
+            Concave Quadrilaterals: Has one interior angle larger than 180 degrees.\n
+            Convex Quadrilaterals: All angles are less than 180 degrees.\n
+            Trapezoid: A quadrilateral with exactly 2 sides parallel to each other.\n
+            Parallelogram: A quadrilateral with 2 pairs of parallel sides.\n
+            Rectangle: A parallelogram with 4 right angles.\n
+            Rhombus: A parallelogram where all 4 sides are equivalent.\n
+            Square: A rectangular rhombus. In other words, a parallelogram
+            with 4 right angles are 4 equivalent sides.\n
+        </body>
+        <test>
+            !types: MCQ = Multiple Choice, Check -> Check Boxes, Text -> Free response
+            <question number='1' type='Check'>
+                <image>C3L1Q1.png</image>
+                <responses>1,2,3,4,5,6,7,8</responses>
+                <answer>1,3,6,7</answer>
+            </question>
+            <question number='2' type='Check'>
+                <image>C3L1Q2.png</image>
+                <responses>A,B,C</responses>
+                <answer>1,2,3</answer>
+            </question>
+            <question number='3' type='Check'>
+                <image>C3L1Q3.png</image>
+                <responses>A,B,C,D</responses>
+                <answer>3</answer>
+            </question>
+            <question number='4' type='Check'>
+                <image>C3L1Q4.png</image>
+                <responses>1,2,3,4,5,6,7,8</responses>
+                <answer>1,3,6,8</answer>
+            </question>
+            <question number='5' type='Check'>
+                <image>C3L1Q5.png</image>
+                <responses>A,B,C,D</responses>
+                <answer>1,2,3,4</answer>
+            </question>
+        </test>
+    </lesson>
+    <lesson title='Quadrilateral Proofs and Angles'>
+        <body>Adjacent angles of a parallelogram are supplementary: Their sum equals 180.\n
+            Opposite angles of a parallelogram are equivalent.\n
+            The angles of bases of an isosceles triangle are equal.\n
+            Area of a parallelogram is base x the bisecting height: A = bh.\n
+        </body>
+        <test>
+            !types: MCQ = Multiple Choice, Check -> Check Boxes, Text -> Free response
+            <question number='1' type='Text'>
+                <image>C3L2Q1.png</image>
+                <answer>74</answer>
+            </question>
+            <question number='2' type='Text'>
+                <image>C3L2Q2.png</image>
+                <answer>52</answer>
+            </question>
+            <question number='3' type='Text'>
+                <image>C3L2Q3.png</image>
+                <answer>32</answer>
+            </question>
+            <question number='4' type='Text'>
+                <image>C3L2Q4.png</image>
+                <answer>153</answer>
+            </question>
+            <question number='5' type='Text'>
+                <image>C3L2Q5.png</image>
+                <answer>150</answer>
+            </question>
+        </test>
+    </lesson>
+</chapter>
