@@ -28,7 +28,9 @@ public class LessonDescription extends Activity {
         skipButton.setOnClickListener(new Button.OnClickListener() {
             public void onClick(View v) {
 
-                Intent questionIntent = new Intent(LessonDescription.this, LessonQuestion.class);
+                Intent questionIntent = new Intent(LessonDescription.this, QuestionList.class);
+
+                /*
                 int question = R.drawable.c1_l1_q1;
                 questionIntent.putExtra("question", question);
 
@@ -46,7 +48,7 @@ public class LessonDescription extends Activity {
 
                 int qNum = 1;
                 questionIntent.putExtra("qNum", qNum);
-
+*/
 
                 startActivity(questionIntent);
 
