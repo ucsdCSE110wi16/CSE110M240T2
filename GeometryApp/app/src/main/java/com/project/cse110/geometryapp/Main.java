@@ -9,6 +9,8 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import com.firebase.client.Firebase;
 
+import com.firebase.client.Firebase;
+
 
 /**
  * Created by devinhickey on 1/29/16.
@@ -23,7 +25,6 @@ public class Main extends Activity {
     public void onCreate(Bundle savedInstance) {
         super.onCreate(savedInstance);
         Firebase.setAndroidContext(this);
-
         System.out.println("Inside OnCreate main");
         setContentView(R.layout.content_main);
 
