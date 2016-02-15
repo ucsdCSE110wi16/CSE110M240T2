@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import com.firebase.client.Firebase;
 
 
 /**
@@ -21,6 +22,8 @@ public class Main extends Activity {
     @Override
     public void onCreate(Bundle savedInstance) {
         super.onCreate(savedInstance);
+        Firebase.setAndroidContext(this);
+
         System.out.println("Inside OnCreate main");
         setContentView(R.layout.content_main);
 
