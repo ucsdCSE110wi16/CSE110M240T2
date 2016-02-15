@@ -1,10 +1,14 @@
 package com.project.cse110.geometryapp;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 
 /**
  * Created by devinhickey on 1/29/16.
@@ -22,6 +26,44 @@ public class LessonList extends Activity {
         lesson1Button.setText("Lines, line segments, and rays");
         final Button lesson2Button = (Button) findViewById(R.id.lesson2);
         lesson2Button.setText("Points, lines, and planes");
+
+
+        // Start ActionBar
+        ActionBar ab = getActionBar();
+
+        ab.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
+
+        ab.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+        LayoutInflater inflater = LayoutInflater.from(this);
+
+        LinearLayout abLayout = (LinearLayout) inflater.inflate(R.layout.titlebarlayout, null);
+        ActionBar.LayoutParams params = new ActionBar.LayoutParams(ActionBar.LayoutParams.MATCH_PARENT,
+                ActionBar.LayoutParams.MATCH_PARENT, Gravity.LEFT);
+
+        ab.setCustomView(abLayout, params);
+        ab.setDisplayHomeAsUpEnabled(false);
+
+
+        // Make the buttons on the ab disappear
+        Button logoutButton = (Button) abLayout.findViewById(R.id.logout);
+        Button homeButton = (Button) abLayout.findViewById(R.id.home);
+
+        logoutButton.setVisibility(View.INVISIBLE);
+
+        homeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                System.out.println("Home Button Clicked");
+                Intent newIntent = new Intent(LessonList.this, Main.class);
+                newIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+
+                startActivity(newIntent);
+
+            }
+        });
+
+        // end ActionBar
 
 
         lesson1Button.setOnClickListener(

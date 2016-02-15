@@ -1,14 +1,18 @@
 package com.project.cse110.geometryapp;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.media.Image;
 import android.os.Bundle;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 /**
  * Created by devinhickey on 1/31/16.
@@ -27,6 +31,40 @@ public class LessonQuestion extends Activity {
 
         correctAnswer = getIntent().getExtras().getInt("answer");
 
+
+        // Start ActionBar
+        ActionBar ab = getActionBar();
+
+        ab.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
+
+        ab.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+        LayoutInflater inflater = LayoutInflater.from(this);
+
+        LinearLayout abLayout = (LinearLayout) inflater.inflate(R.layout.titlebarlayout, null);
+        ActionBar.LayoutParams params = new ActionBar.LayoutParams(ActionBar.LayoutParams.MATCH_PARENT,
+                ActionBar.LayoutParams.MATCH_PARENT, Gravity.LEFT);
+
+        ab.setCustomView(abLayout, params);
+        ab.setDisplayHomeAsUpEnabled(false);
+
+
+        // Make the buttons on the ab disappear
+        Button logoutButton = (Button) abLayout.findViewById(R.id.logout);
+        Button homeButton = (Button) abLayout.findViewById(R.id.home);
+
+        logoutButton.setVisibility(View.INVISIBLE);
+        homeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                System.out.println("Home");
+                Intent newIntent = new Intent(LessonQuestion.this, Main.class);
+                newIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+
+                startActivity(newIntent);
+            }
+        });
+
+        // end ActionBar
 
 
         // Create the dialog builder
