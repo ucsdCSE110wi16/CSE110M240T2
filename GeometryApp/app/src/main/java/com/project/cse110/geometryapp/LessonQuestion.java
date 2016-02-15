@@ -26,6 +26,7 @@ public class LessonQuestion extends Activity {
     AlertDialog.Builder dialogBuilder;
     int correctAnswer;
     int lessonNum;
+    int qNum;
     String answer;
 
     @Override
@@ -37,6 +38,8 @@ public class LessonQuestion extends Activity {
         correctAnswer = getIntent().getExtras().getInt("answer");
         lessonNum = this.getIntent().getExtras().getInt("Lesson");
         answer = this.getIntent().getExtras().getString("Answer");
+
+        qNum = this.getIntent().getExtras().getInt("QNUM");
 
         System.out.println("Lesson Num: " + lessonNum);
 
@@ -124,14 +127,49 @@ public class LessonQuestion extends Activity {
                     String buttonText = (String) newButton.getText();
                     if (answer.equals(buttonText)) {
                         System.out.println("Correct Answer");
-                        QuestionList.l1q1 = 1;
+
+                        if (lessonNum == 1) {
+                            if (qNum == 1) {
+                                QuestionList.l1q1 = 1;
+                            } else if (qNum == 2) {
+                                QuestionList.l1q2 = 1;
+                            } else if (qNum == 3) {
+                                QuestionList.l1q3 = 1;
+                            }
+                        } else if (lessonNum == 2) {
+                            if (qNum == 1) {
+                                QuestionList.l2q1 = 1;
+                            } else if (qNum == 2) {
+                                QuestionList.l2q2 = 1;
+                            } else if (qNum == 3) {
+                                QuestionList.l2q3 = 1;
+                            }
+                        }
+
                         dialogBuilder.setMessage("Correct!");
 
 
                     } else {
 
                         System.out.println("Incorrect Answer");
-                        QuestionList.l1q1 = 2;
+
+                        if (lessonNum == 1) {
+                            if (qNum == 1) {
+                                QuestionList.l1q1 = 2;
+                            } else if (qNum == 2) {
+                                QuestionList.l1q2 = 2;
+                            } else if (qNum == 3) {
+                                QuestionList.l1q3 = 2;
+                            }
+                        } else if (lessonNum == 2) {
+                            if (qNum == 1) {
+                                QuestionList.l2q1 = 2;
+                            } else if (qNum == 2) {
+                                QuestionList.l2q2 = 2;
+                            } else if (qNum == 3) {
+                                QuestionList.l2q3 = 2;
+                            }
+                        }
 
                         dialogBuilder.setMessage("Incorrect!");
 
@@ -275,7 +313,7 @@ public class LessonQuestion extends Activity {
     @Override
     public void onStop() {
         super.onStop();
-        finish();
+        //finish();
 
     }
 }

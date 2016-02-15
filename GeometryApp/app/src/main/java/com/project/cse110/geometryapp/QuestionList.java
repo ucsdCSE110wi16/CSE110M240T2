@@ -3,6 +3,8 @@ package com.project.cse110.geometryapp;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
+import android.content.res.Resources;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -74,39 +76,43 @@ public class QuestionList extends Activity {
 
 
         // Dynamically create buttons
-        Button firstButton = new Button(this);
-        firstButton.setText("Question 1");
+//        Button firstButton = new Button(this);
+//        firstButton.setText("Question 1");
+//
+//        Button secButton = new Button(this);
+//        secButton.setText("Question 2");
+//
+//        Button thirdButton = new Button(this);
+//        thirdButton.setText("Question 3");
+//
+//        LinearLayout myLayout = (LinearLayout) findViewById(R.id.questionLayout);
+//        LinearLayout.LayoutParams layParam = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+//
+//        // Add the buttons with the layout params
+//        myLayout.addView(firstButton, layParam);
+//        myLayout.addView(secButton, layParam);
+//        myLayout.addView(thirdButton, layParam);
 
-        Button secButton = new Button(this);
-        secButton.setText("Question 2");
 
-        Button thirdButton = new Button(this);
-        thirdButton.setText("Question 3");
+        Button firstButton = (Button) findViewById(R.id.ques1);
+        Button secButton = (Button) findViewById(R.id.ques2);
+        Button thirdButton = (Button) findViewById(R.id.ques3);
 
-        LinearLayout myLayout = (LinearLayout) findViewById(R.id.questionLayout);
-        LinearLayout.LayoutParams layParam = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-
-        // Add the buttons with the layout params
-        myLayout.addView(firstButton, layParam);
-        myLayout.addView(secButton, layParam);
-        myLayout.addView(thirdButton, layParam);
 
 //        if (lessonNum == 1) {
-//            System.out.println("Inside 1");
 //            if (l1q1 == 1) {
-//                System.out.println("Inside 11");
-//                firstButton.setTextColor(0x00FF00);
+//                firstButton.setBackgroundColor(Color.GREEN);
 //
 //            } else if (l1q1 == 2) {
-//                System.out.println("Inside 12");
-//                firstButton.setTextColor(0xFF0000);
+//                firstButton.setBackgroundColor(Color.RED);
 //
 //            } else {
 //
-//                System.out.println("Inside 13");
-//                firstButton.setTextColor(0xFFFFFF);
+//                firstButton.setBackgroundColor(Color.LTGRAY);
 //
 //            }
+//        }
+
 //
 //            if (l1q2 == 1) {
 //
@@ -183,6 +189,7 @@ public class QuestionList extends Activity {
 //        }
 
 
+
         // Create the button onClicks
         firstButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -190,6 +197,7 @@ public class QuestionList extends Activity {
                 System.out.println("Inside first button click");
 
                 int png;
+                int qNum = 1;
                 String[] buttons;
                 String body;
                 String answer;
@@ -207,6 +215,8 @@ public class QuestionList extends Activity {
                     png = R.drawable.c1_l1_q1;
 
 
+
+
                 } else {
 
                     png = R.drawable.c1_l2_q1;
@@ -221,6 +231,7 @@ public class QuestionList extends Activity {
 
                 }
 
+                newIntent.putExtra("QNUM", qNum);
                 newIntent.putExtra("Answer", answer);
                 newIntent.putExtra("Buttons", buttons);
                 newIntent.putExtra("PNG", png);
@@ -266,6 +277,7 @@ public class QuestionList extends Activity {
 
                 }
 
+                newIntent.putExtra("QNUM", 2);
                 newIntent.putExtra("Answer", answer);
                 newIntent.putExtra("Buttons", buttons);
                 newIntent.putExtra("PNG", png);
@@ -311,6 +323,7 @@ public class QuestionList extends Activity {
 
                 }
 
+                newIntent.putExtra("QNUM", 3);
                 newIntent.putExtra("Answer", answer);
                 newIntent.putExtra("Buttons", buttons);
                 newIntent.putExtra("Lesson", lessonNum);
@@ -320,6 +333,106 @@ public class QuestionList extends Activity {
 
             }
         });
+
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        System.out.println("Onresume");
+
+        Button firstButton = (Button) findViewById(R.id.ques1);
+        Button secButton = (Button) findViewById(R.id.ques2);
+        Button thirdButton = (Button) findViewById(R.id.ques3);
+
+        if (lessonNum == 1) {
+            if (l1q1 == 1) {
+                firstButton.setBackgroundColor(Color.GREEN);
+
+            } else if (l1q1 == 2) {
+                firstButton.setBackgroundColor(Color.RED);
+
+            } else {
+
+                firstButton.setBackgroundColor(Color.LTGRAY);
+
+            }
+
+
+            if (l1q2 == 1) {
+
+                secButton.setBackgroundColor(Color.GREEN);
+
+            } else if (l1q2 == 2) {
+
+                secButton.setBackgroundColor(Color.RED);
+
+            } else {
+
+                secButton.setBackgroundColor(Color.LTGRAY);
+
+            }
+
+            if (l1q3 == 1) {
+
+                thirdButton.setBackgroundColor(Color.GREEN);
+
+            } else if (l1q3 == 2) {
+
+                thirdButton.setBackgroundColor(Color.RED);
+
+            } else {
+
+
+                thirdButton.setBackgroundColor(Color.LTGRAY);
+            }
+
+
+        } else {
+
+            if (l2q1 == 1) {
+
+                firstButton.setBackgroundColor(Color.GREEN);
+
+            } else if (l2q1 == 2) {
+
+
+                firstButton.setBackgroundColor(Color.RED);
+            } else {
+
+                firstButton.setBackgroundColor(Color.LTGRAY);
+
+            }
+
+            if (l2q2 == 1) {
+
+                secButton.setBackgroundColor(Color.GREEN);
+
+            } else if (l2q2 == 2) {
+
+                secButton.setBackgroundColor(Color.RED);
+
+            } else {
+
+                secButton.setBackgroundColor(Color.LTGRAY);
+            }
+
+            if (l2q3 == 1) {
+
+                thirdButton.setBackgroundColor(Color.GREEN);
+
+            } else if (l2q3 == 2) {
+
+                thirdButton.setBackgroundColor(Color.RED);
+
+            } else {
+
+
+                thirdButton.setBackgroundColor(Color.LTGRAY);
+            }
+
+        }
 
     }
 }
