@@ -130,4 +130,15 @@
             </test>
         </lesson>
     </chapter3>
+    <chapter4 title='Circles'>
+    	<lesson title='Circle Basics'>
+		<body>Pi : Pi is a fundamental constant when determining many basic properties of circles. It represents the ratio of a circles circumference to its diameter.\nRadius : The radius of a circle is the distance between the center of the circle to the edge of the circle.\nDiameter : The diameter of a circle is the length of the line segment that divides the circle in half into two semi-circles.\nCircumference : The circumference of a circle is the linear distance around its edge. The circumference is essentially the perimeter of the circle.\n</body>
+	</lesson>
+	<lesson title='Standard Equation of a Circle'>
+		<body>General format of circle equation: ax^2 + by^2 + cx + dy + e = 0\nCenter-radius form of circle:  (x - h)^2 + (y - k)^2 = r^2\nThe center of the circle is easily found using this equation : (h,k)\nThe radius of the circle is also easily found : (r).\n</body>
+	</lesson>
+	<lesson title='Arcs'>
+		<body>An arc is simply a closed segment of the edge of a circle.\nMinor arc : an arc with an angle less than 180 degrees.\nMajor arc: an arc with an angle greater than 180 degrees.\nArc Measure: arc measure is the angle of the central angle of an arc. In other words, the angle formed between the two radii that connect to the ends of the arc represents the arc measure.\nLength of an arc: The equation to find the length of an arc is equal to (theta)r, where (theta) is the angle the arc subtends and r is the radius of the circle.\n</body>
+	</lesson>
+    </chapter4>
 </chapters>
