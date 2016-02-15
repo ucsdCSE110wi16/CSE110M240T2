@@ -13,6 +13,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
+
+import org.w3c.dom.Text;
 
 /**
  * Created by devinhickey on 1/31/16.
@@ -22,6 +25,8 @@ public class LessonQuestion extends Activity {
     AlertDialog answerAlert;
     AlertDialog.Builder dialogBuilder;
     int correctAnswer;
+    int lessonNum;
+    String answer;
 
     @Override
     public void onCreate(Bundle savedInstance) {
@@ -30,6 +35,10 @@ public class LessonQuestion extends Activity {
         setContentView(R.layout.lesson_question);
 
         correctAnswer = getIntent().getExtras().getInt("answer");
+        lessonNum = this.getIntent().getExtras().getInt("Lesson");
+        answer = this.getIntent().getExtras().getString("Answer");
+
+        System.out.println("Lesson Num: " + lessonNum);
 
 
         // Start ActionBar
@@ -73,115 +82,191 @@ public class LessonQuestion extends Activity {
 
         // Set the picture of the question
         ImageView questionImage = (ImageView) findViewById(R.id.imageView);
-        questionImage.setImageResource(getIntent().getExtras().getInt("question"));
+        questionImage.setImageResource(getIntent().getExtras().getInt("PNG"));
+
+        if (lessonNum == 2) {
+
+            TextView textV = (TextView) findViewById(R.id.textView);
+//            LinearLayout myLayout = (LinearLayout) findViewById(R.id.linearLayout);
+//            LinearLayout.LayoutParams layParam = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+//
+//
+//            myLayout.addView(textV, layParam);
+
+            String text = this.getIntent().getExtras().getString("Body");
+
+            System.out.println(text);
+            textV.setText(text);
+            //textV.setTextSize(25);
+
+        } else {
+            TextView textV = (TextView) findViewById(R.id.textView);
+
+            textV.setVisibility(TextView.GONE);
+
+        }
+
+        String[] buttons = this.getIntent().getExtras().getStringArray("Buttons");
+
+        for (int i = 0; i < buttons.length; i++) {
+            final Button newButton = new Button(this);
+            LinearLayout myLayout = (LinearLayout) findViewById(R.id.linearButtonLayout);
+            LinearLayout.LayoutParams layParam = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+
+            // Add the buttons with the layout params
+            myLayout.addView(newButton, layParam);
+
+            newButton.setText(buttons[i]);
+            newButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    String buttonText = (String) newButton.getText();
+                    if (answer.equals(buttonText)) {
+                        System.out.println("Correct Answer");
+                        QuestionList.l1q1 = 1;
+                        dialogBuilder.setMessage("Correct!");
+
+
+                    } else {
+
+                        System.out.println("Incorrect Answer");
+                        QuestionList.l1q1 = 2;
+
+                        dialogBuilder.setMessage("Incorrect!");
+
+                    }
+
+                    dialogBuilder.setNeutralButton("Ok", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+
+                            System.out.println("Inside OK");
+
+                            finish();
+
+//                            // Start next intent with passed in extras
+//                            Intent newIntent = new Intent(LessonQuestion.this, QuestionList.class);
+//
+//                            newIntent.putExtra("Lesson", lessonNum);
+                        }
+                    });
+
+                    answerAlert = dialogBuilder.create();
+                    answerAlert.show();
+                }
+            });
+
+        }
+
 
         // Create the buttons and onClicks
-        Button figure1 = (Button) findViewById(R.id.mc1);
-        figure1.setText(getIntent().getExtras().getString("first"));
-
-        Button figure2 = (Button) findViewById(R.id.mc2);
-        figure2.setText(getIntent().getExtras().getString("second"));
-
-        Button figure3 = (Button) findViewById(R.id.mc3);
-        figure3.setText(getIntent().getExtras().getString("third"));
-
-        figure1.setOnClickListener(new Button.OnClickListener() {
-            public void onClick(View v) {
-                System.out.println("Figure 1 Clicked");
-
-                if (correctAnswer == 1) {
-                    dialogBuilder.setMessage("Correct!");
-                    dialogBuilder.setNeutralButton("Next Question", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-
-                            // Start next intent with passed in extras
-                            Intent newIntent = new Intent(LessonQuestion.this, LessonQuestion.class);
-                            if (getIntent().getExtras().getInt("qNum") == 1) {
-                                newIntent.putExtra("qNum", 2);
-                                newIntent.putExtra("question", R.drawable.c1_l1_q2);
-                                newIntent.putExtra("first", "A");
-                                newIntent.putExtra("second", "B");
-                                newIntent.putExtra("third", "C");
-                                newIntent.putExtra("answer", 1);
-
-                            } else {
-
-                                newIntent.putExtra("qNum", 6);
-                                newIntent.putExtra("question", R.drawable.c1_l1_q6);
-                                newIntent.putExtra("first", "A Line");
-                                newIntent.putExtra("second", "A Ray");
-                                newIntent.putExtra("third", "A Line Segment");
-                                newIntent.putExtra("answer", 2);
-
-                            }
-
-                            startActivity(newIntent);
-
-                        }
-                    });
-
-                } else {
-                    dialogBuilder.setMessage("Incorrect, try again");
-                    dialogBuilder.setNeutralButton("Ok", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            dialog.cancel();
-                        }
-                    });
-                }
-                answerAlert = dialogBuilder.create();
-                answerAlert.show();
-            }
-
-        });
-
-        figure2.setOnClickListener(new Button.OnClickListener() {
-            public void onClick(View v) {
-                System.out.println("Figure2 Clicked");
-
-                if (correctAnswer == 2) {
-                    dialogBuilder.setMessage("Correct!");
-                    dialogBuilder.setNeutralButton("Next Question", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-
-                            // Start next intent with passed in extras
-                            Intent newIntent = new Intent(LessonQuestion.this, LessonList.class);
-                            startActivity(newIntent);
-                        }
-                    });
-                } else {
-                    dialogBuilder.setMessage("Incorrect, try again");
-                    dialogBuilder.setNeutralButton("Ok", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            dialog.cancel();
-                        }
-                    });
-                }
-
-                answerAlert = dialogBuilder.create();
-                answerAlert.show();
-
-            }
-        });
-
-        figure3.setOnClickListener(new Button.OnClickListener() {
-            public void onClick(View v) {
-                System.out.println("Figure3 Clicked");
-                dialogBuilder.setMessage("Incorrect, try again");
-                dialogBuilder.setNeutralButton("Ok", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.cancel();
-                    }
-                });
-                answerAlert = dialogBuilder.create();
-                answerAlert.show();
-            }
-
-        });
+//        Button figure1 = (Button) findViewById(R.id.mc1);
+//        figure1.setText(getIntent().getExtras().getString("first"));
+//
+//        Button figure2 = (Button) findViewById(R.id.mc2);
+//        figure2.setText(getIntent().getExtras().getString("second"));
+//
+//        Button figure3 = (Button) findViewById(R.id.mc3);
+//        figure3.setText(getIntent().getExtras().getString("third"));
+//
+//        figure1.setOnClickListener(new Button.OnClickListener() {
+//            public void onClick(View v) {
+//                System.out.println("Figure 1 Clicked");
+//
+//                if (correctAnswer == 1) {
+//                    dialogBuilder.setMessage("Correct!");
+//                    dialogBuilder.setNeutralButton("Next Question", new DialogInterface.OnClickListener() {
+//                        @Override
+//                        public void onClick(DialogInterface dialog, int which) {
+//
+//                            // Start next intent with passed in extras
+//                            Intent newIntent = new Intent(LessonQuestion.this, LessonQuestion.class);
+//                            if (getIntent().getExtras().getInt("qNum") == 1) {
+//                                newIntent.putExtra("qNum", 2);
+//                                newIntent.putExtra("question", R.drawable.c1_l1_q2);
+//                                newIntent.putExtra("first", "A");
+//                                newIntent.putExtra("second", "B");
+//                                newIntent.putExtra("third", "C");
+//                                newIntent.putExtra("answer", 1);
+//
+//                            } else {
+//
+//                                newIntent.putExtra("qNum", 6);
+//                                newIntent.putExtra("question", R.drawable.c1_l1_q6);
+//                                newIntent.putExtra("first", "A Line");
+//                                newIntent.putExtra("second", "A Ray");
+//                                newIntent.putExtra("third", "A Line Segment");
+//                                newIntent.putExtra("answer", 2);
+//
+//                            }
+//
+//                            startActivity(newIntent);
+//
+//                        }
+//                    });
+//
+//                } else {
+//                    dialogBuilder.setMessage("Incorrect, try again");
+//                    dialogBuilder.setNeutralButton("Ok", new DialogInterface.OnClickListener() {
+//                        @Override
+//                        public void onClick(DialogInterface dialog, int which) {
+//                            dialog.cancel();
+//                        }
+//                    });
+//                }
+//                answerAlert = dialogBuilder.create();
+//                answerAlert.show();
+//            }
+//
+//        });
+//
+//        figure2.setOnClickListener(new Button.OnClickListener() {
+//            public void onClick(View v) {
+//                System.out.println("Figure2 Clicked");
+//
+//                if (correctAnswer == 2) {
+//                    dialogBuilder.setMessage("Correct!");
+//                    dialogBuilder.setNeutralButton("Next Question", new DialogInterface.OnClickListener() {
+//                        @Override
+//                        public void onClick(DialogInterface dialog, int which) {
+//
+//                            // Start next intent with passed in extras
+//                            Intent newIntent = new Intent(LessonQuestion.this, LessonList.class);
+//                            startActivity(newIntent);
+//                        }
+//                    });
+//                } else {
+//                    dialogBuilder.setMessage("Incorrect, try again");
+//                    dialogBuilder.setNeutralButton("Ok", new DialogInterface.OnClickListener() {
+//                        @Override
+//                        public void onClick(DialogInterface dialog, int which) {
+//                            dialog.cancel();
+//                        }
+//                    });
+//                }
+//
+//                answerAlert = dialogBuilder.create();
+//                answerAlert.show();
+//
+//            }
+//        });
+//
+//        figure3.setOnClickListener(new Button.OnClickListener() {
+//            public void onClick(View v) {
+//                System.out.println("Figure3 Clicked");
+//                dialogBuilder.setMessage("Incorrect, try again");
+//                dialogBuilder.setNeutralButton("Ok", new DialogInterface.OnClickListener() {
+//                    @Override
+//                    public void onClick(DialogInterface dialog, int which) {
+//                        dialog.cancel();
+//                    }
+//                });
+//                answerAlert = dialogBuilder.create();
+//                answerAlert.show();
+//            }
+//
+//        });
 
 
     }

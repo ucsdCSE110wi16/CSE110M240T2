@@ -16,6 +16,8 @@ import android.widget.TextView;
  */
 public class LessonDescription extends Activity {
 
+    Intent thisIntent;
+
     @Override
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -23,6 +25,7 @@ public class LessonDescription extends Activity {
         System.out.println("Inside LessonDescription onCreate");
         setContentView(R.layout.lesson_description);
 
+        thisIntent = this.getIntent();
 
         // Start ActionBar
         ActionBar ab = getActionBar();
@@ -59,7 +62,7 @@ public class LessonDescription extends Activity {
         // end ActionBar
 
 
-        String body = getIntent().getExtras().getString("body");
+        String body = getIntent().getExtras().getString("LessonBody");
         TextView text = (TextView) findViewById(R.id.textView);
 
         text.setText(body);
@@ -69,6 +72,26 @@ public class LessonDescription extends Activity {
             public void onClick(View v) {
 
                 Intent questionIntent = new Intent(LessonDescription.this, QuestionList.class);
+
+                int lessonNum = thisIntent.getExtras().getInt("LessonNum");
+
+                int[] qComplete = thisIntent.getExtras().getIntArray("QuestionComplete");
+
+                questionIntent.putExtra("QuestionComplete", qComplete);
+                questionIntent.putExtra("BOOL", true);
+
+//                    String[] q1 = new String[4];
+//                    q1[0] = "1";
+//                    q1[1] = "c1_l1_q1";
+//                    q1[2] = "A,B,C";
+//                    q1[3] = "1";
+
+                    //questionIntent.putExtra("Question", 1);
+                    questionIntent.putExtra("Lesson", lessonNum);
+
+
+                    questionIntent.putExtra("NumQuestions", 3);
+
 
                 /*
                 int question = R.drawable.c1_l1_q1;
@@ -89,6 +112,7 @@ public class LessonDescription extends Activity {
                 int qNum = 1;
                 questionIntent.putExtra("qNum", qNum);
 */
+
 
                 startActivity(questionIntent);
 
