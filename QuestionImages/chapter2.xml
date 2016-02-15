@@ -11,7 +11,7 @@
             g. Reflex Angle: It is an angle that is more than 180° but less than 360°.\n
         </body>
         <test>
-            !types: MCQ = Multiple Choice, Check -> Check Boxes, Text -> Free response
+            !types: MCQ = Multiple Choice, Check -> Check Boxes, Text -> Free response.:
             <question number='1' type='MCQ'>
                 <image>c2_l1_q1.png</image>
                 <responses>Acute,Right,Obtuse</responses>
