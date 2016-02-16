@@ -4,12 +4,16 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
+
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/CustomActionBarTheme">
+        <!--android:icon="@mipmap/ic_launcher"-->
+        <!--android:label="@string/app_name"-->
+
+        <uses-permission android:name="android.permission.INTERNET" />
+
         <activity android:name=".SplashScreen"
-            android:label="@string/app_name">
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -19,9 +23,7 @@
 
         </activity>
         <activity
-            android:name=".Main"
-            android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:name=".Main">
             <intent-filter>
                 <!--<action android:name="android.intent.action.MAIN" />-->
 
@@ -30,15 +32,12 @@
         </activity>
 
         <activity
-            android:name=".LessonList"
-            android:label="@string/app_name">
+            android:name=".LessonList">
 
         </activity>
 
         <activity
-            android:name=".LessonQuestion"
-            android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:name=".LessonQuestion">
             <intent-filter>
                 <!--<action android:name="android.intent.action.MAIN" />-->
 
@@ -47,9 +46,16 @@
         </activity>
 
         <activity
-            android:name=".LessonDescription"
-            android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:name=".LessonDescription">
+            <intent-filter>
+                <!--<action android:name="android.intent.action.MAIN" />-->
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".QuestionList">
             <intent-filter>
                 <!--<action android:name="android.intent.action.MAIN" />-->
 
