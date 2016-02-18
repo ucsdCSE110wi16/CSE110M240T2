@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<chapter title='Perimeter, Area, and Volume'>
+    <lesson title='Advanced Area of Triangles	'>
+        <body>On a basic level: a triangle has an area formula of: Area = (1/2) Base x Height \n
+        	  In this lesson we'll go over the areas of an equilateral triangle (all equal sides)\n
+        </body>
+        <test>
+            !types: MCQ = Multiple Choice, Check -> Check Boxes, Text -> Free response
+            <question number='1' type='MCQ'>
+                <image>C5l1q1.png</image>
+                <responses>A,B,C,D</responses>
+                <answer>2</answer>
+            </question>
+            <question number='2' type='Text'>
+                <image>C5l1q2.png</image>
+                <answer>84</answer>
+            </question>
+            <question number='3' type='MCQ'>
+                <image>C5l1q3.png</image>
+                <responses>A,B,C,D</responses>
+                <answer>1</answer>
+            </question>
+        </test>
+    </lesson>
+    <lesson title='Volume and Surface Area'>
+        <body>In this lesson we'll be looking at Volume and surface areas: 
+        	when thinking about the surface area, you essentially calculate the outer area: \n
+        	Here we'll go over the basics of some simple 3 dimensional shapes \n
+         	Surface Area of a Cube: Edge Length x Edge Length x 6 \n
+  			Area of a Cube: Edge Length x Edge Length x Edge Length \n
+  			Area of a Cylinder: Radius ^ 2 x Pi x Height or Area of the circle x height \n
+        </body>
+        <test>
+            !types: MCQ = Multiple Choice, Check -> Check Boxes, Text -> Free response
+            <question number='1' type='Text'>
+                <image>c5l2q1.png</image>
+                <answer>54</answer>
+            </question>
+            <question number='2' type='Text'>
+                <image>c5l2q2.png</image>
+                <answer>175</answer>
+            </question>
+            <question number='3' type='Text'>
+                <image>c5l2q3.png</image>
+                <answer>168</answer>
+            </question>
+            <question number='4' type='Text'>
+                <image>c5l2q4.png</image>
+                <answer>72</answer>
+            </question>
+            <question number='5' type='Text'>
+                <image>c5l2q5.png</image>
+ 				<responses>A,B,C,D</responses>
+                <answer>3</answer>
+            </question>
+        </test>
+    </lesson>
+</chapter>
