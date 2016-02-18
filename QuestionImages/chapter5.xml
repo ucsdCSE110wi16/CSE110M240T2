@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<chapter title='Perimeter, Area, and Volume'>
+    <lesson title='Advanced Area of Triangles	'>
+        <body>On a basic level: a triangle has an area formula of: Area = (1/2) Base x Height \n
+        	  In this lesson we'll go over the areas of an equilateral triangle (all equal sides)\n
+        </body>
+        <test>
+            !types: MCQ = Multiple Choice, Check -> Check Boxes, Text -> Free response
+            <question number='1' type='MCQ'>
+                <image>C5l1q1.png</image>
+                <responses>A,B,C,D</responses>
+                <answer>2</answer>
+            </question>
+            <question number='2' type='Text'>
+                <image>C5l1q2.png</image>
+                <answer>84</answer>
+            </question>
+            <question number='3' type='MCQ'>
+                <image>C5l1q3.png</image>
+                <responses>A,B,C,D</responses>
+                <answer>1</answer>
+            </question>
+        </test>
+    </lesson>
+    <lesson title='Area and Circumference of Circles'>
+        <body>Adjacent angles of a parallelogram are supplementary: Their sum equals 180.\n
+            Opposite angles of a parallelogram are equivalent.\n
+            The angles of bases of an isosceles triangle are equal.\n
+            Area of a parallelogram is base x the bisecting height: A = bh.\n
+        </body>
+        <test>
+            !types: MCQ = Multiple Choice, Check -> Check Boxes, Text -> Free response
+            <question number='1' type='Text'>
+                <image>C5L2Q1.png</image>
+                <answer>74</answer>
+            </question>
+            <question number='2' type='Text'>
+                <image>C5L2Q2.png</image>
+                <answer>52</answer>
+            </question>
+            <question number='3' type='Text'>
+                <image>C5L2Q3.png</image>
+                <answer>32</answer>
+            </question>
+            <question number='4' type='Text'>
+                <image>C5L2Q4.png</image>
+                <answer>153</answer>
+            </question>
+            <question number='5' type='Text'>
+                <image>C5L2Q5.png</image>
+                <answer>150</answer>
+            </question>
+        </test>
+    </lesson>
+    <lesson title='Volume and Surface Area'>
+        <body>Adjacent angles of a parallelogram are supplementary: Their sum equals 180.\n
+            Opposite angles of a parallelogram are equivalent.\n
+            The angles of bases of an isosceles triangle are equal.\n
+            Area of a parallelogram is base x the bisecting height: A = bh.\n
+        </body>
+        <test>
+            !types: MCQ = Multiple Choice, Check -> Check Boxes, Text -> Free response
+            <question number='1' type='Text'>
+                <image>C5L2Q1.png</image>
+                <answer>74</answer>
+            </question>
+            <question number='2' type='Text'>
+                <image>C5L2Q2.png</image>
+                <answer>52</answer>
+            </question>
+            <question number='3' type='Text'>
+                <image>C5L2Q3.png</image>
+                <answer>32</answer>
+            </question>
+            <question number='4' type='Text'>
+                <image>C5L2Q4.png</image>
+                <answer>153</answer>
+            </question>
+            <question number='5' type='Text'>
+                <image>C5L2Q5.png</image>
+                <answer>150</answer>
+            </question>
+        </test>
+    </lesson>
+</chapter>
