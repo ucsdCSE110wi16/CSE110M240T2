@@ -246,6 +246,7 @@
 				<question number='4' type = 'Text'>
 					<image>c4_l1_q4.png</image>
 					<answer>12pi</answer>
+                </question>
 				<question number='5' type = 'Text'>
 					<image>c4_l1_q5.png</image>
 					<answer>16pi</answer>
@@ -296,6 +297,7 @@
 					<image>c4_l3_q5.png</image>
 					<answer>43</answer>
 				</question>
+        </test>
 	</lesson>
     </chapter4>
 </chapters>
