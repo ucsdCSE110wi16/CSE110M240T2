@@ -11,12 +11,12 @@ import com.firebase.client.ValueEventListener;
 public class Chapter {
     String title;
     int chapter_number;
-    Lesson lesson;
+    //Lesson lesson;
     Firebase chapter_ref;
 
     private Chapter(){}
 
-    public Chapter (int chapter_number, int lesson_number){
+    public Chapter (int chapter_number/*, int lesson_number*/){
 
         this.chapter_number = chapter_number;
         String refURL = "https://cse110geometry.firebaseio.com/chapters/"+"chapter"+String.valueOf(chapter_number);
@@ -24,15 +24,15 @@ public class Chapter {
         this.chapter_ref.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-
+                Chapter.this.title =  (String) dataSnapshot.child("_title").getValue();
             }
 
             @Override
             public void onCancelled(FirebaseError firebaseError) {
-
+                System.out.println("The read failed:" + firebaseError.getMessage());
             }
         });
-        lesson(lesson_number);
+        //lesson(lesson_number);
 
     }
 
