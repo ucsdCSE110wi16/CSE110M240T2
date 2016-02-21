@@ -85,6 +85,7 @@ public class Main extends Activity {
 
         // end ActionBar
 
+<<<<<<< HEAD
 //        InputStream in = getResources().openRawResource(
 //                getResources().getIdentifier("chapters",
 //                        "raw", getPackageName()));
@@ -131,6 +132,7 @@ public class Main extends Activity {
 //        for (int i = 0; i < q.getAnswers().size(); i++) {
 //            System.out.println(q.getAnswers().get(i));
 //        }
+
 
         first.setOnClickListener(
                 new ImageButton.OnClickListener() {
