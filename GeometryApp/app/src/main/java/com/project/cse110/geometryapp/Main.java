@@ -2,7 +2,12 @@ package com.project.cse110.geometryapp;
 
 import android.app.ActionBar;
 import android.app.Activity;
+import android.content.Context;
+import android.content.ContextWrapper;
 import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.content.res.AssetManager;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -15,6 +20,9 @@ import android.widget.TextView;
 import com.firebase.client.Firebase;
 
 import com.firebase.client.Firebase;
+
+import java.io.IOException;
+import java.io.InputStream;
 
 
 /**
@@ -36,8 +44,6 @@ public class Main extends Activity {
 
         ImageButton first = (ImageButton) findViewById(R.id.topic1);
         ImageButton second = (ImageButton) findViewById(R.id.topic2);
-
-
 
         // Start ActionBar
         ActionBar ab = getActionBar();
@@ -64,7 +70,30 @@ public class Main extends Activity {
 
         // end ActionBar
 
+        InputStream in = getResources().openRawResource(
+                getResources().getIdentifier("chapters",
+                        "raw", getPackageName()));
 
+        ChapterXML chap = new ChapterXML(1, in);
+        String title = chap.getTitle();
+        int num = chap.getNumLessons();
+        System.out.println(title + num);
+        try {
+            in.close();
+        } catch (IOException e) {
+
+        }
+
+        in = getResources().openRawResource(
+                getResources().getIdentifier("chapters",
+                        "raw", getPackageName()));
+
+        LessonXML less = new LessonXML(chap.getChapterNumber(), 1, in);
+        title = less.getTitle();
+        String body = less.getBody();
+        num = less.getNumQuestions();
+        System.out.println(title + num);
+        System.out.println(body);
 
         first.setOnClickListener(
                 new ImageButton.OnClickListener() {
@@ -128,7 +157,6 @@ public class Main extends Activity {
 //                        String[][][] questions = {question1, question2};
 
 
-
                         //topic1Intent.putExtra("Questions", questions);
                         int[] qComplete = {0, 0, 0};
                         topic1Intent.putExtra("QuestionComplete", qComplete);
@@ -162,12 +190,10 @@ public class Main extends Activity {
                         topic2Intent.putExtra("Lessons", lessonArray);
 
 
-
                         startActivity(topic2Intent);
 
                     }
                 }
         );
-
     }
 }
