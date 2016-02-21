@@ -22,9 +22,9 @@ import javax.xml.xpath.XPathFactory;
  */
 public class ChapterXML {
 
-    String title;
-    int chapterNumber;
-    int numLessons;
+    private String title;
+    private int chapterNumber;
+    private int numLessons;
 
     public ChapterXML (int number, InputStream in) {
 

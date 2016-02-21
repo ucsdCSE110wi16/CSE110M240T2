@@ -20,11 +20,11 @@ import javax.xml.xpath.XPathFactory;
  * Created by Abhishek on 2/20/16.
  */
 public class LessonXML {
-    String title;
-    String body;
-    int chapterNumber;
-    int lessonNumber;
-    int numQuestions;
+    private String title;
+    private String body;
+    private int chapterNumber;
+    private int lessonNumber;
+    private int numQuestions;
 
     public LessonXML(int chapNum, int lessonNum, InputStream in) {
         this.chapterNumber = chapNum;
@@ -59,18 +59,9 @@ public class LessonXML {
         Node currLesson = list.item(lessonNum-1);
         this.title = currLesson.getAttributes().getNamedItem("title").getNodeValue();
 
-        location = "/chapters/chapter" + chapNum + "/lesson[@title='" + this.title + "']/body";
-        System.out.println(location);
-        Node node = null;
-        try {
-            node = (Node) xPath.compile(location).evaluate(document, XPathConstants.NODE);
-        } catch (XPathExpressionException e) {
-            e.printStackTrace();
-        }
-        this.body = node.getTextContent();
+        this.body = currLesson.getFirstChild().getNextSibling().getTextContent();
 
         location = "/chapters/chapter" + chapNum + "/lesson[@title='" + this.title + "']/test/question";
-        System.out.println(location);
         list = null;
         try {
             list = (NodeList) xPath.compile(location).evaluate(document, XPathConstants.NODESET);

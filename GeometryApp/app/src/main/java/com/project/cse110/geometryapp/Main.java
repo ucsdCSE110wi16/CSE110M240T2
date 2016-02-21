@@ -107,6 +107,28 @@ public class Main extends Activity {
         System.out.println(title + num);
         System.out.println(body);
 
+        try {
+            in.close();
+        } catch (IOException e) {
+
+        }
+
+        in = getResources().openRawResource(
+                getResources().getIdentifier("chapters",
+                        "raw", getPackageName()));
+
+        QuestionXML q = new QuestionXML(chap.getChapterNumber(), less.getLessonNumber(), less.getTitle(), 1, in);
+        System.out.println(q.getQuestionNumber());
+        System.out.println(q.getQuestionType());
+        System.out.println(q.getImageName());
+        for (int i = 0; i < q.getResponses().size(); i++) {
+            System.out.println(q.getResponses().get(i));
+        }
+
+        for (int i = 0; i < q.getAnswers().size(); i++) {
+            System.out.println(q.getAnswers().get(i));
+        }
+
         first.setOnClickListener(
                 new ImageButton.OnClickListener() {
                     public void onClick(View v) {
