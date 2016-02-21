@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 
-
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    >
+    android:layout_height="match_parent">
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/lightGrey">
 
     <TableLayout
         android:layout_width="match_parent"
@@ -16,75 +20,110 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
+
+            <Space
+                android:layout_width="50dp"
+                android:layout_height="20dp"
+                android:layout_column="1"/>
+
             <ImageButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/tools_of_geometry"
+                android:layout_marginLeft="20dp"
                 android:id="@+id/topic1"
-                android:layout_column="1" />
+                android:layout_column="1"
+                android:background="@null"/>
         </TableRow>
 
-        <!--<Space-->
-            <!--android:layout_width="20px"-->
-            <!--android:layout_height="100px" />-->
+        <Space
+            android:layout_width="20dp"
+            android:layout_height="100dp" />
 
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+
+            <Space
+                android:layout_width="15dp"
+                android:layout_height="20dp"
+                />
 
             <ImageButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/angles_and_intersecting_lines"
                 android:id="@+id/topic2"
+                android:background="@null"
                 />
         </TableRow>
 
-        <!--<Space-->
-            <!--android:layout_width="20px"-->
-            <!--android:layout_height="100px" />-->
+        <Space
+            android:layout_width="20dp"
+            android:layout_height="100dp" />
 
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+
+            <Space
+                android:layout_width="125dp"
+                android:layout_height="20dp"
+                android:layout_column="2"/>
 
             <ImageButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/circles"
                 android:id="@+id/topic3"
-                android:layout_column="2" />
+                android:layout_column="2"
+                android:background="@null"/>
         </TableRow>
 
-        <!--<Space-->
-            <!--android:layout_width="20px"-->
-            <!--android:layout_height="100px" />-->
+        <Space
+            android:layout_width="20dp"
+            android:layout_height="100dp" />
 
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+
+            <Space
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                />
 
             <ImageButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/congruence"
-                android:id="@+id/topic4" />
+                android:id="@+id/topic4"
+                android:background="@null"/>
         </TableRow>
 
-        <!--<Space-->
-            <!--android:layout_width="20px"-->
-            <!--android:layout_height="100px" />-->
+        <Space
+            android:layout_width="20dp"
+            android:layout_height="100dp" />
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:layout_marginBottom="25dp">
+
+            <Space
+                android:layout_width="125dp"
+                android:layout_height="20dp"
+                android:layout_column="2"/>
 
             <ImageButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/quadrilaterals"
                 android:id="@+id/topic5"
-                android:layout_column="2" />
+                android:layout_column="2"
+                android:background="@null" />
         </TableRow>
     </TableLayout>
 </LinearLayout>
+
+    </ScrollView>
