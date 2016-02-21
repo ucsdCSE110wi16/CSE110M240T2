@@ -89,10 +89,7 @@ public class Main extends Activity {
 
         // end ActionBar
 
-//        InputStream in = getResources().openRawResource(
-//                getResources().getIdentifier("chapters",
-//                        "raw", getPackageName()));
-//
+
 //        ChapterXML chap = new ChapterXML(1, in);
 //        String title = chap.getTitle();
 //        int num = chap.getNumLessons();

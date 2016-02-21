@@ -104,9 +104,13 @@ public class QuestionXML {
         return completed;
     }
 
-    public void setCompleted() {
-
-
-
+    public void setCompleted(Context context) {
+//        DocParser builder = new DocParser(context);
+//        String location = "/chapters/chapter" + chapterNumber + "/lesson[@title='" + lessonTitle + "']/test/question";
+//        NodeList list = builder.getNodeList(location);
+//        Node currQuestion = list.item(this.questionNumber-1);
+//        currQuestion.getAttributes().getNamedItem("completed").setTextContent("1");
+//        this.completed = Integer.parseInt(currQuestion.getAttributes().getNamedItem("completed").getNodeValue());
+//        builder.closeStream();
     }
 }
