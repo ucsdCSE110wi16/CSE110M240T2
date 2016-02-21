@@ -78,8 +78,8 @@ public class QuestionXML {
             this.answersString = content.item(5).getTextContent();
         }
 
-        responses = new ArrayList<>(Arrays.asList(responsesString.split("##")));
-        answers = new ArrayList<>(Arrays.asList(answersString.split("##")));
+        //responses = new ArrayList<>(Arrays.asList(responsesString.split("##")));
+        //answers = new ArrayList<>(Arrays.asList(answersString.split("##")));
     }
 
     public int getQuestionNumber() {
