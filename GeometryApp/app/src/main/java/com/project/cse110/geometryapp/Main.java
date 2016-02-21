@@ -109,6 +109,11 @@ public class Main extends Activity {
         for (int i = 0; i < q.getAnswers().size(); i++) {
             System.out.println(q.getAnswers().get(i));
         }
+//
+//        q.setCompleted(this);
+//        System.out.println(q.getCompleted());
+//        q = new QuestionXML(chap.getChapterNumber(), less.getLessonNumber(), less.getTitle(), 1, this);
+//        System.out.println(q.getCompleted());
 
         first.setOnClickListener(
                 new ImageButton.OnClickListener() {
