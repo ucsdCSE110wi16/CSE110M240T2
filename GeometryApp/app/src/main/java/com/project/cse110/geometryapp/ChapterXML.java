@@ -1,16 +1,13 @@
 package com.project.cse110.geometryapp;
 
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
-import org.w3c.dom.Document;
+import android.content.Context;
 
-import java.io.IOException;
+import org.w3c.dom.Document;
 
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
-import org.xml.sax.SAXException;
-import java.io.InputStream;
+
+import java.util.ArrayList;
 
 import javax.xml.xpath.XPath;
 import javax.xml.xpath.XPathConstants;
@@ -25,58 +22,46 @@ public class ChapterXML {
     private String title;
     private int chapterNumber;
     private int numLessons;
+    private ArrayList<String> lessonNames;
 
-    public ChapterXML (int number, InputStream in) {
+    public ChapterXML (int number, Context context) {
 
         this.chapterNumber = number;
-        DocumentBuilderFactory builderFactory = DocumentBuilderFactory.newInstance();
-        DocumentBuilder builder = null;
-        try {
-            builder = builderFactory.newDocumentBuilder();
-        } catch (ParserConfigurationException e) {
-            e.printStackTrace();
-        }
+        DocParser builder = new DocParser(context);
 
-        Document document = null;
-        try {
-            document = builder.parse(in);
-        } catch (SAXException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        XPath xPath =  XPathFactory.newInstance().newXPath();
         String location = "/chapters/chapter" + number;
-        Node node = null;
-        try {
-            node = (Node) xPath.compile(location).evaluate(document, XPathConstants.NODE);
-        } catch (XPathExpressionException e) {
-            e.printStackTrace();
-        }
+        Node node = builder.getNode(location);
         this.title = node.getAttributes().getNamedItem("title").getNodeValue();
 
         location = "/chapters/chapter" + number + "/lesson";
-        NodeList list = null;
-        try {
-            list = (NodeList) xPath.compile(location).evaluate(document, XPathConstants.NODESET);
-        } catch (XPathExpressionException e) {
-            e.printStackTrace();
-        }
-
+        NodeList list = builder.getNodeList(location);
         this.numLessons = list.getLength();
 
+        this.lessonNames = new ArrayList<>();
+        for (int i = 0; i < numLessons; i++) {
+            this.lessonNames.add(list.item(i).getAttributes().getNamedItem("title").getNodeValue());
+        }
+
+        builder.closeStream();
     }
 
     public String getTitle() {
+
         return this.title;
     }
 
     public int getNumLessons() {
+
         return this.numLessons;
     }
 
     public int getChapterNumber() {
+
         return chapterNumber;
+    }
+
+    public ArrayList<String> getLessonNames() {
+
+        return lessonNames;
     }
 }

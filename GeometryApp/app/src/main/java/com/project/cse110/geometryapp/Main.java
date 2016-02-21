@@ -82,45 +82,26 @@ public class Main extends Activity {
 
         // end ActionBar
 
-        InputStream in = getResources().openRawResource(
-                getResources().getIdentifier("chapters",
-                        "raw", getPackageName()));
-
-        ChapterXML chap = new ChapterXML(1, in);
+        ChapterXML chap = new ChapterXML(1, this);
         String title = chap.getTitle();
         int num = chap.getNumLessons();
         System.out.println(title + num);
-        try {
-            in.close();
-        } catch (IOException e) {
-
+        for (int i = 0; i < chap.getLessonNames().size(); i++) {
+            System.out.println(chap.getLessonNames().get(i));
         }
 
-        in = getResources().openRawResource(
-                getResources().getIdentifier("chapters",
-                        "raw", getPackageName()));
-
-        LessonXML less = new LessonXML(chap.getChapterNumber(), 1, in);
+        LessonXML less = new LessonXML(chap.getChapterNumber(), 1, this);
         title = less.getTitle();
         String body = less.getBody();
         num = less.getNumQuestions();
         System.out.println(title + num);
         System.out.println(body);
 
-        try {
-            in.close();
-        } catch (IOException e) {
-
-        }
-
-        in = getResources().openRawResource(
-                getResources().getIdentifier("chapters",
-                        "raw", getPackageName()));
-
-        QuestionXML q = new QuestionXML(chap.getChapterNumber(), less.getLessonNumber(), less.getTitle(), 1, in);
+        QuestionXML q = new QuestionXML(chap.getChapterNumber(), less.getLessonNumber(), less.getTitle(), 1, this);
         System.out.println(q.getQuestionNumber());
         System.out.println(q.getQuestionType());
         System.out.println(q.getImageName());
+        System.out.println(q.getCompleted());
         for (int i = 0; i < q.getResponses().size(); i++) {
             System.out.println(q.getResponses().get(i));
         }
