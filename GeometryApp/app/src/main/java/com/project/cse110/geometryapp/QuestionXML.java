@@ -22,16 +22,16 @@ import javax.xml.xpath.XPathFactory;
  * Created by Abhishek on 2/20/16.
  */
 public class QuestionXML {
-    int questionNumber; //
-    String questionType;
-    String imageName;
-    String responsesString;
-    String answersString;
-    ArrayList<String> responses;
-    ArrayList<String> answers;
-    int chapterNumber; //
-    int lessonNumber; //
-    String lessonTitle; //
+    private int questionNumber; //
+    private String questionType;
+    private String imageName;
+    private String responsesString;
+    private String answersString;
+    private ArrayList<String> responses;
+    private ArrayList<String> answers;
+    private int chapterNumber; //
+    private int lessonNumber; //
+    private String lessonTitle; //
 
     public QuestionXML(int chapterNumber, int lessonNumber, String lessonTitle, int questionNumber, InputStream in) {
         this.chapterNumber = chapterNumber;

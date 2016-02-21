@@ -20,11 +20,11 @@ import javax.xml.xpath.XPathFactory;
  * Created by Abhishek on 2/20/16.
  */
 public class LessonXML {
-    String title;
-    String body;
-    int chapterNumber;
-    int lessonNumber;
-    int numQuestions;
+    private String title;
+    private String body;
+    private int chapterNumber;
+    private int lessonNumber;
+    private int numQuestions;
 
     public LessonXML(int chapNum, int lessonNum, InputStream in) {
         this.chapterNumber = chapNum;
