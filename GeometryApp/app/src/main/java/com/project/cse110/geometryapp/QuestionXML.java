@@ -68,7 +68,6 @@ public class QuestionXML {
         this.questionNumber = Integer.parseInt(currQuestion.getAttributes().getNamedItem("number").getNodeValue());
         this.questionType = currQuestion.getAttributes().getNamedItem("type").getNodeValue();
         NodeList content = currQuestion.getChildNodes();
-        //System.out.println(content.getLength());
         this.imageName = content.item(1).getTextContent();
         this.responsesString = content.item(3).getTextContent();
         this.answersString = content.item(5).getTextContent();

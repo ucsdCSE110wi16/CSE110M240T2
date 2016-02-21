@@ -59,14 +59,7 @@ public class LessonXML {
         Node currLesson = list.item(lessonNum-1);
         this.title = currLesson.getAttributes().getNamedItem("title").getNodeValue();
 
-        location = "/chapters/chapter" + chapNum + "/lesson[@title='" + this.title + "']/body";
-        Node node = null;
-        try {
-            node = (Node) xPath.compile(location).evaluate(document, XPathConstants.NODE);
-        } catch (XPathExpressionException e) {
-            e.printStackTrace();
-        }
-        this.body = node.getTextContent();
+        this.body = currLesson.getFirstChild().getNextSibling().getTextContent();
 
         location = "/chapters/chapter" + chapNum + "/lesson[@title='" + this.title + "']/test/question";
         list = null;
