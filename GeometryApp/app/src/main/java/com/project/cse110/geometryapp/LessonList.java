@@ -11,6 +11,8 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 /**
  * Created by devinhickey on 1/29/16.
  */
@@ -18,6 +20,7 @@ public class LessonList extends Activity {
 
     Intent thisIntent;
     int lessonNum;
+    ArrayList<String> lessonTitles;
 
     @Override
     public void onCreate(Bundle savedInstance) {
@@ -72,10 +75,8 @@ public class LessonList extends Activity {
         // end ActionBar
 
 
-        //final String lessonList[] = this.getIntent().getExtras().getStringArray("Lessons");
-        //final String lessonBody[] = this.getIntent().getExtras().getStringArray("LessonBody");
-
         lessonNum = this.getIntent().getExtras().getInt("NumLessons");
+        lessonTitles = this.getIntent().getExtras().getStringArrayList("LessonTitles");
 
         for (int i = 0; i < lessonNum; i++) {
             final Button newButton = new Button(this);
@@ -84,7 +85,7 @@ public class LessonList extends Activity {
 
             // Add the buttons with the layout params
             myLayout.addView(newButton, layParam);
-            newButton.setText("Button " + i);
+            newButton.setText(lessonTitles.get(i));
             newButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -92,59 +93,14 @@ public class LessonList extends Activity {
                     Intent newIntent = new Intent(LessonList.this, LessonDescription.class);
 
                     String text = (String) newButton.getText();
-
                     System.out.println("Text: " + text);
 
-                    int index = thisIntent.getExtras().getInt(text);
 
-                    System.out.println("Index: " + index);
-                    //newIntent.putExtra("LessonBody", lessonBody[index]);
-
-                    //int[] qComplete = thisIntent.getExtras().getIntArray("QuestionComplete");
-
-//                    newIntent.putExtra("QuestionComplete", qComplete);
-
-  //                  newIntent.putExtra("LessonNum", index+1);
-
-    //                startActivity(newIntent);
 
                 }
             });
 
         }
 
-//        lesson1Button.setOnClickListener(
-//                new Button.OnClickListener() {
-//                    public void onClick(View v) {
-//                        Intent newIntent = new Intent(LessonList.this, LessonDescription.class);
-//                        // Grab text from xml FIXME
-//                        String intentString = "-Lines: A line is a straight one-dimensional geometric object that extends infinitely in both directions.\n\n"
-//                                +
-//                                "-Line Segment: A line segment is a straight one-dimensional geometric object that has fixed starting and ending points.\n\n"
-//                                +
-//                                "-Ray: A ray is a straight one-dimensional geometric object that has a fixed starting point, but extends infinitely.";
-//
-//                        newIntent.putExtra("body", intentString);
-//
-//                        startActivity(newIntent);
-//
-//                    }
-//
-//                });
-//
-//        lesson2Button.setOnClickListener(new Button.OnClickListener() {
-//                public void onClick(View v) {
-//                    Intent newIntent = new Intent(LessonList.this, LessonDescription.class);
-//
-//                    String intentString = "-Point: A point is a geometric object that signifies a location, but has no size in itself. Lines, line segments, rays are all collections of points.\n\n"
-//                            + "-Plane: A plane is a flat, two-dimensional surface that extends infinitely far. It is the two-dimensional analogue of a point (zero dimensions), a line (one dimension).\n\n"
-//                            + "-Collinear Points: Points are collinear if they lie on the same line.\n\n"
-//                            + "-Coplanar Points: Points are coplanar if they both lie on the same plane.";
-//                    newIntent.putExtra("body", intentString);
-//                    startActivity(newIntent);
-//
-//                }
-//
-//        });
     }
 }

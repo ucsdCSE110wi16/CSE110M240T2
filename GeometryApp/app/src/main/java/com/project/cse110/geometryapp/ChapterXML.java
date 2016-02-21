@@ -37,7 +37,7 @@ public class ChapterXML {
         NodeList list = builder.getNodeList(location);
         this.numLessons = list.getLength();
 
-        this.lessonNames = new ArrayList<>();
+        this.lessonNames = new ArrayList<String>();
         for (int i = 0; i < numLessons; i++) {
             this.lessonNames.add(list.item(i).getAttributes().getNamedItem("title").getNodeValue());
         }
