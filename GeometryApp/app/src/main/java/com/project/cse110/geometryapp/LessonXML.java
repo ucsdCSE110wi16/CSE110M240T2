@@ -60,7 +60,6 @@ public class LessonXML {
         this.title = currLesson.getAttributes().getNamedItem("title").getNodeValue();
 
         location = "/chapters/chapter" + chapNum + "/lesson[@title='" + this.title + "']/body";
-        System.out.println(location);
         Node node = null;
         try {
             node = (Node) xPath.compile(location).evaluate(document, XPathConstants.NODE);
@@ -70,7 +69,6 @@ public class LessonXML {
         this.body = node.getTextContent();
 
         location = "/chapters/chapter" + chapNum + "/lesson[@title='" + this.title + "']/test/question";
-        System.out.println(location);
         list = null;
         try {
             list = (NodeList) xPath.compile(location).evaluate(document, XPathConstants.NODESET);
