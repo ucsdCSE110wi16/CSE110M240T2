@@ -24,7 +24,9 @@ public class Chapter {
         this.chapter_ref.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
+                System.out.println("Inside Chapter Setting");
                 Chapter.this.title =  (String) dataSnapshot.child("_title").getValue();
+                System.out.println("Chapter: " + Chapter.this.title);
             }
 
             @Override
@@ -37,6 +39,7 @@ public class Chapter {
     }
 
     public String getTitle(){
+        System.out.println("Inside GetTitle");
         return title;
     }
 

@@ -7,7 +7,9 @@ import android.os.Bundle;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
@@ -16,12 +18,18 @@ import com.firebase.client.Firebase;
 
 import com.firebase.client.Firebase;
 
+import java.io.File;
+import java.io.InputStream;
+
 
 /**
  * Created by devinhickey on 1/29/16.
  */
 
 public class Main extends Activity {
+
+    DrawLine drawLine;
+
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
      * See https://g.co/AppIndexing/AndroidStudio for more information.
@@ -37,7 +45,11 @@ public class Main extends Activity {
         ImageButton first = (ImageButton) findViewById(R.id.topic1);
         ImageButton second = (ImageButton) findViewById(R.id.topic2);
 
+        ViewGroup.LayoutParams param = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
 
+        drawLine = new DrawLine(this, first, second);
+        this.addContentView(drawLine, param);
+        //setContentView(drawLine);
 
         // Start ActionBar
         ActionBar ab = getActionBar();
@@ -168,6 +180,13 @@ public class Main extends Activity {
                     }
                 }
         );
+
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        System.out.println("Inside onResume");
 
     }
 }
