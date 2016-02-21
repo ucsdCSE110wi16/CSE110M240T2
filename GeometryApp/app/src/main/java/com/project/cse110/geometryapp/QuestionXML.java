@@ -56,7 +56,7 @@ public class QuestionXML {
             e.printStackTrace();
         }
 
-        XPath xPath =  XPathFactory.newInstance().newXPath();
+        XPath xPath = XPathFactory.newInstance().newXPath();
         String location = "/chapters/chapter" + chapterNumber + "/lesson[@title='" + lessonTitle + "']/test/question";
         NodeList list = null;
         try {
@@ -69,12 +69,17 @@ public class QuestionXML {
         this.questionType = currQuestion.getAttributes().getNamedItem("type").getNodeValue();
         NodeList content = currQuestion.getChildNodes();
         this.imageName = content.item(1).getTextContent();
-        this.responsesString = content.item(3).getTextContent();
-        this.answersString = content.item(5).getTextContent();
-        System.out.println(responsesString);
-        System.out.println(answersString);
-        responses = new ArrayList<>(Arrays.asList(responsesString.split(",")));
-        answers = new ArrayList<>(Arrays.asList(answersString.split(",")));
+
+        if (questionType.equals("Text")) {
+            this.responsesString = "";
+            this.answersString = content.item(3).getTextContent();
+        } else {
+            this.responsesString = content.item(3).getTextContent();
+            this.answersString = content.item(5).getTextContent();
+        }
+
+        responses = new ArrayList<>(Arrays.asList(responsesString.split("##")));
+        answers = new ArrayList<>(Arrays.asList(answersString.split("##")));
     }
 
     public int getQuestionNumber() {
