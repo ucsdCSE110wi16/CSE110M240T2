@@ -11,12 +11,13 @@ import com.firebase.client.ValueEventListener;
 public class Chapter {
     String title;
     int chapter_number;
-    //Lesson lesson;
+    long lesson_numbers;
+    Lesson lesson[];
     Firebase chapter_ref;
 
     private Chapter(){}
 
-    public Chapter (int chapter_number/*, int lesson_number*/){
+    public Chapter (int chapter_number){
 
         this.chapter_number = chapter_number;
         String refURL = "https://cse110geometry.firebaseio.com/chapters/"+"chapter"+String.valueOf(chapter_number);
@@ -24,9 +25,24 @@ public class Chapter {
         this.chapter_ref.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                System.out.println("Inside Chapter Setting");
-                Chapter.this.title =  (String) dataSnapshot.child("_title").getValue();
-                System.out.println("Chapter: " + Chapter.this.title);
+                Chapter.this.title = (String) dataSnapshot.child("title").getValue();
+                Chapter.this.lesson_numbers = (long) dataSnapshot.child("lesson").getChildrenCount();
+                Chapter.this.lesson = new Lesson[(int) Chapter.this.lesson_numbers];
+                int i = 0;
+                for (DataSnapshot lessonSnapshot: dataSnapshot.child("lesson").getChildren()){
+                    Chapter.this.lesson[i] = lessonSnapshot.getValue(Lesson.class);
+                    System.out.println("CHAPTER PLACE REF "+lessonSnapshot.getRef());
+                    Chapter.this.lesson[i].setLesson_ref(lessonSnapshot.getRef());
+                    //System.out.println("NUMBER OF QUES " + (int) lessonSnapshot.child("question").getChildrenCount());
+                    Chapter.this.lesson[i].question = new Question[(int) lessonSnapshot.child("question").getChildrenCount()];
+                    int j = 0;
+                    for (DataSnapshot questionSnapshot: lessonSnapshot.child("question").getChildren()){
+                        Chapter.this.lesson[i].question[j] = questionSnapshot.getValue(Question.class);
+                        System.out.println(Chapter.this.lesson[i].question[j].getImage());
+                        j++;
+                    }
+                    i++;
+                }
             }
 
             @Override
@@ -34,13 +50,24 @@ public class Chapter {
                 System.out.println("The read failed:" + firebaseError.getMessage());
             }
         });
-        //lesson(lesson_number);
+        //this.lesson= new Lesson(lesson_number, refURL);
 
     }
 
     public String getTitle(){
-        System.out.println("Inside GetTitle");
         return title;
+    }
+
+    public int getChapter_number(){
+        return chapter_number;
+    }
+
+    public long getLesson_numbers(){
+        return lesson_numbers;
+    }
+
+    public Lesson getLesson(int lesson_number){
+        return lesson[lesson_number-1];
     }
 
 }
