@@ -4,7 +4,11 @@ package com.project.cse110.geometryapp;
  * Created by Kedar on 2/12/16.
  */
 
+import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.Application;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.widget.EditText;
 import android.app.DownloadManager;
 import android.app.DownloadManager.Query;
@@ -23,57 +27,101 @@ import com.firebase.client.Firebase;
 import com.firebase.client.AuthData;
 import com.firebase.client.FirebaseError;
 
-package com.firebase.samples.logindemo;
+//package com.firebase.samples.logindemo;
 
 
 //import com.facebook.FacebookSdk;
 import com.firebase.client.Firebase;
 
-//private EditText editTextEmail;
-//private TextView textViewEmail;
+public class LoginScreen extends Activity {
 
-public class LoginScreen extends Application {
-    @Override
-    public void onCreate() {
-        super.onCreate();
+    EditText editTextEmail;
+    EditText editTextPassword;
+    AlertDialog dialog;
+    AlertDialog.Builder dialogBuilder;
+
+    public void onCreate(Bundle savedInstance) {
+        super.onCreate(savedInstance);
+
         Firebase.setAndroidContext(this);
+        setContentView(R.layout.login_screen);
 
-        private EditText editTextEmail;
-        private EditText editTextPassword;
-        //private TextView textViewEmail;
+        dialogBuilder = new AlertDialog.Builder(this);
+        dialogBuilder.setCancelable(false);
+        dialogBuilder.setNeutralButton("Ok", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+                System.out.println("Inside OK");
+
+                finish();
+            }
+        });
 
         editTextEmail = (EditText) findViewById(R.id.etUsername);
         editTextPassword = (EditText) findViewById(R.id.etPassword);
-        String emailID = editTextEmail.getText().toString();
-        String password = editTextPassword.getText().toString();
+
+        Button bLogin = (Button) findViewById(R.id.bLogin);
+        bLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                System.out.println("Login Button clicked");
+                String emailID = editTextEmail.getText().toString();
+                String password = editTextPassword.getText().toString();
+
+                Firebase ref = new Firebase("https://cse110geometry.firebaseio.com");
+                //Query queryRef = ref.orderByChild("email").equalTo(R.id.etUsername);
+
+                ref.authWithPassword(emailID, password, new Firebase.AuthResultHandler() {
+                    @Override
+                    public void onAuthenticated(AuthData authData) {
+                        System.out.println("User ID: " + authData.getUid() + ", Provider: " + authData.getProvider());
+                    }
+
+                    @Override
+                    public void onAuthenticationError(FirebaseError firebaseError) {
+                        // there was an error
+                        System.out.println("Error logging in. Please try again");
+                        dialogBuilder.setMessage("Error Logging In");
+                        dialog = dialogBuilder.create();
+                        dialog.show();
+                    }
+                });
+
+            }
+        });
+
+        Button registerButton = (Button) findViewById(R.id.registerButton);
+        registerButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent newIntent = new Intent(LoginScreen.this, RegisterScreen.class);
+
+                startActivity(newIntent);
+            }
+        });
+
 
         //textViewEmail = (TextView) findViewById(R.id.etUsername);
         //textViewEmail.setText(editTextEmail.getText().toString());
         //editTextEmail.setOnEditorActionListener(new TextView.onEditorActionListener());
 
-        Firebase ref = new Firebase("https://cse110geometry.firebaseio.com");
-        //Query queryRef = ref.orderByChild("email").equalTo(R.id.etUsername);
+//        Firebase ref = new Firebase("https://cse110geometry.firebaseio.com");
+//        //Query queryRef = ref.orderByChild("email").equalTo(R.id.etUsername);
+//
+//        ref.authWithPassword(emailID, password, new Firebase.AuthResultHandler() {
+//            @Override
+//            public void onAuthenticated(AuthData authData) {
+//                System.out.println("User ID: " + authData.getUid() + ", Provider: " + authData.getProvider());
+//            }
+//
+//            @Override
+//            public void onAuthenticationError(FirebaseError firebaseError) {
+//                // there was an error
+//                System.out.println("Error logging in. Please try again");
+//            }
+//        });
 
-        ref.authWithPassword(emailID, password, new Firebase.AuthResultHandler() {
-            @Override
-            public void onAuthenticated(AuthData authData) {
-                System.out.println("User ID: " + authData.getUid() + ", Provider: " + authData.getProvider());
-            }
-
-            @Override
-            public void onAuthenticationError(FirebaseError firebaseError) {
-                // there was an error
-                System.out.println("Error logging in. Please try again");
-            }
-        });
-
-
-
-
-    /*@Override
-    public void onCreate() {
-        super.onCreate();
-        Firebase.setAndroidContext(this);
-        FacebookSdk.sdkInitialize(this);
-    }*/
+    }
 }
