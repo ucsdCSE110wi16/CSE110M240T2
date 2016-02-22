@@ -1,21 +1,29 @@
 package com.project.cse110.geometryapp;
 
+import com.firebase.client.DataSnapshot;
+import com.firebase.client.Firebase;
+import com.firebase.client.FirebaseError;
+import com.firebase.client.ValueEventListener;
+
 /**
  * Created by Abhishek on 2/17/16.
  */
 public class Question {
     long number;
+    String title;
     String type;
     String answer;
     String image;
     String responses;
 
-    public Question() {
-
-    }
+    private Question(){}
 
     public long getNumber() {
         return number;
+    }
+
+    public String getTitle() {
+        return title;
     }
 
     public String getType() {
@@ -33,4 +41,5 @@ public class Question {
     public String getResponses() {
         return responses;
     }
+
 }
