@@ -26,6 +26,7 @@ import com.firebase.client.Firebase;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 
 
 /**
@@ -35,6 +36,7 @@ import java.io.InputStream;
 public class Main extends Activity {
 
     DrawLine drawLine;
+    Context ctx;
 
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
@@ -50,12 +52,17 @@ public class Main extends Activity {
 
         ImageButton first = (ImageButton) findViewById(R.id.topic1);
         ImageButton second = (ImageButton) findViewById(R.id.topic2);
+        ImageButton third = (ImageButton) findViewById(R.id.topic3);
+        ImageButton fourth = (ImageButton) findViewById(R.id.topic4);
+        ImageButton fifth = (ImageButton) findViewById(R.id.topic5);
 
         ViewGroup.LayoutParams param = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
 
         drawLine = new DrawLine(this, first, second);
         this.addContentView(drawLine, param);
         //setContentView(drawLine);
+
+        ctx = this;
 
         // Start ActionBar
         ActionBar ab = getActionBar();
@@ -82,123 +89,68 @@ public class Main extends Activity {
 
         // end ActionBar
 
-        InputStream in = getResources().openRawResource(
-                getResources().getIdentifier("chapters",
-                        "raw", getPackageName()));
 
-        ChapterXML chap = new ChapterXML(1, in);
-        String title = chap.getTitle();
-        int num = chap.getNumLessons();
-        System.out.println(title + num);
-        try {
-            in.close();
-        } catch (IOException e) {
+//        ChapterXML chap = new ChapterXML(1, in);
+//        String title = chap.getTitle();
+//        int num = chap.getNumLessons();
+//        System.out.println(title + num);
+//        try {
+//            in.close();
+//        } catch (IOException e) {
+//
+//        }
 
-        }
+//        in = getResources().openRawResource(
+//                getResources().getIdentifier("chapters",
+//                        "raw", getPackageName()));
+//
+//        LessonXML less = new LessonXML(chap.getChapterNumber(), 1, in);
+//        title = less.getTitle();
+//        String body = less.getBody();
+//        num = less.getNumQuestions();
+//        System.out.println(title + num);
+//        System.out.println(body);
+//
+//        try {
+//            in.close();
+//        } catch (IOException e) {
+//
+//        }
+//
+//        in = getResources().openRawResource(
+//                getResources().getIdentifier("chapters",
+//                        "raw", getPackageName()));
 
-        in = getResources().openRawResource(
-                getResources().getIdentifier("chapters",
-                        "raw", getPackageName()));
+//        QuestionXML q = new QuestionXML(chap.getChapterNumber(), less.getLessonNumber(), less.getTitle(), 1, in);
+//        System.out.println(q.getQuestionNumber());
+//        System.out.println(q.getQuestionType());
+//        System.out.println(q.getImageName());
+//        for (int i = 0; i < q.getResponses().size(); i++) {
+//            System.out.println(q.getResponses().get(i));
+//        }
+//
+//        for (int i = 0; i < q.getAnswers().size(); i++) {
+//            System.out.println(q.getAnswers().get(i));
+//        }
 
-        LessonXML less = new LessonXML(chap.getChapterNumber(), 1, in);
-        title = less.getTitle();
-        String body = less.getBody();
-        num = less.getNumQuestions();
-        System.out.println(title + num);
-        System.out.println(body);
-
-        try {
-            in.close();
-        } catch (IOException e) {
-
-        }
-
-        in = getResources().openRawResource(
-                getResources().getIdentifier("chapters",
-                        "raw", getPackageName()));
-
-        QuestionXML q = new QuestionXML(chap.getChapterNumber(), less.getLessonNumber(), less.getTitle(), 1, in);
-        System.out.println(q.getQuestionNumber());
-        System.out.println(q.getQuestionType());
-        System.out.println(q.getImageName());
-        for (int i = 0; i < q.getResponses().size(); i++) {
-            System.out.println(q.getResponses().get(i));
-        }
-
-        for (int i = 0; i < q.getAnswers().size(); i++) {
-            System.out.println(q.getAnswers().get(i));
-        }
 
         first.setOnClickListener(
                 new ImageButton.OnClickListener() {
                     public void onClick(View v) {
                         Intent topic1Intent = new Intent(Main.this, LessonList.class);
 
-                        // Add the lessons
-                        String lessonArray[] = new String[2];
-                        lessonArray[0] = "Lines, Line Segments, Rays";
-                        lessonArray[1] = "Points, Lines, Planes";
 
-                        String bodyArray[] = new String[2];
-                        bodyArray[0] = "Lines: A line is a straight one-dimensional geometric object that extends infinitely in both directions.\nLine Segment: A line segment is a straight one-dimensional geometric object that has fixed starting and ending points.\nRay: A ray is a straight one-dimensional geometric object that has a fixed starting point, but extends infinitely.\n";
-                        bodyArray[1] = "Point: A point is a geometric object that signifies a location, but has no size in itself. Lines, line segments, rays are all collections of points.\nPlane: A plane is a flat, two-dimensional surface that extends infinitely far. It is the two-dimensional analogue of a point (zero dimensions), a line (one dimension).\nCollinear Points: Points are collinear if they lie on the same line.\nCoplanar Points: Points are coplanar if they both lie on the same plane.\n";
+                        ChapterXML chap = new ChapterXML(1, ctx);
+                        String title = chap.getTitle();
+                        int numLessons = chap.getNumLessons();
+                        int chapNum = chap.getChapterNumber();
+                        ArrayList<String> lessonTitles = chap.getLessonNames();
 
-
-//                        String[] q1 = new String[4];
-//                        q1[0] = "1";
-//                        q1[1] = "c1_l1_q1";
-//                        q1[2] = "A,B,C";
-//                        q1[3] = "1";
-//
-//                        String[] q2 = new String[4];
-//                        q2[0] = "2";
-//                        q2[1] = "c1_l1_q2";
-//                        q2[2] = "A,B,C";
-//                        q2[3] = "1";
-//
-//                        String[] q3 = new String[4];
-//                        q3[0] = "3";
-//                        q3[1] = "c1_l1_q6";
-//                        q3[2] = "A line, A ray, A line";
-//                        q3[3] = "2";
-//
-//
-//                        String[][] question1 = {q1, q2, q3};
-//
-//                        q1 = new String[5];
-//                        q1[0] = "1";
-//                        q1[1] = "c1_l2_q1";
-//                        q1[2] = "Yes,No";
-//                        q1[3] = "1";
-//                        q1[4] = "Are F, Y, W Coplanar?";
-//
-//                        q2 = new String[4];
-//                        q2[0] = "2";
-//                        q2[1] = "c1_l2_q2";
-//                        q2[2] = "Yes,No";
-//                        q2[3] = "1";
-//                        q2[4] = "Are the points K,W and L collinear?";
-//
-//                        q3 = new String[4];
-//                        q3[0] = "3";
-//                        q3[1] = "c1_l2_q3";
-//                        q3[2] = "Yes,No";
-//                        q3[3] = "1";
-//                        q3[4] = "Are the points O and B collinear?";
-//
-//                        String[][] question2 = {q1, q2, q3};
-//
-//                        String[][][] questions = {question1, question2};
-
-
-                        //topic1Intent.putExtra("Questions", questions);
-                        int[] qComplete = {0, 0, 0};
-                        topic1Intent.putExtra("QuestionComplete", qComplete);
-                        topic1Intent.putExtra("Lines, Line Segments, Rays", 0);
-                        topic1Intent.putExtra("Points, Lines, Planes", 1);
-                        topic1Intent.putExtra("LessonBody", bodyArray);
-                        topic1Intent.putExtra("Lessons", lessonArray);
-
+                        topic1Intent.putExtra("ChapterNum", chapNum);
+                        topic1Intent.putExtra("ChapterTitle", title);
+                        topic1Intent.putExtra("NumLessons", numLessons);
+                        topic1Intent.putExtra("LessonTitles", lessonTitles);
+                        System.out.println("Chapter 1 clicked: Title: " + title + " Num Lessons: " + numLessons);
                         startActivity(topic1Intent);
                     }
                 }
@@ -209,26 +161,95 @@ public class Main extends Activity {
                     public void onClick(View v) {
                         Intent topic2Intent = new Intent(Main.this, LessonList.class);
 
-                        // Add the lessons
-                        String lessonArray[] = new String[3];
-                        lessonArray[0] = "Angles";
-                        lessonArray[1] = "Intersecting Lines";
-                        lessonArray[2] = "Parallel Lines";
+                        ChapterXML chap = new ChapterXML(2, ctx);
+                        String title = chap.getTitle();
+                        int numLessons = chap.getNumLessons();
+                        int chapNum = chap.getChapterNumber();
+                        ArrayList<String> lessonTitles = chap.getLessonNames();
 
-                        String bodyArray[] = new String[3];
-                        //bodyArray[0] = "";
-
-                        topic2Intent.putExtra("Angles", 0);
-                        topic2Intent.putExtra("Intersecting Lines", 1);
-                        topic2Intent.putExtra("Parallel Lines", 2);
-                        topic2Intent.putExtra("Lessons", lessonArray);
-
+                        topic2Intent.putExtra("LessonTitles", lessonTitles);
+                        topic2Intent.putExtra("ChapterNum", chapNum);
+                        topic2Intent.putExtra("ChapterTitle", title);
+                        topic2Intent.putExtra("NumLessons", numLessons);
+                        System.out.println("Chapter 1 clicked: Title: " + title + " Num Lessons: " + numLessons);
 
                         startActivity(topic2Intent);
 
                     }
                 }
         );
+
+
+        third.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                System.out.println("Third Button Clicked");
+
+                Intent topic3Intent = new Intent(Main.this, LessonList.class);
+
+                ChapterXML chap = new ChapterXML(3, ctx);
+                String title = chap.getTitle();
+                int numLessons = chap.getNumLessons();
+                int chapNum = chap.getChapterNumber();
+                ArrayList<String> lessonTitles = chap.getLessonNames();
+
+                topic3Intent.putExtra("LessonTitles", lessonTitles);
+                topic3Intent.putExtra("ChapterNum", chapNum);
+                topic3Intent.putExtra("ChapterTitle", title);
+                topic3Intent.putExtra("NumLessons", numLessons);
+                System.out.println("Chapter 1 clicked: Title: " + title + " Num Lessons: " + numLessons);
+                startActivity(topic3Intent);
+
+            }
+        });
+
+        fourth.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                System.out.println("Inside 4th button onClick");
+
+                Intent topic4Intent = new Intent(Main.this, LessonList.class);
+
+                ChapterXML chap = new ChapterXML(4, ctx);
+                String title = chap.getTitle();
+                int numLessons = chap.getNumLessons();
+                int chapNum = chap.getChapterNumber();
+
+                ArrayList<String> lessonTitles = chap.getLessonNames();
+
+                topic4Intent.putExtra("LessonTitles", lessonTitles);
+                topic4Intent.putExtra("ChapterNum", chapNum);
+                topic4Intent.putExtra("ChapterTitle", title);
+                topic4Intent.putExtra("NumLessons", numLessons);
+                System.out.println("Chapter 1 clicked: Title: " + title + " Num Lessons: " + numLessons);
+                startActivity(topic4Intent);
+
+            }
+        });
+
+        fifth.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                System.out.println("Inside 5th button click");
+
+                Intent topic5Intent = new Intent(Main.this, LessonList.class);
+
+                ChapterXML chap = new ChapterXML(4, ctx);
+                String title = chap.getTitle();
+                int numLessons = chap.getNumLessons();
+                int chapNum = chap.getChapterNumber();
+                ArrayList<String> lessonTitles = chap.getLessonNames();
+
+                topic5Intent.putExtra("LessonTitles", lessonTitles);
+                topic5Intent.putExtra("ChapterNum", chapNum);
+                topic5Intent.putExtra("ChapterTitle", title);
+                topic5Intent.putExtra("NumLessons", numLessons);
+                System.out.println("Chapter 1 clicked: Title: " + title + " Num Lessons: " + numLessons);
+                startActivity(topic5Intent);
+
+            }
+        });
+
     }
 
     @Override

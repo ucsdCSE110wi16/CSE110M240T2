@@ -1,9 +1,5 @@
 package com.project.cse110.geometryapp;
 
-/**
- * Created by Kedar on 2/12/16.
- */
-
 import android.app.Application;
 import android.widget.EditText;
 import android.app.DownloadManager;
@@ -25,14 +21,12 @@ import com.firebase.client.FirebaseError;
 
 package com.firebase.samples.logindemo;
 
-
 //import com.facebook.FacebookSdk;
 import com.firebase.client.Firebase;
-
-//private EditText editTextEmail;
-//private TextView textViewEmail;
-
-public class LoginScreen extends Application {
+/**
+ * Created by Kedar on 2/21/16.
+ */
+public class RegisterScreen extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
@@ -42,38 +36,23 @@ public class LoginScreen extends Application {
         private EditText editTextPassword;
         //private TextView textViewEmail;
 
-        editTextEmail = (EditText) findViewById(R.id.etUsername);
-        editTextPassword = (EditText) findViewById(R.id.etPassword);
+        editTextEmail = (EditText) findViewById(R.id.regUsername);
+        editTextPassword = (EditText) findViewById(R.id.regPassword);
         String emailID = editTextEmail.getText().toString();
         String password = editTextPassword.getText().toString();
-
-        //textViewEmail = (TextView) findViewById(R.id.etUsername);
-        //textViewEmail.setText(editTextEmail.getText().toString());
-        //editTextEmail.setOnEditorActionListener(new TextView.onEditorActionListener());
-
         Firebase ref = new Firebase("https://cse110geometry.firebaseio.com");
-        //Query queryRef = ref.orderByChild("email").equalTo(R.id.etUsername);
-
-        ref.authWithPassword(emailID, password, new Firebase.AuthResultHandler() {
+        ref.createUser(emailID, password, new Firebase.ValueResultHandler<Map<String, Object>>() {
+            //ref.createUser("bobtony@firebase.com", "correcthorsebatterystaple", new Firebase.ValueResultHandler<Map<String, Object>>() {
             @Override
-            public void onAuthenticated(AuthData authData) {
-                System.out.println("User ID: " + authData.getUid() + ", Provider: " + authData.getProvider());
+            public void onSuccess(Map<String, Object> result) {
+                System.out.println("Successfully created user account with uid: " + result.get("uid"));
             }
 
             @Override
-            public void onAuthenticationError(FirebaseError firebaseError) {
+            public void onError(FirebaseError firebaseError) {
                 // there was an error
-                System.out.println("Error logging in. Please try again");
+                System.out.println("There was an error registering your account");
             }
         });
-
-
-
-
-    /*@Override
-    public void onCreate() {
-        super.onCreate();
-        Firebase.setAndroidContext(this);
-        FacebookSdk.sdkInitialize(this);
-    }*/
+    }
 }
