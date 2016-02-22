@@ -19,6 +19,7 @@ public class LessonDescription extends Activity {
 
     Intent thisIntent;
     Context ctx;
+    String chapterTitle;
     String lessonTitle;
     int currLesson;
     int chapterNum;
@@ -33,6 +34,15 @@ public class LessonDescription extends Activity {
 
         thisIntent = this.getIntent();
         ctx = this;
+
+        // Get extras
+        String description = getIntent().getExtras().getString("LessonDescription");
+        chapterNum = getIntent().getExtras().getInt("ChapterNum");
+        lessonTitle = getIntent().getExtras().getString("LessonTitle");
+        currLesson = getIntent().getExtras().getInt("LessonNum");
+        numQuestions = getIntent().getExtras().getInt("NumQuestions");
+        chapterTitle = getIntent().getExtras().getString("ChapterTitle");
+        // End get extras
 
         // Start ActionBar
         ActionBar ab = getActionBar();
@@ -51,10 +61,14 @@ public class LessonDescription extends Activity {
 
 
         // Make the buttons on the ab disappear
-        Button logoutButton = (Button) abLayout.findViewById(R.id.logout);
+        TextView myProgress = (TextView) abLayout.findViewById(R.id.progress);
         Button homeButton = (Button) abLayout.findViewById(R.id.home);
+        TextView titleBar = (TextView) abLayout.findViewById(R.id.actionBarTitle);
 
-        logoutButton.setVisibility(View.INVISIBLE);
+        titleBar.setText(chapterTitle);
+
+        myProgress.setVisibility(View.INVISIBLE);
+
         homeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -69,12 +83,6 @@ public class LessonDescription extends Activity {
         // end ActionBar
 
 
-        String description = getIntent().getExtras().getString("LessonDescription");
-        chapterNum = getIntent().getExtras().getInt("ChapterNum");
-        lessonTitle = getIntent().getExtras().getString("LessonTitle");
-        currLesson = getIntent().getExtras().getInt("LessonNum");
-        numQuestions = getIntent().getExtras().getInt("NumQuestions");
-
         TextView text = (TextView) findViewById(R.id.lessonDescription);
 
         text.setText(description);
@@ -86,6 +94,7 @@ public class LessonDescription extends Activity {
                 Intent questionIntent = new Intent(LessonDescription.this, QuestionList.class);
 
                 questionIntent.putExtra("ChapterNum", chapterNum);
+                questionIntent.putExtra("ChapterTitle", chapterTitle);
                 questionIntent.putExtra("LessonTitle", lessonTitle);
                 questionIntent.putExtra("LessonNum", currLesson);
                 questionIntent.putExtra("NumQuestions", numQuestions);

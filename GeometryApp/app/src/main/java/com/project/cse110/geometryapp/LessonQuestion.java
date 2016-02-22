@@ -19,6 +19,8 @@ import android.widget.TextView;
 
 import org.w3c.dom.Text;
 
+import java.util.ArrayList;
+
 /**
  * Created by devinhickey on 1/31/16.
  */
@@ -29,12 +31,17 @@ public class LessonQuestion extends Activity {
 
     AlertDialog answerAlert;
     AlertDialog.Builder dialogBuilder;
+
+    // Global variables for extras passed in intent
     int chapterNum;
     int correctAnswer;
+    int buttonNum;
     int lessonNum;
     int qNum;
+    String chapterTitle;
+    ArrayList<String> responses;
+    ArrayList<String> answers;
     String questionType;
-    String answer;
 
     @Override
     public void onCreate(Bundle savedInstance) {
@@ -65,10 +72,12 @@ public class LessonQuestion extends Activity {
 
 
         // Make the buttons on the ab disappear
-        Button logoutButton = (Button) abLayout.findViewById(R.id.logout);
+        TextView myProgress = (TextView) abLayout.findViewById(R.id.progress);
         Button homeButton = (Button) abLayout.findViewById(R.id.home);
+        TextView titleBar = (TextView) abLayout.findViewById(R.id.actionBarTitle);
 
-        logoutButton.setVisibility(View.INVISIBLE);
+        myProgress.setVisibility(View.INVISIBLE);
+
         homeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -90,16 +99,65 @@ public class LessonQuestion extends Activity {
         // Set the picture of the question
         ImageView image = (ImageView) findViewById(R.id.imageView);
 
+        // Get the extras
         chapterNum = getIntent().getExtras().getInt("ChapterNum");
         lessonNum = getIntent().getExtras().getInt("LessonNum");
         qNum = getIntent().getExtras().getInt("QuestionNum");
+        responses = getIntent().getExtras().getStringArrayList("Responses");
+        answers = getIntent().getExtras().getStringArrayList("Answers");
+        chapterTitle = getIntent().getExtras().getString("ChapterTitle");
+
+        titleBar.setText(chapterTitle);
 
         // Set the image
         getQuestionImage(image);
 
-        System.out.println("About to set image");
+        // Create MC buttons
+        for (int i = 0; i < responses.size(); i++) {
+            Button newButton = new Button(this);
 
-        System.out.println("Image set");
+            LinearLayout myLayout = (LinearLayout) findViewById(R.id.linearButtonLayout);
+            LinearLayout.LayoutParams layParam = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+
+            // Add the buttons with the layout params
+            myLayout.addView(newButton, layParam);
+
+            newButton.setText(responses.get(i));
+
+            correctAnswer = Integer.parseInt(answers.get(0));
+            buttonNum = i+1;
+
+            newButton.setOnClickListener(new View.OnClickListener() {
+                int myButtonNum = buttonNum;
+                @Override
+                public void onClick(View v) {
+
+                    if (myButtonNum == correctAnswer) {
+                        System.out.println("Correct Answer");
+                        dialogBuilder.setMessage("Correct!");
+                        setStaticArray(1, true);
+                    } else {
+                        System.out.println("Incorrect Answer");
+                        dialogBuilder.setMessage("Incorrect!");
+                        setStaticArray(-1, false);
+
+                    }
+                    dialogBuilder.setNeutralButton("Ok", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+
+                            System.out.println("Inside OK");
+
+                            finish();
+                        }
+                    });
+                    answerAlert = dialogBuilder.create();
+                    answerAlert.show();
+                }
+            });
+
+        }
+
 
 
 
@@ -330,11 +388,16 @@ public class LessonQuestion extends Activity {
     @Override
     public void onStop() {
         super.onStop();
-        //finish();
+        finish();
 
     }
 
 
+    /*
+        Called to set the image of the question.
+        Param: the image view to set the png for.
+
+     */
     public void getQuestionImage(ImageView image) {
         System.out.println("Getting Question Image");
 
@@ -676,6 +739,145 @@ public class LessonQuestion extends Activity {
 
         }
 
+
+    }
+
+    /*
+
+        Set the buttons to green or red based on correct or incorrect answers
+
+     */
+    public void setStaticArray(int value, boolean correct) {
+        switch (chapterNum) {
+
+            case 1:
+                switch (lessonNum) {
+                    case 1:
+                        QuestionList.c1l1[qNum-1] = value;
+
+                        if (correct) {
+                            QuestionList.numQuestionsCorrectC1L1++;
+                        }
+
+                        break; // end Lesson 1
+
+                    case 2:
+                        QuestionList.c1l2[qNum-1] = value;
+                        if (correct) {
+                            QuestionList.numQuestionsCorrectC1L2++;
+                        }
+                        break;
+
+                    default:
+                        break; // end Chapter 1 Lesson 2
+
+
+                }
+                break; // end Chapter 1
+
+            case 2:
+                switch (lessonNum) {
+                    case 1:
+                        QuestionList.c2l1[qNum-1] = value;
+                        if (correct) {
+                            QuestionList.numQuestionsCorrectC2L1++;
+                        }
+                        break; // end Chapter 2 Lesson 1
+
+                    case 2:
+                        QuestionList.c2l2[qNum-1] = value;
+                        if (correct) {
+                            QuestionList.numQuestionsCorrectC2L2++;
+                        }
+                        break;  // end Chapter 2 Lesson 2
+
+                    case 3:
+                        QuestionList.c2l3[qNum-1] = value;
+                        if (correct) {
+                            QuestionList.numQuestionsCorrectC2L3++;
+                        }
+                        break;
+
+                    default:
+                        break; // end Chapter 2 Lesson 3
+
+                }
+                break;  // end Chapter 2
+
+            case 3:
+                switch (lessonNum) {
+                    case 1:
+                        QuestionList.c3l1[qNum-1] = value;
+                        if (correct) {
+                            QuestionList.numQuestionsCorrectC3L1++;
+                        }
+                        break; // end Chapter 3 Lesson 1
+
+                    case 2:
+                        QuestionList.c3l2[qNum-1] = value;
+                        if (correct) {
+                            QuestionList.numQuestionsCorrectC3L2++;
+                        }
+                        break;
+
+                    default:
+                        break; // end Chapter 3 Lesson 2
+
+                }
+                break;
+
+            case 4:
+                switch (lessonNum) {
+                    case 1:
+                        QuestionList.c4l1[qNum-1] = value;
+                        if (correct) {
+                            QuestionList.numQuestionsCorrectC4L1++;
+                        }
+                        break; // end Chapter 4 Lesson 1
+
+                    case 2:
+                        QuestionList.c4l2[qNum-1] = value;
+                        if (correct) {
+                            QuestionList.numQuestionsCorrectC4L2++;
+                        }
+                        break;  // end Chapter 4 Lesson 2
+
+                    case 3:
+                        QuestionList.c4l3[qNum-1] = value;
+                        if (correct) {
+                            QuestionList.numQuestionsCorrectC4L3++;
+                        }
+                        break;  // end Chapter 4 Lesson 3
+
+                    default:
+                        break;
+
+                }
+                break;  // end Chapter 4
+
+//            case 5:
+//                switch (lessonNum) {
+//                    case 1:
+//                        QuestionList.c5l1[qNum-1] = value;
+//
+//                        break;  // end Chapter 5 Lesson 1
+//
+//                    case 2:
+//                        QuestionList.c5l2[qNum-1] = value;
+//                        break;  // end Chapter 5 Lesson 2
+//
+//                    default:
+//                        break;
+//
+//                }
+//                break;
+
+            default:
+
+                break;
+
+
+        }
 
     }
 

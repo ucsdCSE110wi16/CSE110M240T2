@@ -56,10 +56,10 @@ public class Main extends Activity {
         ImageButton fourth = (ImageButton) findViewById(R.id.topic4);
         ImageButton fifth = (ImageButton) findViewById(R.id.topic5);
 
-        ViewGroup.LayoutParams param = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+        //ViewGroup.LayoutParams param = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
 
-        drawLine = new DrawLine(this, first, second);
-        this.addContentView(drawLine, param);
+//        drawLine = new DrawLine(this, first, second);
+//        this.addContentView(drawLine, param);
         //setContentView(drawLine);
 
         ctx = this;
@@ -81,10 +81,10 @@ public class Main extends Activity {
 
 
         // Make the buttons on the ab disappear
-        Button logoutButton = (Button) abLayout.findViewById(R.id.logout);
+        TextView progress = (TextView) abLayout.findViewById(R.id.progress);
         Button homeButton = (Button) abLayout.findViewById(R.id.home);
 
-        logoutButton.setVisibility(View.INVISIBLE);
+        progress.setVisibility(View.INVISIBLE);
         homeButton.setVisibility(View.INVISIBLE);
 
         // end ActionBar

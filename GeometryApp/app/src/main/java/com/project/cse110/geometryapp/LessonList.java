@@ -4,6 +4,7 @@ import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -21,10 +22,14 @@ public class LessonList extends Activity {
 
     Intent thisIntent;
     Context ctx;
+    TextView myProgress;
+
     int lessonNum;
     int currLesson;
     int chapterNum;
+    String chapterTitle;
     ArrayList<String> lessonTitles;
+    ArrayList<Button> myButtons = new ArrayList<Button>();
 
     @Override
     public void onCreate(Bundle savedInstance) {
@@ -54,15 +59,16 @@ public class LessonList extends Activity {
 
 
         // Make the buttons on the ab disappear
-        Button logoutButton = (Button) abLayout.findViewById(R.id.logout);
+        myProgress = (TextView) abLayout.findViewById(R.id.progress);
         Button homeButton = (Button) abLayout.findViewById(R.id.home);
         TextView titleText = (TextView) abLayout.findViewById(R.id.actionBarTitle);
 
         // Set the title to the chapter title
-        String myTitle = this.getIntent().getExtras().getString("ChapterTitle");
-        titleText.setText(myTitle);
+        chapterTitle = this.getIntent().getExtras().getString("ChapterTitle");
+        titleText.setText(chapterTitle);
 
-        logoutButton.setVisibility(View.INVISIBLE);
+        // Fill in progress
+        checkProgress();
 
         homeButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -85,9 +91,11 @@ public class LessonList extends Activity {
         lessonTitles = this.getIntent().getExtras().getStringArrayList("LessonTitles");
 
         for (int i = 0; i < lessonNum; i++) {
-            final Button newButton = new Button(this);
+            Button newButton = new Button(this);
             LinearLayout myLayout = (LinearLayout) findViewById(R.id.lessonList);
             LinearLayout.LayoutParams layParam = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+
+            myButtons.add(newButton);
 
             currLesson = i+1;
 
@@ -98,7 +106,7 @@ public class LessonList extends Activity {
                 int lesson = currLesson;
                 @Override
                 public void onClick(View v) {
-                    System.out.println("Lesson clicked: "+ newButton.getText());
+
                     Intent newIntent = new Intent(LessonList.this, LessonDescription.class);
 
                     System.out.println("Lesson Number in onClick: " + lesson);
@@ -117,6 +125,7 @@ public class LessonList extends Activity {
                     newIntent.putExtra("LessonDescription", lessonDescription);
                     newIntent.putExtra("LessonTitle", lessonTitle);
                     newIntent.putExtra("ChapterNum", chapterNum);
+                    newIntent.putExtra("ChapterTitle", chapterTitle);
                     newIntent.putExtra("LessonNum", lessonNum);
                     newIntent.putExtra("NumQuestions", numQuestions);
 
@@ -128,4 +137,82 @@ public class LessonList extends Activity {
         }
 
     }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        checkProgress();
+
+    }
+
+    public void checkProgress() {
+
+        String myString;
+        switch (chapterNum) {
+
+            case 1:
+
+                if (QuestionList.numQuestionsCorrectC1L2 == 4) {
+
+                    myButtons.get(1).setBackgroundColor(Color.GREEN);
+                    myString = "1/" + lessonNum;
+                    myProgress.setText(myString);
+
+                } else {
+
+                    myButtons.get(1).setBackgroundColor(Color.LTGRAY);
+                    myString = "0/" + lessonNum;
+                    myProgress.setText(myString);
+
+                }
+
+                break; // end Chapter 1
+
+            case 2:
+
+                myString = "0/" + lessonNum;
+                myProgress.setText(myString);
+
+                break;  // end Chapter 2
+
+            case 3:
+
+                myString = "0/" + lessonNum;
+                myProgress.setText(myString);
+
+                break;
+
+            case 4:
+
+                myString = "0/" + lessonNum;
+                myProgress.setText(myString);
+
+                break;  // end Chapter 4
+
+//            case 5:
+//                switch (lessonNum) {
+//                    case 1:
+//                        QuestionList.c5l1[qNum-1] = value;
+//
+//                        break;  // end Chapter 5 Lesson 1
+//
+//                    case 2:
+//                        QuestionList.c5l2[qNum-1] = value;
+//                        break;  // end Chapter 5 Lesson 2
+//
+//                    default:
+//                        break;
+//
+//                }
+//                break;
+
+            default:
+
+                break;
+
+
+        }
+
+    }
+
 }

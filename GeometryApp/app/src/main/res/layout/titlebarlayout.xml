@@ -14,6 +14,7 @@
         android:id="@+id/home"
         android:background="@android:color/white"
         android:text="Home"
+        android:textSize="15dp"
         android:contentDescription="Home"/>
 
     <TextView
@@ -30,15 +31,14 @@
         android:text="Geometry"
         tools:ignore="contentDescription"/>
 
-    <Button
-        android:layout_width="0dp"
+    <TextView
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textSize="15dp"
         android:layout_weight="0.5"
         android:layout_gravity="center"
-        android:id="@+id/logout"
-        android:background="@android:color/white"
-        android:text="Right"
-        android:contentDescription="Rekt"/>
+        android:id="@+id/progress"
+        android:background="@android:color/white" />
     <!--android:background="?android:selectableItemBackground" -->
 
 </LinearLayout>
