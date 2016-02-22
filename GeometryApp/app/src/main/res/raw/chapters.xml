@@ -73,7 +73,7 @@
             </test>
         </lesson>
     </chapter1>
-    <chapter2 title='Angles and Intersecting Lines' completed='0'>
+    <chapter2 title='Angles and Lines' completed='0'>
 	    <lesson title='Angles' completed='0'>
 	        <body>Angle: When two rays begin at a common point, a geometric figure is formed. The space between such rays, measured in degrees (°), is the angle.\n\ta. Zero Angle: Such an angle is formed when two rays completely overlap with each other (0°).\n\tb. Right Angle: This angle is formed when the space between two rays is 90°. It is similar to the corner of a square. It is usually represented by a small square between the lines.\n\tc. Straight Angle: This angle is formed when the space between two rays is 180°. This means that the rays start at a common point, but extend in directly opposite directions.\n\td. Full Angle: If we continue to increase the space between two rays that start at a common point, there will come a time when they overlap with each other. When this happens, the angle is 360°.\n\te. Acute Angle: It is an angle that is more than 0° but less than 90°.\n\tf. Obtuse Angle: It is an angle that is more than 90° but less than 180°.\n\tg. Reflex Angle: It is an angle that is more than 180° but less than 360°.\n
 	        </body>

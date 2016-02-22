@@ -2,6 +2,7 @@ package com.project.cse110.geometryapp;
 
 import android.app.ActionBar;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Gravity;
@@ -19,7 +20,10 @@ import java.util.ArrayList;
 public class LessonList extends Activity {
 
     Intent thisIntent;
+    Context ctx;
     int lessonNum;
+    int currLesson;
+    int chapterNum;
     ArrayList<String> lessonTitles;
 
     @Override
@@ -30,6 +34,7 @@ public class LessonList extends Activity {
         setContentView(R.layout.lesson_list);
 
         thisIntent = this.getIntent();
+        ctx = this;
 
 
         // Start ActionBar
@@ -76,6 +81,7 @@ public class LessonList extends Activity {
 
 
         lessonNum = this.getIntent().getExtras().getInt("NumLessons");
+        chapterNum = this.getIntent().getExtras().getInt("ChapterNum");
         lessonTitles = this.getIntent().getExtras().getStringArrayList("LessonTitles");
 
         for (int i = 0; i < lessonNum; i++) {
@@ -83,19 +89,38 @@ public class LessonList extends Activity {
             LinearLayout myLayout = (LinearLayout) findViewById(R.id.lessonList);
             LinearLayout.LayoutParams layParam = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
 
+            currLesson = i+1;
+
             // Add the buttons with the layout params
             myLayout.addView(newButton, layParam);
             newButton.setText(lessonTitles.get(i));
             newButton.setOnClickListener(new View.OnClickListener() {
+                int lesson = currLesson;
                 @Override
                 public void onClick(View v) {
                     System.out.println("Lesson clicked: "+ newButton.getText());
                     Intent newIntent = new Intent(LessonList.this, LessonDescription.class);
 
-                    String text = (String) newButton.getText();
-                    System.out.println("Text: " + text);
+                    System.out.println("Lesson Number in onClick: " + lesson);
+                    LessonXML lessonXML = new LessonXML(chapterNum, lesson, ctx);
 
+                    String lessonDescription = lessonXML.getBody();
+                    String lessonTitle = lessonXML.getTitle();
+                    int lessonNum = lessonXML.getLessonNumber();
+                    int numQuestions = lessonXML.getNumQuestions();
 
+                    System.out.println("Body: " + lessonDescription);
+                    System.out.println("Title: " + lessonTitle);
+                    System.out.println("LessonNum: " + lessonNum);
+                    System.out.println("NumQuestions: " + numQuestions);
+
+                    newIntent.putExtra("LessonDescription", lessonDescription);
+                    newIntent.putExtra("LessonTitle", lessonTitle);
+                    newIntent.putExtra("ChapterNum", chapterNum);
+                    newIntent.putExtra("LessonNum", lessonNum);
+                    newIntent.putExtra("NumQuestions", numQuestions);
+
+                    startActivity(newIntent);
 
                 }
             });

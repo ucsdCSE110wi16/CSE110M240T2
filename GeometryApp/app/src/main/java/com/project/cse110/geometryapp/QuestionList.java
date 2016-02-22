@@ -2,6 +2,7 @@ package com.project.cse110.geometryapp;
 
 import android.app.ActionBar;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Color;
@@ -12,13 +13,20 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 
+import java.util.ArrayList;
+
 /**
  * Created by devinhickey on 2/8/16.
  */
 public class QuestionList extends Activity {
 
     Intent thisIntent;
+    Context ctx;
+    String lessonTitle;
+    int chapterNum;
+    int numQuestions;
     int lessonNum;
+    int qNum;
 
     static int l1q1 = 0;
     static int l1q2 = 0;
@@ -36,9 +44,7 @@ public class QuestionList extends Activity {
         setContentView(R.layout.question_list);
 
         thisIntent = this.getIntent();
-        lessonNum = thisIntent.getExtras().getInt("Lesson");
-
-        System.out.println("Lesson Num Q List: " + lessonNum);
+        ctx = this;
 
         // Start ActionBar
         ActionBar ab = getActionBar();
@@ -74,29 +80,56 @@ public class QuestionList extends Activity {
 
         // end ActionBar
 
-
         // Dynamically create buttons
-//        Button firstButton = new Button(this);
-//        firstButton.setText("Question 1");
-//
-//        Button secButton = new Button(this);
-//        secButton.setText("Question 2");
-//
-//        Button thirdButton = new Button(this);
-//        thirdButton.setText("Question 3");
-//
-//        LinearLayout myLayout = (LinearLayout) findViewById(R.id.questionLayout);
-//        LinearLayout.LayoutParams layParam = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-//
-//        // Add the buttons with the layout params
-//        myLayout.addView(firstButton, layParam);
-//        myLayout.addView(secButton, layParam);
-//        myLayout.addView(thirdButton, layParam);
+        lessonTitle = this.getIntent().getExtras().getString("LessonTitle");
+        numQuestions = this.getIntent().getExtras().getInt("NumQuestions");
+        chapterNum = this.getIntent().getExtras().getInt("ChapterNum");
+        lessonNum = this.getIntent().getExtras().getInt("LessonNum");
+
+        for (int i = 0; i < numQuestions; i++) {
+
+            Button newButton = new Button(this);
+            LinearLayout myLayout = (LinearLayout) findViewById(R.id.questionLayout);
+            LinearLayout.LayoutParams layParam = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+            myLayout.addView(newButton, layParam);
+            newButton.setText("Question " + (i+1));
+
+            qNum = i+1;
+
+            newButton.setOnClickListener(new View.OnClickListener() {
+                int currQuestion = qNum;
+                @Override
+                public void onClick(View v) {
+
+                    Intent newIntent = new Intent(QuestionList.this, LessonQuestion.class);
+
+                    QuestionXML qXML = new QuestionXML(chapterNum, lessonNum, lessonTitle, currQuestion, ctx);
+
+                    ArrayList<String> responses = qXML.getResponses();
+                    ArrayList<String> answers = qXML.getAnswers();
+                    String image = qXML.getImageName();
+                    String questionType = qXML.getQuestionType();
+
+                    newIntent.putExtra("ChapterNum", chapterNum);
+                    newIntent.putExtra("LessonNum", lessonNum);
+                    newIntent.putExtra("LessonTitle", lessonTitle);
+                    newIntent.putExtra("QuestionNum", currQuestion);
+                    newIntent.putExtra("QuestionImage", image);
+                    newIntent.putExtra("QuestionType", questionType);
+                    newIntent.putExtra("Responses", responses);
+                    newIntent.putExtra("Answers", answers);
 
 
-        Button firstButton = (Button) findViewById(R.id.ques1);
-        Button secButton = (Button) findViewById(R.id.ques2);
-        Button thirdButton = (Button) findViewById(R.id.ques3);
+                    if (questionType.equals("MCQ")) {
+                        startActivity(newIntent);
+                    }
+
+
+
+                }
+            });
+
+        }
 
 
 //        if (lessonNum == 1) {
@@ -190,149 +223,149 @@ public class QuestionList extends Activity {
 
 
 
-        // Create the button onClicks
-        firstButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                System.out.println("Inside first button click");
-
-                int png;
-                int qNum = 1;
-                String[] buttons;
-                String body;
-                String answer;
-                Intent newIntent = new Intent(QuestionList.this, LessonQuestion.class);
-
-                if (lessonNum == 1) {
-
-                    buttons = new String[3];
-                    buttons[0] = "A";
-                    buttons[1] = "B";
-                    buttons[2] = "C";
-
-                    answer = "A";
-
-                    png = R.drawable.c1_l1_q1;
-
-
-
-
-                } else {
-
-                    png = R.drawable.c1_l2_q1;
-                    body = "Are F,Y,W Coplanar?";
-                    newIntent.putExtra("Body", body);
-
-                    buttons = new String[2];
-                    buttons[0] = "Yes";
-                    buttons[1] = "No";
-
-                    answer = "Yes";
-
-                }
-
-                newIntent.putExtra("QNUM", qNum);
-                newIntent.putExtra("Answer", answer);
-                newIntent.putExtra("Buttons", buttons);
-                newIntent.putExtra("PNG", png);
-                newIntent.putExtra("Lesson", lessonNum);
-
-                startActivity(newIntent);
-
-            }
-        });
-
-        secButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                System.out.println("Inside second Button onClick");
-
-                int png;
-                String body;
-                String answer;
-                String[] buttons;
-                Intent newIntent = new Intent(QuestionList.this, LessonQuestion.class);
-
-                if (lessonNum == 1) {
-                    png = R.drawable.c1_l1_q2;
-
-                    buttons = new String[3];
-                    buttons[0] = "A";
-                    buttons[1] = "B";
-                    buttons[2] = "C";
-
-                    answer = "A";
-
-                } else {
-                    png = R.drawable.c1_l2_q2;
-
-                    body = "Are the points K,W and L collinear?";
-                    newIntent.putExtra("Body", body);
-
-                    buttons = new String[2];
-                    buttons[0] = "Yes";
-                    buttons[1] = "No";
-
-                    answer = "Yes";
-
-                }
-
-                newIntent.putExtra("QNUM", 2);
-                newIntent.putExtra("Answer", answer);
-                newIntent.putExtra("Buttons", buttons);
-                newIntent.putExtra("PNG", png);
-                newIntent.putExtra("Lesson", lessonNum);
-
-                startActivity(newIntent);
-
-            }
-        });
-
-        thirdButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                int png;
-                String body;
-                String answer;
-                String[] buttons;
-                Intent newIntent = new Intent(QuestionList.this, LessonQuestion.class);
-
-                if (lessonNum == 1) {
-
-                    png = R.drawable.c1_l1_q6;
-
-                    buttons = new String[3];
-                    buttons[0] = "A Line";
-                    buttons[1] = "A Ray";
-                    buttons[2] = "A Line Segment";
-
-                    answer = "A Ray";
-
-                } else {
-
-                    png = R.drawable.c1_l2_q3;
-                    body = "Are the points O and B collinear?";
-                    newIntent.putExtra("Body", body);
-
-                    buttons = new String[2];
-                    buttons[0] = "Yes";
-                    buttons[1] = "No";
-
-                    answer = "Yes";
-
-                }
-
-                newIntent.putExtra("QNUM", 3);
-                newIntent.putExtra("Answer", answer);
-                newIntent.putExtra("Buttons", buttons);
-                newIntent.putExtra("Lesson", lessonNum);
-                newIntent.putExtra("PNG", png);
-
-                startActivity(newIntent);
-
-            }
-        });
+//        // Create the button onClicks
+//        firstButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                System.out.println("Inside first button click");
+//
+//                int png;
+//                int qNum = 1;
+//                String[] buttons;
+//                String body;
+//                String answer;
+//                Intent newIntent = new Intent(QuestionList.this, LessonQuestion.class);
+//
+//                if (lessonNum == 1) {
+//
+//                    buttons = new String[3];
+//                    buttons[0] = "A";
+//                    buttons[1] = "B";
+//                    buttons[2] = "C";
+//
+//                    answer = "A";
+//
+//                    png = R.drawable.c1_l1_q1;
+//
+//
+//
+//
+//                } else {
+//
+//                    png = R.drawable.c1_l2_q1;
+//                    body = "Are F,Y,W Coplanar?";
+//                    newIntent.putExtra("Body", body);
+//
+//                    buttons = new String[2];
+//                    buttons[0] = "Yes";
+//                    buttons[1] = "No";
+//
+//                    answer = "Yes";
+//
+//                }
+//
+//                newIntent.putExtra("QNUM", qNum);
+//                newIntent.putExtra("Answer", answer);
+//                newIntent.putExtra("Buttons", buttons);
+//                newIntent.putExtra("PNG", png);
+//                newIntent.putExtra("Lesson", lessonNum);
+//
+//                startActivity(newIntent);
+//
+//            }
+//        });
+//
+//        secButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                System.out.println("Inside second Button onClick");
+//
+//                int png;
+//                String body;
+//                String answer;
+//                String[] buttons;
+//                Intent newIntent = new Intent(QuestionList.this, LessonQuestion.class);
+//
+//                if (lessonNum == 1) {
+//                    png = R.drawable.c1_l1_q2;
+//
+//                    buttons = new String[3];
+//                    buttons[0] = "A";
+//                    buttons[1] = "B";
+//                    buttons[2] = "C";
+//
+//                    answer = "A";
+//
+//                } else {
+//                    png = R.drawable.c1_l2_q2;
+//
+//                    body = "Are the points K,W and L collinear?";
+//                    newIntent.putExtra("Body", body);
+//
+//                    buttons = new String[2];
+//                    buttons[0] = "Yes";
+//                    buttons[1] = "No";
+//
+//                    answer = "Yes";
+//
+//                }
+//
+//                newIntent.putExtra("QNUM", 2);
+//                newIntent.putExtra("Answer", answer);
+//                newIntent.putExtra("Buttons", buttons);
+//                newIntent.putExtra("PNG", png);
+//                newIntent.putExtra("Lesson", lessonNum);
+//
+//                startActivity(newIntent);
+//
+//            }
+//        });
+//
+//        thirdButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//
+//                int png;
+//                String body;
+//                String answer;
+//                String[] buttons;
+//                Intent newIntent = new Intent(QuestionList.this, LessonQuestion.class);
+//
+//                if (lessonNum == 1) {
+//
+//                    png = R.drawable.c1_l1_q6;
+//
+//                    buttons = new String[3];
+//                    buttons[0] = "A Line";
+//                    buttons[1] = "A Ray";
+//                    buttons[2] = "A Line Segment";
+//
+//                    answer = "A Ray";
+//
+//                } else {
+//
+//                    png = R.drawable.c1_l2_q3;
+//                    body = "Are the points O and B collinear?";
+//                    newIntent.putExtra("Body", body);
+//
+//                    buttons = new String[2];
+//                    buttons[0] = "Yes";
+//                    buttons[1] = "No";
+//
+//                    answer = "Yes";
+//
+//                }
+//
+//                newIntent.putExtra("QNUM", 3);
+//                newIntent.putExtra("Answer", answer);
+//                newIntent.putExtra("Buttons", buttons);
+//                newIntent.putExtra("Lesson", lessonNum);
+//                newIntent.putExtra("PNG", png);
+//
+//                startActivity(newIntent);
+//
+//            }
+//        });
 
     }
 
@@ -342,97 +375,97 @@ public class QuestionList extends Activity {
 
         System.out.println("Onresume");
 
-        Button firstButton = (Button) findViewById(R.id.ques1);
-        Button secButton = (Button) findViewById(R.id.ques2);
-        Button thirdButton = (Button) findViewById(R.id.ques3);
-
-        if (lessonNum == 1) {
-            if (l1q1 == 1) {
-                firstButton.setBackgroundColor(Color.GREEN);
-
-            } else if (l1q1 == 2) {
-                firstButton.setBackgroundColor(Color.RED);
-
-            } else {
-
-                firstButton.setBackgroundColor(Color.LTGRAY);
-
-            }
-
-
-            if (l1q2 == 1) {
-
-                secButton.setBackgroundColor(Color.GREEN);
-
-            } else if (l1q2 == 2) {
-
-                secButton.setBackgroundColor(Color.RED);
-
-            } else {
-
-                secButton.setBackgroundColor(Color.LTGRAY);
-
-            }
-
-            if (l1q3 == 1) {
-
-                thirdButton.setBackgroundColor(Color.GREEN);
-
-            } else if (l1q3 == 2) {
-
-                thirdButton.setBackgroundColor(Color.RED);
-
-            } else {
-
-
-                thirdButton.setBackgroundColor(Color.LTGRAY);
-            }
-
-
-        } else {
-
-            if (l2q1 == 1) {
-
-                firstButton.setBackgroundColor(Color.GREEN);
-
-            } else if (l2q1 == 2) {
-
-
-                firstButton.setBackgroundColor(Color.RED);
-            } else {
-
-                firstButton.setBackgroundColor(Color.LTGRAY);
-
-            }
-
-            if (l2q2 == 1) {
-
-                secButton.setBackgroundColor(Color.GREEN);
-
-            } else if (l2q2 == 2) {
-
-                secButton.setBackgroundColor(Color.RED);
-
-            } else {
-
-                secButton.setBackgroundColor(Color.LTGRAY);
-            }
-
-            if (l2q3 == 1) {
-
-                thirdButton.setBackgroundColor(Color.GREEN);
-
-            } else if (l2q3 == 2) {
-
-                thirdButton.setBackgroundColor(Color.RED);
-
-            } else {
-
-
-                thirdButton.setBackgroundColor(Color.LTGRAY);
-            }
-
-        }
+//        Button firstButton = (Button) findViewById(R.id.ques1);
+//        Button secButton = (Button) findViewById(R.id.ques2);
+//        Button thirdButton = (Button) findViewById(R.id.ques3);
+//
+//        if (lessonNum == 1) {
+//            if (l1q1 == 1) {
+//                firstButton.setBackgroundColor(Color.GREEN);
+//
+//            } else if (l1q1 == 2) {
+//                firstButton.setBackgroundColor(Color.RED);
+//
+//            } else {
+//
+//                firstButton.setBackgroundColor(Color.LTGRAY);
+//
+//            }
+//
+//
+//            if (l1q2 == 1) {
+//
+//                secButton.setBackgroundColor(Color.GREEN);
+//
+//            } else if (l1q2 == 2) {
+//
+//                secButton.setBackgroundColor(Color.RED);
+//
+//            } else {
+//
+//                secButton.setBackgroundColor(Color.LTGRAY);
+//
+//            }
+//
+//            if (l1q3 == 1) {
+//
+//                thirdButton.setBackgroundColor(Color.GREEN);
+//
+//            } else if (l1q3 == 2) {
+//
+//                thirdButton.setBackgroundColor(Color.RED);
+//
+//            } else {
+//
+//
+//                thirdButton.setBackgroundColor(Color.LTGRAY);
+//            }
+//
+//
+//        } else {
+//
+//            if (l2q1 == 1) {
+//
+//                firstButton.setBackgroundColor(Color.GREEN);
+//
+//            } else if (l2q1 == 2) {
+//
+//
+//                firstButton.setBackgroundColor(Color.RED);
+//            } else {
+//
+//                firstButton.setBackgroundColor(Color.LTGRAY);
+//
+//            }
+//
+//            if (l2q2 == 1) {
+//
+//                secButton.setBackgroundColor(Color.GREEN);
+//
+//            } else if (l2q2 == 2) {
+//
+//                secButton.setBackgroundColor(Color.RED);
+//
+//            } else {
+//
+//                secButton.setBackgroundColor(Color.LTGRAY);
+//            }
+//
+//            if (l2q3 == 1) {
+//
+//                thirdButton.setBackgroundColor(Color.GREEN);
+//
+//            } else if (l2q3 == 2) {
+//
+//                thirdButton.setBackgroundColor(Color.RED);
+//
+//            } else {
+//
+//
+//                thirdButton.setBackgroundColor(Color.LTGRAY);
+//            }
+//
+//        }
 
     }
 }
