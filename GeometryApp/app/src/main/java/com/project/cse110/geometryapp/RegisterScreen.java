@@ -68,30 +68,33 @@ public class RegisterScreen extends Activity {
         registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String emailID = editTextEmail.getText().toString();
+                final String emailID = editTextEmail.getText().toString();
                 String password = editTextPassword.getText().toString();
                 String confirmPassword = editConfirmPassword.getText().toString();
 
                 if (password.equals(confirmPassword)) {
                     System.out.println("Passwords match");
-                    Firebase ref = new Firebase("https://cse110geometry.firebaseio.com");
+                    final Firebase ref = new Firebase("https://cse110geometry.firebaseio.com");
                     ref.createUser(emailID, password, new Firebase.ValueResultHandler<Map<String, Object>>() {
                         //ref.createUser("bobtony@firebase.com", "correcthorsebatterystaple", new Firebase.ValueResultHandler<Map<String, Object>>() {
                         @Override
                         public void onSuccess(Map<String, Object> result) {
+                            User user= new User(result.get("uid").toString(), emailID, ref.child("users/"+result.get("uid")).getRef());
+                            ref.child("users/"+user.getUid()).setValue(user);
+                            //System.out.println(user.getData());
                             System.out.println("Successfully created user account with uid: " + result.get("uid"));
                         }
 
                         @Override
                         public void onError(FirebaseError firebaseError) {
                             // there was an error
-                            System.out.println("There was an error registering your account");
+                            System.out.println("There was an error reg istering your account: "+firebaseError.getMessage());
                         }
                     });
                 } else {
-                    System.out.println("Error: passwords dont match");
+                    System.out.println("Error: Passwords Do Not Match");
 
-                    dialogBuilder.setMessage("Passwords Dont Match");
+                    dialogBuilder.setMessage("Passwords Do Not Match");
                     dialog = dialogBuilder.create();
                     dialog.show();
 
