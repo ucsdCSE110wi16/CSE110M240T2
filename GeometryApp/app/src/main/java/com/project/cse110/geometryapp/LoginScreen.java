@@ -102,6 +102,17 @@ public class LoginScreen extends Activity {
             }
         });
 
+        Button loginButton = (Button) findViewById(R.id.bLogin);
+        loginButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent newIntent = new Intent(LoginScreen.this, Main.class);
+
+                startActivity(newIntent);
+            }
+        });
+
 
         //textViewEmail = (TextView) findViewById(R.id.etUsername);
         //textViewEmail.setText(editTextEmail.getText().toString());
