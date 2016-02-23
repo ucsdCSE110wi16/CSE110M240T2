@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Application;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.widget.EditText;
 import android.app.DownloadManager;
 import android.app.DownloadManager.Query;
@@ -79,10 +80,11 @@ public class RegisterScreen extends Activity {
                         //ref.createUser("bobtony@firebase.com", "correcthorsebatterystaple", new Firebase.ValueResultHandler<Map<String, Object>>() {
                         @Override
                         public void onSuccess(Map<String, Object> result) {
+                            Intent newIntent = new Intent(RegisterScreen.this, Main.class);
                             User user= new User(result.get("uid").toString(), emailID, ref.child("users/"+result.get("uid")).getRef());
-                            ref.child("users/"+user.getUid()).setValue(user);
-                            //System.out.println(user.getData());
+                            ref.child("users/" + user.getUid()).setValue(user);
                             System.out.println("Successfully created user account with uid: " + result.get("uid"));
+                            startActivity(newIntent);
                         }
 
                         @Override
