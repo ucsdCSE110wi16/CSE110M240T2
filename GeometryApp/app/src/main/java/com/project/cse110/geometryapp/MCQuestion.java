@@ -6,25 +6,21 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.media.Image;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
 /**
  * Created by devinhickey on 1/31/16.
  */
-public class LessonQuestion extends Activity {
+public class MCQuestion extends Activity {
 
     Intent thisIntent;
     Context ctx;
@@ -41,15 +37,12 @@ public class LessonQuestion extends Activity {
     String chapterTitle;
     ArrayList<String> responses;
     ArrayList<String> answers;
-    String questionType;
 
     @Override
     public void onCreate(Bundle savedInstance) {
         super.onCreate(savedInstance);
 
-        questionType = getIntent().getExtras().getString("QuestionType");
-
-        setContentView(R.layout.lesson_question);
+        setContentView(R.layout.mcq_question);
 
         thisIntent = this.getIntent();
         ctx = this;
@@ -57,9 +50,7 @@ public class LessonQuestion extends Activity {
 
         // Start ActionBar
         ActionBar ab = getActionBar();
-
         ab.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
-
         ab.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         LayoutInflater inflater = LayoutInflater.from(this);
 
@@ -82,7 +73,7 @@ public class LessonQuestion extends Activity {
             @Override
             public void onClick(View v) {
                 System.out.println("Home");
-                Intent newIntent = new Intent(LessonQuestion.this, Main.class);
+                Intent newIntent = new Intent(MCQuestion.this, Main.class);
                 newIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
 
                 startActivity(newIntent);
@@ -259,7 +250,7 @@ public class LessonQuestion extends Activity {
 //                            finish();
 //
 ////                            // Start next intent with passed in extras
-////                            Intent newIntent = new Intent(LessonQuestion.this, QuestionList.class);
+////                            Intent newIntent = new Intent(MCQuestion.this, QuestionList.class);
 ////
 ////                            newIntent.putExtra("Lesson", lessonNum);
 //                        }
@@ -294,7 +285,7 @@ public class LessonQuestion extends Activity {
 //                        public void onClick(DialogInterface dialog, int which) {
 //
 //                            // Start next intent with passed in extras
-//                            Intent newIntent = new Intent(LessonQuestion.this, LessonQuestion.class);
+//                            Intent newIntent = new Intent(MCQuestion.this, MCQuestion.class);
 //                            if (getIntent().getExtras().getInt("qNum") == 1) {
 //                                newIntent.putExtra("qNum", 2);
 //                                newIntent.putExtra("question", R.drawable.c1_l1_q2);
@@ -345,7 +336,7 @@ public class LessonQuestion extends Activity {
 //                        public void onClick(DialogInterface dialog, int which) {
 //
 //                            // Start next intent with passed in extras
-//                            Intent newIntent = new Intent(LessonQuestion.this, LessonList.class);
+//                            Intent newIntent = new Intent(MCQuestion.this, LessonList.class);
 //                            startActivity(newIntent);
 //                        }
 //                    });

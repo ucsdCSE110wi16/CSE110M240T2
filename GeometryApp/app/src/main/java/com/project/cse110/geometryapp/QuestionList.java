@@ -4,7 +4,6 @@ import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.content.res.Resources;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Gravity;
@@ -13,8 +12,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
@@ -127,14 +124,30 @@ public class QuestionList extends Activity {
                 @Override
                 public void onClick(View v) {
 
-                    Intent newIntent = new Intent(QuestionList.this, LessonQuestion.class);
-
                     QuestionXML qXML = new QuestionXML(chapterNum, lessonNum, lessonTitle, currQuestion, ctx);
 
                     ArrayList<String> responses = qXML.getResponses();
                     ArrayList<String> answers = qXML.getAnswers();
                     String image = qXML.getImageName();
                     String questionType = qXML.getQuestionType();
+
+                    Intent newIntent;
+
+                    if (questionType.equals("MCQ")) {
+
+                       newIntent = new Intent(QuestionList.this, MCQuestion.class);
+                        newIntent.putExtra("Responses", responses);
+
+                    } else if (questionType.equals("Text")) {
+
+                        newIntent = new Intent(QuestionList.this, TextQuestion.class);
+
+                    } else {
+
+                        System.out.println("Check Question Clicked");
+                        return;
+
+                    }
 
                     newIntent.putExtra("ChapterNum", chapterNum);
                     newIntent.putExtra("ChapterTitle", chapterTitle);
@@ -143,13 +156,10 @@ public class QuestionList extends Activity {
                     newIntent.putExtra("QuestionNum", currQuestion);
                     newIntent.putExtra("QuestionImage", image);
                     newIntent.putExtra("QuestionType", questionType);
-                    newIntent.putExtra("Responses", responses);
                     newIntent.putExtra("Answers", answers);
 
 
-                    if (questionType.equals("MCQ")) {
-                        startActivity(newIntent);
-                    }
+                    startActivity(newIntent);
 
 
 
@@ -261,7 +271,7 @@ public class QuestionList extends Activity {
 //                String[] buttons;
 //                String body;
 //                String answer;
-//                Intent newIntent = new Intent(QuestionList.this, LessonQuestion.class);
+//                Intent newIntent = new Intent(QuestionList.this, MCQuestion.class);
 //
 //                if (lessonNum == 1) {
 //
@@ -311,7 +321,7 @@ public class QuestionList extends Activity {
 //                String body;
 //                String answer;
 //                String[] buttons;
-//                Intent newIntent = new Intent(QuestionList.this, LessonQuestion.class);
+//                Intent newIntent = new Intent(QuestionList.this, MCQuestion.class);
 //
 //                if (lessonNum == 1) {
 //                    png = R.drawable.c1_l1_q2;
@@ -356,7 +366,7 @@ public class QuestionList extends Activity {
 //                String body;
 //                String answer;
 //                String[] buttons;
-//                Intent newIntent = new Intent(QuestionList.this, LessonQuestion.class);
+//                Intent newIntent = new Intent(QuestionList.this, MCQuestion.class);
 //
 //                if (lessonNum == 1) {
 //

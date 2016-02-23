@@ -55,53 +55,6 @@ public class Main extends Activity {
 
         setContentView(R.layout.content_main);
 
-
-        EditText editTextEmailLogin;
-        EditText editTextEmailRegister;
-        EditText editTextPasswordLogin;
-        EditText editTextPasswordRegister;
-
-        editTextEmailLogin = (EditText) findViewById(R.id.etUsername);
-        editTextEmailRegister = (EditText) findViewById(R.id.regUsername);
-        editTextPasswordLogin = (EditText) findViewById(R.id.etPassword);
-        editTextPasswordRegister = (EditText) findViewById(R.id.regPassword);
-
-        String emailIDLogin = editTextEmailLogin.getText().toString();
-        String emailIDRegister = editTextEmailRegister.getText().toString();
-        String passwordLogin = editTextPasswordLogin.getText().toString();
-        String passwordRegister = editTextPasswordRegister.getText().toString();
-
-        Firebase ref = new Firebase("https://cse110geometry.firebaseio.com");
-
-        ref.authWithPassword(emailIDLogin, passwordLogin, new Firebase.AuthResultHandler() {
-            @Override
-            public void onAuthenticated(AuthData authData) {
-                System.out.println("User ID: " + authData.getUid() + ", Provider: " + authData.getProvider());
-            }
-
-            @Override
-            public void onAuthenticationError(FirebaseError firebaseError) {
-                // there was an error
-                System.out.println("Error logging in. Please try again");
-            }
-        });
-
-        Firebase ref2 = new Firebase("https://cse110geometry.firebaseio.com");
-        ref2.createUser(emailIDRegister, passwordRegister, new Firebase.ValueResultHandler<Map<String, Object>>() {
-            @Override
-            public void onSuccess(Map<String, Object> result) {
-                System.out.println("Successfully created user account with uid: " + result.get("uid"));
-            }
-
-            @Override
-            public void onError(FirebaseError firebaseError) {
-                // there was an error
-                System.out.println("There was an error registering your account");
-            }
-        });
-
-
-
         ImageButton first = (ImageButton) findViewById(R.id.topic1);
         ImageButton second = (ImageButton) findViewById(R.id.topic2);
         ImageButton third = (ImageButton) findViewById(R.id.topic3);
