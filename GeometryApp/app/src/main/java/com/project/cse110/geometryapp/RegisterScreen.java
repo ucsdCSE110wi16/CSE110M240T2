@@ -54,8 +54,6 @@ public class RegisterScreen extends Activity {
             public void onClick(DialogInterface dialog, int which) {
 
                 System.out.println("Inside OK");
-
-                finish();
             }
         });
 
