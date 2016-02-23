@@ -81,6 +81,9 @@ public class RegisterScreen extends Activity {
                             Intent newIntent = new Intent(RegisterScreen.this, Main.class);
                             User user= new User(result.get("uid").toString(), emailID, ref.child("users/"+result.get("uid")).getRef());
                             ref.child("users/" + user.getUid()).setValue(user);
+                            dialogBuilder.setMessage("Account successfully created!");
+                            dialog = dialogBuilder.create();
+                            dialog.show();
                             System.out.println("Successfully created user account with uid: " + result.get("uid"));
                             startActivity(newIntent);
                         }
