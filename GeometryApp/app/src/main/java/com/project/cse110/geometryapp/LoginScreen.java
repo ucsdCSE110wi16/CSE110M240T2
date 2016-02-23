@@ -75,6 +75,8 @@ public class LoginScreen extends Activity {
                 ref.authWithPassword(emailID, password, new Firebase.AuthResultHandler() {
                     @Override
                     public void onAuthenticated(AuthData authData) {
+                        Intent newIntent = new Intent(LoginScreen.this, Main.class);
+                        startActivity(newIntent);
                         System.out.println("User ID: " + authData.getUid() + ", Provider: " + authData.getProvider());
                     }
 
@@ -103,15 +105,6 @@ public class LoginScreen extends Activity {
         });
 
         Button loginButton = (Button) findViewById(R.id.bLogin);
-        loginButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                Intent newIntent = new Intent(LoginScreen.this, Main.class);
-
-                startActivity(newIntent);
-            }
-        });
 
 
         //textViewEmail = (TextView) findViewById(R.id.etUsername);
