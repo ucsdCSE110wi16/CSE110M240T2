@@ -112,7 +112,7 @@ public class LessonList extends Activity {
                     System.out.println("Lesson Number in onClick: " + lesson);
                     LessonXML lessonXML = new LessonXML(chapterNum, lesson, ctx);
 
-                    String lessonDescription = lessonXML.getBody();
+                    ArrayList<String> lessonDescription = lessonXML.getBody();
                     String lessonTitle = lessonXML.getTitle();
                     int lessonNum = lessonXML.getLessonNumber();
                     int numQuestions = lessonXML.getNumQuestions();
@@ -122,7 +122,7 @@ public class LessonList extends Activity {
                     System.out.println("LessonNum: " + lessonNum);
                     System.out.println("NumQuestions: " + numQuestions);
 
-                    newIntent.putExtra("LessonDescription", lessonDescription);
+                    newIntent.putExtra("LessonDescription", lessonDescription.get(0)); //FIXME: CHANGE LATER TO SEND WHOLE ARRAYLIST
                     newIntent.putExtra("LessonTitle", lessonTitle);
                     newIntent.putExtra("ChapterNum", chapterNum);
                     newIntent.putExtra("ChapterTitle", chapterTitle);

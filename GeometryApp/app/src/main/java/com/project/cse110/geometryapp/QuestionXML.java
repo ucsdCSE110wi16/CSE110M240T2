@@ -54,8 +54,8 @@ public class QuestionXML {
             this.answersString = content.item(5).getTextContent();
         }
 
-        responses = new ArrayList<String>(Arrays.asList(responsesString.split("##")));
-        answers = new ArrayList<String>(Arrays.asList(answersString.split("##")));
+        this.responses = new ArrayList<String>(Arrays.asList(responsesString.split("##")));
+        this.answers = new ArrayList<String>(Arrays.asList(answersString.split("##")));
         builder.closeStream();
     }
 
