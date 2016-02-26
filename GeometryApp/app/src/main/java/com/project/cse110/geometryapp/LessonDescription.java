@@ -2,6 +2,7 @@ package com.project.cse110.geometryapp;
 
 import android.app.ActionBar;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Gravity;
@@ -17,6 +18,12 @@ import android.widget.TextView;
 public class LessonDescription extends Activity {
 
     Intent thisIntent;
+    Context ctx;
+    String chapterTitle;
+    String lessonTitle;
+    int currLesson;
+    int chapterNum;
+    int numQuestions;
 
     @Override
     public void onCreate(Bundle savedInstanceState){
@@ -26,6 +33,16 @@ public class LessonDescription extends Activity {
         setContentView(R.layout.lesson_description);
 
         thisIntent = this.getIntent();
+        ctx = this;
+
+        // Get extras
+        String description = getIntent().getExtras().getString("LessonDescription");
+        chapterNum = getIntent().getExtras().getInt("ChapterNum");
+        lessonTitle = getIntent().getExtras().getString("LessonTitle");
+        currLesson = getIntent().getExtras().getInt("LessonNum");
+        numQuestions = getIntent().getExtras().getInt("NumQuestions");
+        chapterTitle = getIntent().getExtras().getString("ChapterTitle");
+        // End get extras
 
         // Start ActionBar
         ActionBar ab = getActionBar();
@@ -44,10 +61,14 @@ public class LessonDescription extends Activity {
 
 
         // Make the buttons on the ab disappear
-        Button logoutButton = (Button) abLayout.findViewById(R.id.logout);
+        TextView myProgress = (TextView) abLayout.findViewById(R.id.progress);
         Button homeButton = (Button) abLayout.findViewById(R.id.home);
+        TextView titleBar = (TextView) abLayout.findViewById(R.id.actionBarTitle);
 
-        logoutButton.setVisibility(View.INVISIBLE);
+        titleBar.setText(chapterTitle);
+
+        myProgress.setVisibility(View.INVISIBLE);
+
         homeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -62,57 +83,21 @@ public class LessonDescription extends Activity {
         // end ActionBar
 
 
-        String body = getIntent().getExtras().getString("LessonBody");
-        TextView text = (TextView) findViewById(R.id.textView);
+        TextView text = (TextView) findViewById(R.id.lessonDescription);
 
-        text.setText(body);
+        text.setText(description);
 
-        Button skipButton = (Button) findViewById(R.id.skip);
+        Button skipButton = (Button) findViewById(R.id.next);
         skipButton.setOnClickListener(new Button.OnClickListener() {
             public void onClick(View v) {
 
                 Intent questionIntent = new Intent(LessonDescription.this, QuestionList.class);
 
-                int lessonNum = thisIntent.getExtras().getInt("LessonNum");
-
-                int[] qComplete = thisIntent.getExtras().getIntArray("QuestionComplete");
-
-                questionIntent.putExtra("QuestionComplete", qComplete);
-                questionIntent.putExtra("BOOL", true);
-
-//                    String[] q1 = new String[4];
-//                    q1[0] = "1";
-//                    q1[1] = "c1_l1_q1";
-//                    q1[2] = "A,B,C";
-//                    q1[3] = "1";
-
-                    //questionIntent.putExtra("Question", 1);
-                    questionIntent.putExtra("Lesson", lessonNum);
-
-
-                    questionIntent.putExtra("NumQuestions", 3);
-
-
-                /*
-                int question = R.drawable.c1_l1_q1;
-                questionIntent.putExtra("question", question);
-
-                String response1 = "A";
-                questionIntent.putExtra("first", response1);
-
-                String response2 = "B";
-                questionIntent.putExtra("second", response2);
-
-                String response3 = "C";
-                questionIntent.putExtra("third", response3);
-
-                int answer = 1;
-                questionIntent.putExtra("answer", answer);
-
-                int qNum = 1;
-                questionIntent.putExtra("qNum", qNum);
-*/
-
+                questionIntent.putExtra("ChapterNum", chapterNum);
+                questionIntent.putExtra("ChapterTitle", chapterTitle);
+                questionIntent.putExtra("LessonTitle", lessonTitle);
+                questionIntent.putExtra("LessonNum", currLesson);
+                questionIntent.putExtra("NumQuestions", numQuestions);
 
                 startActivity(questionIntent);
 

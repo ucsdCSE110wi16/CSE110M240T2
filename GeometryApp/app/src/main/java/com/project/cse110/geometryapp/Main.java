@@ -16,17 +16,22 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import com.firebase.client.AuthData;
 import com.firebase.client.Firebase;
 
 import com.firebase.client.Firebase;
+import com.firebase.client.FirebaseError;
 
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Map;
 
 
 /**
@@ -56,10 +61,10 @@ public class Main extends Activity {
         ImageButton fourth = (ImageButton) findViewById(R.id.topic4);
         ImageButton fifth = (ImageButton) findViewById(R.id.topic5);
 
-        ViewGroup.LayoutParams param = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+        //ViewGroup.LayoutParams param = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
 
-        drawLine = new DrawLine(this, first, second);
-        this.addContentView(drawLine, param);
+//        drawLine = new DrawLine(this, first, second);
+//        this.addContentView(drawLine, param);
         //setContentView(drawLine);
 
         ctx = this;
@@ -81,47 +86,30 @@ public class Main extends Activity {
 
 
         // Make the buttons on the ab disappear
-        Button logoutButton = (Button) abLayout.findViewById(R.id.logout);
+        TextView progress = (TextView) abLayout.findViewById(R.id.progress);
         Button homeButton = (Button) abLayout.findViewById(R.id.home);
 
-        logoutButton.setVisibility(View.INVISIBLE);
+        progress.setVisibility(View.INVISIBLE);
         homeButton.setVisibility(View.INVISIBLE);
 
         // end ActionBar
 
 
-//        ChapterXML chap = new ChapterXML(1, in);
+//        ChapterXML chap = new ChapterXML(1, this);
 //        String title = chap.getTitle();
 //        int num = chap.getNumLessons();
 //        System.out.println(title + num);
-//        try {
-//            in.close();
-//        } catch (IOException e) {
 //
-//        }
-
-//        in = getResources().openRawResource(
-//                getResources().getIdentifier("chapters",
-//                        "raw", getPackageName()));
-//
-//        LessonXML less = new LessonXML(chap.getChapterNumber(), 1, in);
+//        LessonXML less = new LessonXML(chap.getChapterNumber(), 1, this);
 //        title = less.getTitle();
-//        String body = less.getBody();
+//        ArrayList<String> body = less.getBody();
 //        num = less.getNumQuestions();
 //        System.out.println(title + num);
-//        System.out.println(body);
-//
-//        try {
-//            in.close();
-//        } catch (IOException e) {
-//
+//        for (int i = 0; i< body.size(); i++) {
+//            System.out.println(body.get(i));
 //        }
 //
-//        in = getResources().openRawResource(
-//                getResources().getIdentifier("chapters",
-//                        "raw", getPackageName()));
-
-//        QuestionXML q = new QuestionXML(chap.getChapterNumber(), less.getLessonNumber(), less.getTitle(), 1, in);
+//        QuestionXML q = new QuestionXML(chap.getChapterNumber(), less.getLessonNumber(), less.getTitle(), 1, this);
 //        System.out.println(q.getQuestionNumber());
 //        System.out.println(q.getQuestionType());
 //        System.out.println(q.getImageName());

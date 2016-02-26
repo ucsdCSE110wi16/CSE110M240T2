@@ -29,11 +29,11 @@
 
     <TextView
         android:layout_width="wrap_content"
-        android:text="Repeat Password"
+        android:text="Confirm Password"
         android:layout_height="wrap_content" />
 
     <EditText
-        android:id="@+id/regPassword"
+        android:id="@+id/confirmPassword"
         android:layout_width="match_parent"
         android:layout_marginBottom="10dp"
         android:inputType="textPassword"

@@ -1,7 +1,7 @@
 <chapters>
     <chapter1 title='Tools of Geometry' completed='0'>
         <lesson title='Lines, Line Segments, Rays' completed='0'>
-            <body>Lines: A line is a straight one-dimensional geometric object that extends infinitely in both directions.\nLine Segment: A line segment is a straight one-dimensional geometric object that has fixed starting and ending points.\nRay: A ray is a straight one-dimensional geometric object that has a fixed starting point, but extends infinitely.\n</body>
+            <body>Lines: A line is a straight one-dimensional geometric object that extends infinitely in both directions.##Line Segment: A line segment is a straight one-dimensional geometric object that has fixed starting and ending points.##Ray: A ray is a straight one-dimensional geometric object that has a fixed starting point, but extends infinitely.</body>
             <test>
                 <question number='1' type='MCQ' completed='0'>
                     <image>c1_l1_q1.png</image>
@@ -41,11 +41,11 @@
             </test>
         </lesson>
         <lesson title='Points, Lines, Planes' completed='0'>
-            <body>Point: A point is a geometric object that signifies a location, but has no size in itself. Lines, line segments, rays are all collections of points.\nPlane: A plane is a flat, two-dimensional surface that extends infinitely far. It is the two-dimensional analogue of a point (zero dimensions), a line (one dimension).\nCollinear Points: Points are collinear if they lie on the same line.\nCoplanar Points: Points are coplanar if they both lie on the same plane.\n</body>
+            <body>Point: A point is a geometric object that signifies a location, but has no size in itself.##Lines, line segments, rays are all collections of points.##Plane: A plane is a flat, two-dimensional surface that extends infinitely far.##It is the two-dimensional analogue of a point (zero dimensions), a line (one dimension).##Collinear Points: Points are collinear if they lie on the same line.##Coplanar Points: Points are coplanar if they both lie on the same plane.</body>
             <test>
                 <question number='1' type='MCQ' completed='0'>
                     <image>c1_l2_q1.png</image>
-                    <responses>Yes##No</responses>
+                    <responses>True##False</responses>
                     <answer>1</answer>
                 </question>
                 <question number='2' type='MCQ' completed='0'>
@@ -55,7 +55,7 @@
                 </question>
                 <question number='3' type='MCQ' completed='0'>
                     <image>c1_l2_q3.png</image>
-                    <responses>Yes##No</responses>
+                    <responses>True##False</responses>
                     <answer>1</answer>
                 </question>
                 <question number='4' type='MCQ' completed='0'>
@@ -73,10 +73,9 @@
             </test>
         </lesson>
     </chapter1>
-    <chapter2 title='Angles and Intersecting Lines' completed='0'>
+    <chapter2 title='Angles and Lines' completed='0'>
 	    <lesson title='Angles' completed='0'>
-	        <body>Angle: When two rays begin at a common point, a geometric figure is formed. The space between such rays, measured in degrees (°), is the angle.\n\ta. Zero Angle: Such an angle is formed when two rays completely overlap with each other (0°).\n\tb. Right Angle: This angle is formed when the space between two rays is 90°. It is similar to the corner of a square. It is usually represented by a small square between the lines.\n\tc. Straight Angle: This angle is formed when the space between two rays is 180°. This means that the rays start at a common point, but extend in directly opposite directions.\n\td. Full Angle: If we continue to increase the space between two rays that start at a common point, there will come a time when they overlap with each other. When this happens, the angle is 360°.\n\te. Acute Angle: It is an angle that is more than 0° but less than 90°.\n\tf. Obtuse Angle: It is an angle that is more than 90° but less than 180°.\n\tg. Reflex Angle: It is an angle that is more than 180° but less than 360°.\n
-	        </body>
+	        <body>Angle: When two rays begin at a common point, a geometric figure is formed. The space between such rays, measured in degrees (°), is the angle.##Zero Angle: Such an angle is formed when two rays completely overlap with each other (0°).##Right Angle: This angle is formed when the space between two rays is 90°. It is similar to the corner of a square. It is usually represented by a small square between the lines.##Straight Angle: This angle is formed when the space between two rays is 180°. This means that the rays start at a common point, but extend in directly opposite directions.##Full Angle: If we continue to increase the space between two rays that start at a common point, there will come a time when they overlap with each other. When this happens, the angle is 360°.##Acute Angle: It is an angle that is more than 0° but less than 90°.##Obtuse Angle: It is an angle that is more than 90° but less than 180°.##Reflex Angle: It is an angle that is more than 180° but less than 360°.</body>
 	        <test>
 	            !types: MCQ = Multiple Choice, Check -> Check Boxes, Text -> Free response
 	            <question number='1' type='MCQ' completed='0'>
@@ -97,8 +96,7 @@
 	        </test>
 	    </lesson>
 	    <lesson title='Intersecting Lines' completed='0'>
-	        <body>Intersecting Lines: Two lines that meet at a single point are known as intersecting lines. They have various unique properties, including ones that relate to the angles formed when they meet.\n\ta. Vertical Angles: Vertical Angles are the angles opposite each other when two lines intersect. They are always equal.\n\tb. Complementary Angles: Two angles that sum to 90°.\n\tc. Supplementary Angles: Two angles that sum to 180°.\n
-	        </body>
+	        <body>Intersecting Lines: Two lines that meet at a single point are known as intersecting lines. They have various unique properties, including ones that relate to the angles formed when they meet.##Vertical Angles: Vertical Angles are the angles opposite each other when two lines intersect. They are always equal.\n\tb. Complementary Angles: Two angles that sum to 90°.##Supplementary Angles: Two angles that sum to 180°.</body>
 	        <test>
 	            !types: MCQ = Multiple Choice, Check -> Check Boxes, Text -> Free response
 	            <question number='1' type='Text' completed='0'>
@@ -132,9 +130,7 @@
 	        </test>
 	    </lesson>
 	    <lesson title='Parallel Lines' completed='0'>
-	        <body>Parallel Lines: Two lines that never intersect are known as parallel lines.\n
-	            a. When a line intersects two other lines (which are parallel), the angles formed are identical on either of the parallel lines. For example: If there are two parallel lines, and a third one intersects both of them, a pair of vertical angles formed on the first line will be identical to the corresponding pair of vertical angles formed on the second line.\n
-	        </body>
+	        <body>Parallel Lines: Two lines that never intersect are known as parallel lines.##When a line intersects two other lines (which are parallel), the angles formed are identical on either of the parallel lines. For example: If there are two parallel lines, and a third one intersects both of them, a pair of vertical angles formed on the first line will be identical to the corresponding pair of vertical angles formed on the second line.</body>
 	        <test>
 	            !types: MCQ = Multiple Choice, Check -> Check Boxes, Text -> Free response
 	            <question number='1' type='MCQ' completed='0'>
@@ -160,7 +156,7 @@
 	</chapter2>
     <chapter3 title='Quadrilaterals' completed='0'>
         <lesson title='Types of Quadrilaterals' completed='0'>
-            <body>"Quad" means "four" and "lateral" means "line." A quadrilateral is literally a shape with four sides (lines) and four angles that add to 360 degrees.\nConcave Quadrilaterals: Has one interior angle larger than 180 degrees.\nConvex Quadrilaterals: All angles are less than 180 degrees.\nTrapezoid: A quadrilateral with exactly 2 sides parallel to each other.\nParallelogram: A quadrilateral with 2 pairs of parallel sides.\nRectangle: A parallelogram with 4 right angles.\nRhombus: A parallelogram where all 4 sides are equivalent.\nSquare: A rectangular rhombus. In other words, a parallelogram with 4 right angles and 4 equivalent sides.\n</body>
+            <body>"Quad" means "four" and "lateral" means "line." A quadrilateral is literally a shape with four sides (lines) and four angles that add to 360 degrees.##Concave Quadrilaterals: Has one interior angle larger than 180 degrees.##Convex Quadrilaterals: All angles are less than 180 degrees.##Trapezoid: A quadrilateral with exactly 2 sides parallel to each other.##Parallelogram: A quadrilateral with 2 pairs of parallel sides.##Rectangle: A parallelogram with 4 right angles.##Rhombus: A parallelogram where all 4 sides are equivalent.##Square: A rectangular rhombus. In other words, a parallelogram with 4 right angles and 4 equivalent sides.</body>
             <test>
                 <question number='1' type='Check' completed='0'>
                     <image>c3_l1_q1.png</image>
@@ -190,7 +186,7 @@
             </test>
         </lesson>
         <lesson title='Quadrilateral Proofs and Angles' completed='0'>
-            <body>Adjacent angles of a parallelogram are supplementary: Their sum equals 180.\nOpposite angles of a parallelogram are equivalent.\nThe angles of bases of an isosceles triangle are equal.\nArea of a parallelogram is base x the bisecting height: A = bh.\n</body>
+            <body>Adjacent angles of a parallelogram are supplementary: Their sum equals 180.##Opposite angles of a parallelogram are equivalent.##The angles of bases of an isosceles triangle are equal.##Area of a parallelogram is base x the bisecting height: A = bh.</body>
             <test>
                 <question number='1' type='Text' completed='0'>
                     <image>c3_l2_q1.png</image>
@@ -217,7 +213,7 @@
     </chapter3>
     <chapter4 title='Circles' completed='0'>
     	<lesson title='Circle Basics' completed='0'>
-		<body>Pi : Pi is a fundamental constant when determining many basic properties of circles. It represents the ratio of a circles circumference to its diameter.\nRadius : The radius of a circle is the distance between the center of the circle to the edge of the circle.\nDiameter : The diameter of a circle is the length of the line segment that divides the circle in half into two semi-circles.\nCircumference : The circumference of a circle is the linear distance around its edge. The circumference is essentially the perimeter of the circle.\n The equation for the circumference of a circle is 2pi*r.\n The equation for the area of a circle is pi*r^2.\n</body>
+		<body>Pi : Pi is a fundamental constant when determining many basic properties of circles. It represents the ratio of a circles circumference to its diameter.##Radius : The radius of a circle is the distance between the center of the circle to the edge of the circle.##Diameter : The diameter of a circle is the length of the line segment that divides the circle in half into two semi-circles.##Circumference : The circumference of a circle is the linear distance around its edge. The circumference is essentially the perimeter of the circle.##The equation for the circumference of a circle is 2pi*r.\n The equation for the area of a circle is pi*r^2.</body>
 			<test>
 				<question number='1' type ='MCQ' completed='0'>
 					<image>c4_l1_q1.png</image>
@@ -244,7 +240,7 @@
 			</test>
 	</lesson>
 	<lesson title='Standard Equation of a Circle' completed='0'>
-		<body>General format of circle equation: ax^2 + by^2 + cx + dy + e = 0\nCenter-radius form of circle:  (x - h)^2 + (y - k)^2 = r^2\nThe center of the circle is easily found using this equation : (h,k)\nThe radius of the circle is also easily found : (r).\n</body>
+		<body>General format of circle equation: ax^2 + by^2 + cx + dy + e = 0##Center-radius form of circle:  (x - h)^2 + (y - k)^2 = r^2##The center of the circle is easily found using this equation : (h,k)##The radius of the circle is also easily found : (r).</body>
 			<test>
 				<question number='1' type ='Text' completed='0'>
 					<image>c4_l2_q1.png</image>
@@ -265,8 +261,8 @@
 			</test>
 	</lesson>
 	<lesson title='Arcs' completed='0'>
-		<body>An arc is simply a closed segment of the edge of a circle.\nMinor arc : an arc with an angle less than 180 degrees.\nMajor arc: an arc with an angle greater than 180 degrees.\nArc Measure: arc measure is the angle of the central angle of an arc. In other words, the angle formed between the two radii that connect to the ends of the arc represents the arc measure.\nLength of an arc: The equation to find the length of an arc is equal to (theta)r, where (theta) is the angle the arc subtends and r is the radius of the circle.\n</body>
-			<test>
+		<body>An arc is simply a closed segment of the edge of a circle.##Minor arc : an arc with an angle less than 180 degrees.##Major arc: an arc with an angle greater than 180 degrees.##Arc Measure: arc measure is the angle of the central angle of an arc. In other words, the angle formed between the two radii that connect to the ends of the arc represents the arc measure.##Length of an arc: The equation to find the length of an arc is equal to (theta)r, where (theta) is the angle the arc subtends and r is the radius of the circle.</body>
+		<test>
 				<question number='1' type ='Text' completed='0'>
 					<image>c4_l3_q1.png</image>
 					<answer>147</answer>
