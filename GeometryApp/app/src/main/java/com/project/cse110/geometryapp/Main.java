@@ -90,37 +90,18 @@ public class Main extends Activity {
         Button homeButton = (Button) abLayout.findViewById(R.id.home);
 
         progress.setVisibility(View.INVISIBLE);
-        homeButton.setVisibility(View.INVISIBLE);
+        homeButton.setText("Logout");
+        homeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent newIntent = new Intent(Main.this, LoginScreen.class);
+                newIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(newIntent);
+                finish();
+            }
+        });
 
         // end ActionBar
-
-
-//        ChapterXML chap = new ChapterXML(1, this);
-//        String title = chap.getTitle();
-//        int num = chap.getNumLessons();
-//        System.out.println(title + num);
-//
-//        LessonXML less = new LessonXML(chap.getChapterNumber(), 1, this);
-//        title = less.getTitle();
-//        ArrayList<String> body = less.getBody();
-//        num = less.getNumQuestions();
-//        System.out.println(title + num);
-//        for (int i = 0; i< body.size(); i++) {
-//            System.out.println(body.get(i));
-//        }
-//
-//        QuestionXML q = new QuestionXML(chap.getChapterNumber(), less.getLessonNumber(), less.getTitle(), 1, this);
-//        System.out.println(q.getQuestionNumber());
-//        System.out.println(q.getQuestionType());
-//        System.out.println(q.getImageName());
-//        for (int i = 0; i < q.getResponses().size(); i++) {
-//            System.out.println(q.getResponses().get(i));
-//        }
-//
-//        for (int i = 0; i < q.getAnswers().size(); i++) {
-//            System.out.println(q.getAnswers().get(i));
-//        }
-
 
         first.setOnClickListener(
                 new ImageButton.OnClickListener() {

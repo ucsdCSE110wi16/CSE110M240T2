@@ -2,7 +2,10 @@ package com.project.cse110.geometryapp;
 
 import android.app.ActionBar;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Gravity;
@@ -25,6 +28,8 @@ public class TextQuestion extends Activity{
     Context ctx;
 
     EditText answerText;
+    AlertDialog dialog;
+    AlertDialog.Builder dialogBuilder;
 
     String chapterTitle;
     int chapterNum;
@@ -77,6 +82,10 @@ public class TextQuestion extends Activity{
         ImageView questionImage = (ImageView) findViewById(R.id.textQuestionImage);
         Button submit = (Button) findViewById(R.id.submitButton);
 
+        // Create the dialog builder
+        dialogBuilder = new AlertDialog.Builder(this);
+        dialogBuilder.setCancelable(false);
+
 
         chapterNum = getIntent().getExtras().getInt("ChapterNum");
         lessonNum = getIntent().getExtras().getInt("LessonNum");
@@ -101,10 +110,28 @@ public class TextQuestion extends Activity{
 
                 if (userAnswer.equals(answers.get(0))) {
                     System.out.println("Correct Answer");
+                    dialogBuilder.setMessage("Correct!");
+                    setStaticArray(1, true);
+
                 } else {
                     System.out.println("Incorrect Answer");
+                    dialogBuilder.setMessage("Incorrect");
+                    setStaticArray(-1, false);
 
                 }
+
+                dialogBuilder.setNeutralButton("Ok", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        System.out.println("Inside OK");
+
+                        finish();
+                    }
+                });
+
+                dialog = dialogBuilder.create();
+                dialog.show();
 
             }
         });
@@ -459,6 +486,146 @@ public class TextQuestion extends Activity{
 
                 }
                 break;
+
+            default:
+
+                break;
+
+
+        }
+
+    }
+
+
+    /*
+
+    Set the buttons to green or red based on correct or incorrect answers
+
+    */
+    public void setStaticArray(int value, boolean correct) {
+        switch (chapterNum) {
+
+            case 1:
+                switch (lessonNum) {
+                    case 1:
+                        QuestionList.c1l1[qNum-1] = value;
+
+                        if (correct) {
+                            QuestionList.numQuestionsCorrectC1L1++;
+                        }
+
+                        break; // end Lesson 1
+
+                    case 2:
+                        QuestionList.c1l2[qNum-1] = value;
+                        if (correct) {
+                            QuestionList.numQuestionsCorrectC1L2++;
+                        }
+                        break;
+
+                    default:
+                        break; // end Chapter 1 Lesson 2
+
+
+                }
+                break; // end Chapter 1
+
+            case 2:
+                switch (lessonNum) {
+                    case 1:
+                        QuestionList.c2l1[qNum-1] = value;
+                        if (correct) {
+                            QuestionList.numQuestionsCorrectC2L1++;
+                        }
+                        break; // end Chapter 2 Lesson 1
+
+                    case 2:
+                        QuestionList.c2l2[qNum-1] = value;
+                        if (correct) {
+                            QuestionList.numQuestionsCorrectC2L2++;
+                        }
+                        break;  // end Chapter 2 Lesson 2
+
+                    case 3:
+                        QuestionList.c2l3[qNum-1] = value;
+                        if (correct) {
+                            QuestionList.numQuestionsCorrectC2L3++;
+                        }
+                        break;
+
+                    default:
+                        break; // end Chapter 2 Lesson 3
+
+                }
+                break;  // end Chapter 2
+
+            case 3:
+                switch (lessonNum) {
+                    case 1:
+                        QuestionList.c3l1[qNum-1] = value;
+                        if (correct) {
+                            QuestionList.numQuestionsCorrectC3L1++;
+                        }
+                        break; // end Chapter 3 Lesson 1
+
+                    case 2:
+                        QuestionList.c3l2[qNum-1] = value;
+                        if (correct) {
+                            QuestionList.numQuestionsCorrectC3L2++;
+                        }
+                        break;
+
+                    default:
+                        break; // end Chapter 3 Lesson 2
+
+                }
+                break;
+
+            case 4:
+                switch (lessonNum) {
+                    case 1:
+                        QuestionList.c4l1[qNum-1] = value;
+                        if (correct) {
+                            QuestionList.numQuestionsCorrectC4L1++;
+                        }
+                        break; // end Chapter 4 Lesson 1
+
+                    case 2:
+                        QuestionList.c4l2[qNum-1] = value;
+                        if (correct) {
+                            QuestionList.numQuestionsCorrectC4L2++;
+                        }
+                        break;  // end Chapter 4 Lesson 2
+
+                    case 3:
+                        QuestionList.c4l3[qNum-1] = value;
+                        if (correct) {
+                            QuestionList.numQuestionsCorrectC4L3++;
+                        }
+                        break;  // end Chapter 4 Lesson 3
+
+                    default:
+                        break;
+
+                }
+                break;  // end Chapter 4
+
+//            case 5:
+//                switch (lessonNum) {
+//                    case 1:
+//                        QuestionList.c5l1[qNum-1] = value;
+//
+//                        break;  // end Chapter 5 Lesson 1
+//
+//                    case 2:
+//                        QuestionList.c5l2[qNum-1] = value;
+//                        break;  // end Chapter 5 Lesson 2
+//
+//                    default:
+//                        break;
+//
+//                }
+//                break;
 
             default:
 

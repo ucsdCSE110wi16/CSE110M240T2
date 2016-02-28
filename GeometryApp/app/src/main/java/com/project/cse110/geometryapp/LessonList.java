@@ -122,7 +122,7 @@ public class LessonList extends Activity {
                     System.out.println("LessonNum: " + lessonNum);
                     System.out.println("NumQuestions: " + numQuestions);
 
-                    newIntent.putExtra("LessonDescription", lessonDescription.get(0)); //FIXME: CHANGE LATER TO SEND WHOLE ARRAYLIST
+                    newIntent.putExtra("LessonDescription", lessonDescription); //FIXME: CHANGE LATER TO SEND WHOLE ARRAYLIST
                     newIntent.putExtra("LessonTitle", lessonTitle);
                     newIntent.putExtra("ChapterNum", chapterNum);
                     newIntent.putExtra("ChapterTitle", chapterTitle);

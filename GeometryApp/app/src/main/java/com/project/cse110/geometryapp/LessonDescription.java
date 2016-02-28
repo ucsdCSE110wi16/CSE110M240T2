@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,10 +13,12 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 /**
  * Created by devinhickey on 2/6/16.
  */
-public class LessonDescription extends Activity {
+public class LessonDescription extends FragmentActivity {
 
     Intent thisIntent;
     Context ctx;
@@ -25,6 +28,8 @@ public class LessonDescription extends Activity {
     int chapterNum;
     int numQuestions;
 
+    LessonFragment frag;
+
     @Override
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -32,11 +37,14 @@ public class LessonDescription extends Activity {
         System.out.println("Inside LessonDescription onCreate");
         setContentView(R.layout.lesson_description);
 
+        //frag = (LessonFragment) getFragmentManager().findFragmentById(R.id.fragment);
+        System.out.print("After setContent in OnCreate LD");
+
         thisIntent = this.getIntent();
         ctx = this;
 
         // Get extras
-        String description = getIntent().getExtras().getString("LessonDescription");
+        //ArrayList<String> description = getIntent().getExtras().getStringArrayList("LessonDescription");
         chapterNum = getIntent().getExtras().getInt("ChapterNum");
         lessonTitle = getIntent().getExtras().getString("LessonTitle");
         currLesson = getIntent().getExtras().getInt("LessonNum");
@@ -83,9 +91,9 @@ public class LessonDescription extends Activity {
         // end ActionBar
 
 
-        TextView text = (TextView) findViewById(R.id.lessonDescription);
+        //TextView text = (TextView) findViewById(R.id.lessonDescription);
 
-        text.setText(description);
+        //text.setText(description);
 
         Button skipButton = (Button) findViewById(R.id.next);
         skipButton.setOnClickListener(new Button.OnClickListener() {

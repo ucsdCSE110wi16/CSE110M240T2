@@ -4,11 +4,14 @@ package com.project.cse110.geometryapp;
  * Created by Kedar on 2/12/16.
  */
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Application;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.widget.EditText;
 import android.app.DownloadManager;
 import android.app.DownloadManager.Query;
@@ -21,6 +24,7 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.EditText;
 import com.firebase.client.Firebase;
@@ -46,6 +50,31 @@ public class LoginScreen extends Activity {
         Firebase.setAndroidContext(this);
         setContentView(R.layout.login_screen);
 
+        // Start ActionBar
+        ActionBar ab = getActionBar();
+        ab.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
+        ab.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+        LayoutInflater inflater = LayoutInflater.from(this);
+
+        LinearLayout abLayout = (LinearLayout) inflater.inflate(R.layout.titlebarlayout, null);
+        ActionBar.LayoutParams params = new ActionBar.LayoutParams(ActionBar.LayoutParams.MATCH_PARENT,
+                ActionBar.LayoutParams.MATCH_PARENT, Gravity.LEFT);
+
+        ab.setCustomView(abLayout, params);
+        ab.setDisplayHomeAsUpEnabled(false);
+
+
+        // Make the buttons on the ab disappear
+        TextView myProgress = (TextView) abLayout.findViewById(R.id.progress);
+        Button homeButton = (Button) abLayout.findViewById(R.id.home);
+        TextView titleBar = (TextView) abLayout.findViewById(R.id.actionBarTitle);
+
+        myProgress.setVisibility(View.INVISIBLE);
+        homeButton.setVisibility(View.INVISIBLE);
+
+        titleBar.setText("Geometry App");
+
+        // Create the dialog box
         dialogBuilder = new AlertDialog.Builder(this);
         dialogBuilder.setCancelable(false);
         dialogBuilder.setNeutralButton("Ok", new DialogInterface.OnClickListener() {
@@ -54,13 +83,13 @@ public class LoginScreen extends Activity {
 
                 System.out.println("Inside OK");
 
-                finish();
             }
         });
 
         editTextEmail = (EditText) findViewById(R.id.etUsername);
         editTextPassword = (EditText) findViewById(R.id.etPassword);
 
+        // Set the login button onClick
         Button bLogin = (Button) findViewById(R.id.bLogin);
         bLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -75,16 +104,21 @@ public class LoginScreen extends Activity {
                 ref.authWithPassword(emailID, password, new Firebase.AuthResultHandler() {
                     @Override
                     public void onAuthenticated(AuthData authData) {
+
+                        System.out.println("User ID: " + authData.getUid() + ", Provider: " + authData.getProvider());
                         Intent newIntent = new Intent(LoginScreen.this, Main.class);
                         startActivity(newIntent);
-                        System.out.println("User ID: " + authData.getUid() + ", Provider: " + authData.getProvider());
+                        editTextEmail.setText("");
+                        editTextPassword.setText("");
+
                     }
 
+                    // Called when FireBase cannot authenticate
                     @Override
                     public void onAuthenticationError(FirebaseError firebaseError) {
                         // there was an error
                         System.out.println("Error logging in. Please try again");
-                        dialogBuilder.setMessage("Error Logging In");
+                        dialogBuilder.setMessage("Invalid Email/Password");
                         dialog = dialogBuilder.create();
                         dialog.show();
                     }
@@ -100,32 +134,12 @@ public class LoginScreen extends Activity {
 
                 Intent newIntent = new Intent(LoginScreen.this, RegisterScreen.class);
 
+
                 startActivity(newIntent);
+                editTextEmail.setText("");
+                editTextPassword.setText("");
             }
         });
-
-        Button loginButton = (Button) findViewById(R.id.bLogin);
-
-
-        //textViewEmail = (TextView) findViewById(R.id.etUsername);
-        //textViewEmail.setText(editTextEmail.getText().toString());
-        //editTextEmail.setOnEditorActionListener(new TextView.onEditorActionListener());
-
-//        Firebase ref = new Firebase("https://cse110geometry.firebaseio.com");
-//        //Query queryRef = ref.orderByChild("email").equalTo(R.id.etUsername);
-//
-//        ref.authWithPassword(emailID, password, new Firebase.AuthResultHandler() {
-//            @Override
-//            public void onAuthenticated(AuthData authData) {
-//                System.out.println("User ID: " + authData.getUid() + ", Provider: " + authData.getProvider());
-//            }
-//
-//            @Override
-//            public void onAuthenticationError(FirebaseError firebaseError) {
-//                // there was an error
-//                System.out.println("Error logging in. Please try again");
-//            }
-//        });
 
     }
 }

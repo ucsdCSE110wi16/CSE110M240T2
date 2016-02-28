@@ -1,10 +1,13 @@
 package com.project.cse110.geometryapp;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Application;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.widget.EditText;
 import android.app.DownloadManager;
 import android.app.DownloadManager.Query;
@@ -17,6 +20,7 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.EditText;
 import com.firebase.client.Firebase;
@@ -47,15 +51,34 @@ public class RegisterScreen extends Activity {
 
         setContentView(R.layout.register_screen);
 
+        // Start ActionBar
+        ActionBar ab = getActionBar();
+        ab.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
+        ab.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+        LayoutInflater inflater = LayoutInflater.from(this);
+
+        LinearLayout abLayout = (LinearLayout) inflater.inflate(R.layout.titlebarlayout, null);
+        ActionBar.LayoutParams params = new ActionBar.LayoutParams(ActionBar.LayoutParams.MATCH_PARENT,
+                ActionBar.LayoutParams.MATCH_PARENT, Gravity.LEFT);
+
+        ab.setCustomView(abLayout, params);
+        ab.setDisplayHomeAsUpEnabled(false);
+
+
+        // Make the buttons on the ab disappear
+        TextView myProgress = (TextView) abLayout.findViewById(R.id.progress);
+        Button homeButton = (Button) abLayout.findViewById(R.id.home);
+        TextView titleBar = (TextView) abLayout.findViewById(R.id.actionBarTitle);
+
+        myProgress.setVisibility(View.INVISIBLE);
+        homeButton.setVisibility(View.INVISIBLE);
+
+        titleBar.setText("Geometry App");
+
+        // Create the dialog builder
         dialogBuilder = new AlertDialog.Builder(this);
         dialogBuilder.setCancelable(false);
-        dialogBuilder.setNeutralButton("Ok", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
 
-                System.out.println("Inside OK");
-            }
-        });
 
         editTextEmail = (EditText) findViewById(R.id.regUsername);
         editTextPassword = (EditText) findViewById(R.id.regPassword);
@@ -78,26 +101,64 @@ public class RegisterScreen extends Activity {
                         //ref.createUser("bobtony@firebase.com", "correcthorsebatterystaple", new Firebase.ValueResultHandler<Map<String, Object>>() {
                         @Override
                         public void onSuccess(Map<String, Object> result) {
-                            Intent newIntent = new Intent(RegisterScreen.this, Main.class);
-                            User user= new User(result.get("uid").toString(), emailID, ref.child("users/"+result.get("uid")).getRef());
+
+                            User user = new User(result.get("uid").toString(), emailID, ref.child("users/" + result.get("uid")).getRef());
                             ref.child("users/" + user.getUid()).setValue(user);
                             dialogBuilder.setMessage("Account successfully created!");
+                            dialogBuilder.setNeutralButton("Ok", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+
+                                    System.out.println("Inside OK");
+                                    Intent newIntent = new Intent(RegisterScreen.this, Main.class);
+                                    startActivity(newIntent);
+                                }
+                            });
+
                             dialog = dialogBuilder.create();
                             dialog.show();
                             System.out.println("Successfully created user account with uid: " + result.get("uid"));
-                            startActivity(newIntent);
+
                         }
 
                         @Override
                         public void onError(FirebaseError firebaseError) {
                             // there was an error
-                            System.out.println("There was an error reg istering your account: "+firebaseError.getMessage());
+                            System.out.println("There was an error reg istering your account: " + firebaseError.getMessage());
+
+                            if (firebaseError.getMessage().equals("The specified email address is invalid.")) {
+                                dialogBuilder.setMessage("Invalid Email Address");
+                            } else if (firebaseError.getMessage().equals("The specified email address is already in use.")) {
+                                dialogBuilder.setMessage("The Email Address is already in use");
+                            }
+
+                            dialogBuilder.setNeutralButton("Ok", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+
+                                    System.out.println("Inside OK");
+
+                                }
+
+                            });
+
+                            dialog = dialogBuilder.create();
+                            dialog.show();
+
                         }
                     });
                 } else {
                     System.out.println("Error: Passwords Do Not Match");
 
                     dialogBuilder.setMessage("Passwords Do Not Match");
+                    dialogBuilder.setNeutralButton("Ok", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+
+                            System.out.println("Inside OK");
+
+                        }
+                    });
                     dialog = dialogBuilder.create();
                     dialog.show();
 
@@ -106,6 +167,12 @@ public class RegisterScreen extends Activity {
 
         });
 
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        finish();
 
     }
 }
