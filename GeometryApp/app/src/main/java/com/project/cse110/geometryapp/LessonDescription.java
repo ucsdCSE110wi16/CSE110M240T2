@@ -2,17 +2,26 @@ package com.project.cse110.geometryapp;
 
 import android.app.ActionBar;
 import android.app.Activity;
-import android.content.Context;
-import android.content.Intent;
-import android.os.Bundle;
+
+//import android.app.Fragment;
+//import android.support.v4.app.FragmentActivity;
+//import android.app.FragmentManager;
+
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.ViewPager;
+
+import android.os.Bundle;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
+import android.content.Context;
+import android.content.Intent;
 import java.util.ArrayList;
 
 /**
@@ -29,6 +38,7 @@ public class LessonDescription extends FragmentActivity {
     int numQuestions;
 
     LessonFragment frag;
+    //MyPagerAdapter adapterViewPager;
 
     @Override
     public void onCreate(Bundle savedInstanceState){
@@ -37,7 +47,11 @@ public class LessonDescription extends FragmentActivity {
         System.out.println("Inside LessonDescription onCreate");
         setContentView(R.layout.lesson_description);
 
+        System.out.println("After SetContent View");
         //frag = (LessonFragment) getFragmentManager().findFragmentById(R.id.fragment);
+        ViewPager vpPager = (ViewPager) findViewById(R.id.vpPager);
+        System.out.println("After VPager");
+        vpPager.setAdapter(new MyPagerAdapter(getSupportFragmentManager()));
         System.out.print("After setContent in OnCreate LD");
 
         thisIntent = this.getIntent();
@@ -120,4 +134,46 @@ public class LessonDescription extends FragmentActivity {
         finish();
 
     }
+
+    private class MyPagerAdapter extends FragmentPagerAdapter {
+       // private int num_items = 3;
+
+        public MyPagerAdapter (FragmentManager fragmentManager) {
+            super(fragmentManager);
+            System.out.println("Inside PagerAdapter");
+
+        }
+
+
+
+        @Override
+        public Fragment getItem(int position) {
+            switch (position) {
+                case 0:
+                    return LessonFragment.newInstance(getIntent().getExtras());
+                case 1:
+                    return LessonFragment.newInstance(getIntent().getExtras());
+                case 2:
+                    return LessonFragment.newInstance(getIntent().getExtras());
+                default:
+                    return null;
+
+            }
+
+        }
+
+        @Override
+        public int getCount() {
+            return 3;
+        }
+
+//        @Override
+//        public CharSequence getPageTitle(int position) {
+//
+//            return "Page " + position;
+//
+//        }
+
+    }
+
 }
