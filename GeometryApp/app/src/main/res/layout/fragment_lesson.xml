@@ -3,17 +3,30 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/description"
-        android:text="@string/hello_blank_fragment" />
+    <!--<android.support.v4.view.ViewPager-->
+        <!--android:id="@+id/vpPager"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content">-->
 
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/imageView2"
-        android:layout_gravity="center" />
+        <!--<android.support.v4.view.PagerTabStrip-->
+            <!--android:id="@+id/pager_header"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_gravity="top"-->
+            <!--android:paddingBottom="4dp"-->
+            <!--android:paddingTop="4dp" />-->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:id="@+id/description"
+            android:text="@string/hello_blank_fragment" />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/imageView2"
+            android:layout_gravity="center" />
+    <!--</android.support.v4.view.ViewPager>-->
 
 </LinearLayout>
