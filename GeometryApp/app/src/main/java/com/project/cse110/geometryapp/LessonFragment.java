@@ -86,9 +86,12 @@ public class LessonFragment extends Fragment {
         text.setText(description);
 
         int image = getArguments().getInt("CurrentImage");
-        ImageView imageView = (ImageView) view.findViewById(R.id.imageView2);
 
-        imageView.setImageResource(image);
+        // Check if the page should be left blank
+        if (image != -1) {
+            ImageView imageView = (ImageView) view.findViewById(R.id.imageView2);
+            imageView.setImageResource(image);
+        }
 
         return view;
     }

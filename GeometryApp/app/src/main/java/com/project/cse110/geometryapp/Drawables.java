@@ -51,6 +51,97 @@ public class Drawables {
 
                 }
 
+            case 2:
+                switch (lessonNum) {
+
+                    case 1:
+                        array.add(-1);
+                        array.add(R.drawable.c2_l1_2);
+                        array.add(R.drawable.c2_l1_3);
+                        array.add(R.drawable.c2_l1_4);
+                        array.add(R.drawable.c2_l1_5);
+                        array.add(R.drawable.c2_l1_6);
+                        array.add(R.drawable.c2_l1_7);
+                        array.add(R.drawable.c2_l1_8);
+
+                        return array;
+
+                    case 2:
+                        array.add(R.drawable.c2_l2_1);
+                        array.add(R.drawable.c2_l2_2);
+                        array.add(R.drawable.c2_l2_3);
+                        array.add(R.drawable.c2_l2_4);
+
+                        return array;
+
+                    case 3:
+                        array.add(R.drawable.c2_l3_1);
+                        array.add(-1);
+
+                        return array;
+
+                    default:
+                        return null;
+
+                }
+
+            case 3:
+                switch (lessonNum) {
+
+                    case 1:
+                        array.add(R.drawable.c3_l1_1);
+                        array.add(R.drawable.c3_l1_2);
+                        array.add(R.drawable.c3_l1_3);
+                        array.add(R.drawable.c3_l1_4);
+                        array.add(R.drawable.c3_l1_5);
+                        array.add(R.drawable.c3_l1_6);
+                        array.add(R.drawable.c3_l1_7);
+                        array.add(R.drawable.c3_l1_8);
+
+                        return array;
+
+                    case 2:
+                        array.add(R.drawable.c3_l2_1);
+                        array.add(-1);
+                        array.add(R.drawable.c3_l2_3);
+
+                        return array;
+
+                    default:
+                        return null;
+
+                }
+
+            case 4:
+                switch (lessonNum) {
+
+                    case 1:
+                        array.add(R.drawable.c4_l1_1);
+                        array.add(R.drawable.c4_l1_2);
+                        array.add(R.drawable.c4_l1_3);
+                        array.add(R.drawable.c4_l1_4);
+                        array.add(-1);
+
+                        return array;
+
+                    case 2:
+                        array.add(-1);
+                        array.add(R.drawable.c4_l2_2);
+                        array.add(-1);
+                        array.add(-1);
+
+                        return array;
+
+                    case 3:
+                        array.add(R.drawable.c4_l3_1);
+                        array.add(R.drawable.c4_l3_2);
+                        array.add(R.drawable.c4_l3_3);
+
+                        return array;
+
+
+                }
+
             default:
                 return null;
         }

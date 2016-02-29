@@ -188,7 +188,8 @@
             </test>
         </lesson>
         <lesson title='Quadrilateral Proofs and Angles' completed='0'>
-            <body>Adjacent angles of a parallelogram are supplementary: Their sum equals 180.##Opposite angles of a parallelogram are equivalent.##The angles of bases of an isosceles triangle are equal.##Area of a parallelogram is base x the bisecting height: A = bh.</body>
+            <body>Adjacent angles of a parallelogram are supplementary: Their sum equals 180.
+				Opposite angles of a parallelogram are equivalent.##The angles of bases of an isosceles triangle are equal.##Area of a parallelogram is base x the bisecting height: A = bh.</body>
             <test>
                 <question number='1' type='Text' completed='0'>
                     <image>c3_l2_q1.png</image>
@@ -215,7 +216,8 @@
     </chapter3>
     <chapter4 title='Circles' completed='0'>
     	<lesson title='Circle Basics' completed='0'>
-		<body>Pi : Pi is a fundamental constant when determining many basic properties of circles. It represents the ratio of a circles circumference to its diameter.##Radius : The radius of a circle is the distance between the center of the circle to the edge of the circle.##Diameter : The diameter of a circle is the length of the line segment that divides the circle in half into two semi-circles.##Circumference : The circumference of a circle is the linear distance around its edge. The circumference is essentially the perimeter of the circle.##The equation for the circumference of a circle is 2pi*r.## The equation for the area of a circle is pi*r^2.</body>
+		<body>Pi : Pi is a fundamental constant when determining many basic properties of circles. It represents the ratio of a circles circumference to its diameter.##Radius : The radius of a circle is the distance between the center of the circle to the edge of the circle.##Diameter : The diameter of a circle is the length of the line segment that divides the circle in half into two semi-circles.##Circumference : The circumference of a circle is the linear distance around its edge. The circumference is essentially the perimeter of the circle.
+			The equation for the circumference of a circle is 2pi*r.## The equation for the area of a circle is pi*r^2.</body>
 			<test>
 				<question number='1' type ='MCQ' completed='0'>
 					<image>c4_l1_q1.png</image>
@@ -263,7 +265,9 @@
 			</test>
 	</lesson>
 	<lesson title='Arcs' completed='0'>
-		<body>An arc is simply a closed segment of the edge of a circle.##Minor arc : an arc with an angle less than 180 degrees.##Major arc: an arc with an angle greater than 180 degrees.##Arc Measure: arc measure is the angle of the central angle of an arc. In other words, the angle formed between the two radii that connect to the ends of the arc represents the arc measure.##Length of an arc: The equation to find the length of an arc is equal to (theta)r, where (theta) is the angle the arc subtends and r is the radius of the circle.</body>
+		<body>An arc is simply a closed segment of the edge of a circle.
+			Minor arc : an arc with an angle less than 180 degrees.
+			Major arc: an arc with an angle greater than 180 degrees.##Arc Measure: arc measure is the angle of the central angle of an arc. In other words, the angle formed between the two radii that connect to the ends of the arc represents the arc measure.##Length of an arc: The equation to find the length of an arc is equal to (theta)r, where (theta) is the angle the arc subtends and r is the radius of the circle.</body>
 		<test>
 				<question number='1' type ='Text' completed='0'>
 					<image>c4_l3_q1.png</image>
