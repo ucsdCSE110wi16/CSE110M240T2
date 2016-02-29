@@ -8,8 +8,11 @@ import android.app.ActionBar;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Application;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.widget.EditText;
@@ -48,6 +51,7 @@ public class LoginScreen extends Activity {
         super.onCreate(savedInstance);
 
         Firebase.setAndroidContext(this);
+        final Context context = this;
         setContentView(R.layout.login_screen);
 
         // Start ActionBar
@@ -86,6 +90,7 @@ public class LoginScreen extends Activity {
             }
         });
 
+
         editTextEmail = (EditText) findViewById(R.id.etUsername);
         editTextPassword = (EditText) findViewById(R.id.etPassword);
 
@@ -98,7 +103,7 @@ public class LoginScreen extends Activity {
                 String emailID = editTextEmail.getText().toString();
                 String password = editTextPassword.getText().toString();
 
-                Firebase ref = new Firebase("https://cse110geometry.firebaseio.com");
+                final Firebase ref = new Firebase("https://cse110geometry.firebaseio.com");
                 //Query queryRef = ref.orderByChild("email").equalTo(R.id.etUsername);
 
                 ref.authWithPassword(emailID, password, new Firebase.AuthResultHandler() {
@@ -106,6 +111,8 @@ public class LoginScreen extends Activity {
                     public void onAuthenticated(AuthData authData) {
 
                         System.out.println("User ID: " + authData.getUid() + ", Provider: " + authData.getProvider());
+                        User user = new User(authData.getUid(), authData.getProviderData().get("email").toString(), ref.child("/user/"+authData.getUid()).getRef());
+                        user.storeUserInfo(getApplicationContext());
                         Intent newIntent = new Intent(LoginScreen.this, Main.class);
                         startActivity(newIntent);
                         editTextEmail.setText("");

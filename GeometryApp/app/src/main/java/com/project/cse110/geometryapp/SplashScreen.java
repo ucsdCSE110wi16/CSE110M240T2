@@ -32,6 +32,12 @@ public class SplashScreen extends Activity {
 
                 } finally {
                     // Start the next intent, the MainActivity
+                    User user = new User();
+                    if (user.checkForUserInfo(getApplicationContext())){
+                        Intent main = new Intent(SplashScreen.this, Main.class);
+                        startActivity(main);
+                    }
+
                     Intent intent = new Intent(SplashScreen.this, LoginScreen.class);
                     startActivity(intent);
 

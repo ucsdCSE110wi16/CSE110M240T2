@@ -103,6 +103,7 @@ public class RegisterScreen extends Activity {
                         public void onSuccess(Map<String, Object> result) {
 
                             User user = new User(result.get("uid").toString(), emailID, ref.child("users/" + result.get("uid")).getRef());
+                            user.storeUserInfo(getApplicationContext());
                             ref.child("users/" + user.getUid()).setValue(user);
                             dialogBuilder.setMessage("Account successfully created!");
                             dialogBuilder.setNeutralButton("Ok", new DialogInterface.OnClickListener() {

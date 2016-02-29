@@ -1,5 +1,10 @@
 package com.project.cse110.geometryapp;
 
+import android.app.Activity;
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
+
 import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
@@ -18,7 +23,7 @@ public class User {
     Map data;
     Firebase ref;
 
-    private User(){}
+    public User(){}
 
     public User(String uid, String email, Firebase ref){
         this.uid = uid;
@@ -30,6 +35,8 @@ public class User {
     public String getUid(){return uid;}
 
     public String getEmail(){return email;}
+
+    public Firebase getRef(){return ref;}
 
     public Map getData(){return data;}
 
@@ -116,6 +123,48 @@ public class User {
                 System.out.println("UpdateChapter error: " + firebaseError.getMessage());
             }
         });
+    }
+
+    public void storeUserInfo(Context context){
+        SharedPreferences user_info = PreferenceManager.getDefaultSharedPreferences(context);
+        SharedPreferences.Editor editor = user_info.edit();
+        editor.putString("uid", getUid());
+        editor.putString("email", getEmail());
+        editor.putString("ref", getRef().toString());
+        editor.apply();
+    }
+
+
+    public String retrieveUIDInfo(Context context){
+        SharedPreferences user_info = PreferenceManager.getDefaultSharedPreferences(context);
+        return user_info.getString("uid", "");
+    }
+
+    public String retrieveEmailInfo(Context context){
+        SharedPreferences user_info = PreferenceManager.getDefaultSharedPreferences(context);
+        return user_info.getString("email", "");
+    }
+
+    public Firebase retrieveRefInfo(Context context){
+        SharedPreferences user_info = PreferenceManager.getDefaultSharedPreferences(context);
+        String ref = user_info.getString("ref", "");
+        return new Firebase(ref);
+    }
+
+    public User retrieveUserInfo(Context context){
+        return new User(retrieveUIDInfo(context), retrieveEmailInfo(context), retrieveRefInfo(context));
+    }
+
+    public boolean checkForUserInfo(Context context){
+        SharedPreferences user_info = PreferenceManager.getDefaultSharedPreferences(context);
+        return user_info.contains("uid");
+    }
+
+    public void clearUserInfo(Context context){
+        SharedPreferences user_info = PreferenceManager.getDefaultSharedPreferences(context);
+        SharedPreferences.Editor editor = user_info.edit();
+        editor.clear();
+        editor.apply();
     }
 
 }

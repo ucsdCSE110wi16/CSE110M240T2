@@ -94,6 +94,8 @@ public class Main extends Activity {
         homeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                User user = new User();
+                user.clearUserInfo(getApplicationContext());
                 Intent newIntent = new Intent(Main.this, LoginScreen.class);
                 newIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(newIntent);
