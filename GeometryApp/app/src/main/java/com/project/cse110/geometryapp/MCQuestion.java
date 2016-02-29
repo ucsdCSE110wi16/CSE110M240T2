@@ -111,8 +111,12 @@ public class MCQuestion extends Activity {
         for (int i = 0; i < responses.size(); i++) {
             Button newButton = new Button(this);
 
+            newButton.setTextColor(getResources().getColor(R.color.white));
+            newButton.setBackgroundColor(getResources().getColor(R.color.purple));
+
             LinearLayout myLayout = (LinearLayout) findViewById(R.id.linearButtonLayout);
             LinearLayout.LayoutParams layParam = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+            layParam.setMargins(10, 10, 10, 10);
 
             // Add the buttons with the layout params
             myLayout.addView(newButton, layParam);

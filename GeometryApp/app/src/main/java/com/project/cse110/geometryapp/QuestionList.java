@@ -113,8 +113,13 @@ public class QuestionList extends Activity {
             myButtons.add(newButton);
             LinearLayout myLayout = (LinearLayout) findViewById(R.id.questionLayout);
             LinearLayout.LayoutParams layParam = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+            layParam.setMargins(20, 20, 20, 20);
             myLayout.addView(newButton, layParam);
+
+
             newButton.setText("Question " + (i+1));
+            newButton.setTextColor(getResources().getColor(R.color.white));
+            newButton.setBackgroundColor(getResources().getColor(R.color.purple));
             checkDone(newButton, i);
 
             qNum = i+1;

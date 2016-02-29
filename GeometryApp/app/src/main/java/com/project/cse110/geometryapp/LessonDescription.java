@@ -184,7 +184,7 @@ public class LessonDescription extends FragmentActivity {
         @Override
         public CharSequence getPageTitle(int position) {
 
-            return "Page " + (position+1);
+            return "" + (position+1);
 
         }
 

@@ -94,6 +94,7 @@ public class LessonList extends Activity {
             Button newButton = new Button(this);
             LinearLayout myLayout = (LinearLayout) findViewById(R.id.lessonList);
             LinearLayout.LayoutParams layParam = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+            layParam.setMargins(20, 20, 20, 20);
 
             myButtons.add(newButton);
 
@@ -101,7 +102,12 @@ public class LessonList extends Activity {
 
             // Add the buttons with the layout params
             myLayout.addView(newButton, layParam);
+            //newButton.setGravity(Gravity.CENTER_HORIZONTAL | Gravity.CENTER_VERTICAL);
             newButton.setText(lessonTitles.get(i));
+            newButton.setBackgroundColor(getResources().getColor(R.color.purple));
+            newButton.setTextColor(getResources().getColor(R.color.white));
+
+
             newButton.setOnClickListener(new View.OnClickListener() {
                 int lesson = currLesson;
                 @Override
@@ -165,7 +171,7 @@ public class LessonList extends Activity {
 
                 } else {
 
-                    myButtons.get(1).setBackgroundColor(Color.LTGRAY);
+                    myButtons.get(1).setBackgroundColor(getResources().getColor(R.color.purple));
                     myString = "0/" + lessonNum;
                     myProgress.setText(myString);
 
