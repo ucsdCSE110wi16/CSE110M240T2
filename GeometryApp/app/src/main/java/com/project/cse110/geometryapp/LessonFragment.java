@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import android.support.v4.app.Fragment;
@@ -19,7 +20,7 @@ import java.util.ArrayList;
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link LessonFragment.OnFragmentInteractionListener} interface
+ * {} interface
  * to handle interaction events.
  * Use the {@link LessonFragment#newInstance} factory method to
  * create an instance of this fragment.
@@ -31,10 +32,14 @@ public class LessonFragment extends Fragment {
     private static final String ARG_PARAM2 = "page";
     private Intent activityIntent;
     private ArrayList<String> lessonDescriptions;
+    private static Bundle extras;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
     private int mParam2;
+    private int pageNum;
+
+    private String description;
 
     //private OnFragmentInteractionListener mListener;
 
@@ -46,15 +51,12 @@ public class LessonFragment extends Fragment {
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
      *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
      * @return A new instance of fragment LessonFragment.
      */
     // TODO: Rename and change types and number of parameters
     public static LessonFragment newInstance(Bundle extras) {
 
         LessonFragment fragment = new LessonFragment();
-
         fragment.setArguments(extras);
 
         return fragment;
@@ -77,9 +79,16 @@ public class LessonFragment extends Fragment {
         System.out.println("Inside onCreateView for fragment");
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_lesson, container, false);
+        //int position = getArguments().getInt("Position");
+        description = getArguments().getString("CurrentDescription");
 
         TextView text = (TextView) view.findViewById(R.id.description);
-        text.setText(getArguments().getString("LessonTitle"));
+        text.setText(description);
+
+        int image = getArguments().getInt("CurrentImage");
+        ImageView imageView = (ImageView) view.findViewById(R.id.imageView2);
+
+        imageView.setImageResource(image);
 
         return view;
     }

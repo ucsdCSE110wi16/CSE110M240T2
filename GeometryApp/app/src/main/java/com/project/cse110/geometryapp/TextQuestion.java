@@ -96,7 +96,11 @@ public class TextQuestion extends Activity{
 
         // Set the titleBar and the image
         titleBar.setText(chapterTitle);
-        getQuestionImage(questionImage);
+        Drawables draw = new Drawables(chapterNum, lessonNum);
+        int image = draw.getQuestionImage(qNum);
+        questionImage.setImageResource(image);
+
+        //getQuestionImage(questionImage);
 
 
 
@@ -153,7 +157,7 @@ public class TextQuestion extends Activity{
         Param: the image view to set the png for.
 
      */
-    public void getQuestionImage(ImageView image) {
+  /*  public void getQuestionImage(ImageView image) {
         System.out.println("Getting Question Image");
 
         switch (chapterNum) {
@@ -496,7 +500,7 @@ public class TextQuestion extends Activity{
 
     }
 
-
+*/
     /*
 
     Set the buttons to green or red based on correct or incorrect answers

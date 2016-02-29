@@ -101,7 +101,11 @@ public class MCQuestion extends Activity {
         titleBar.setText(chapterTitle);
 
         // Set the image
-        getQuestionImage(image);
+        Drawables draw = new Drawables(chapterNum, lessonNum);
+        int imageDrawable = draw.getQuestionImage(qNum);
+        image.setImageResource(imageDrawable);
+
+        //getQuestionImage(image);
 
         // Create MC buttons
         for (int i = 0; i < responses.size(); i++) {
@@ -166,349 +170,349 @@ public class MCQuestion extends Activity {
         Param: the image view to set the png for.
 
      */
-    public void getQuestionImage(ImageView image) {
-        System.out.println("Getting Question Image");
-
-        switch (chapterNum) {
-
-            case 1:
-                switch (lessonNum) {
-                    case 1:
-                        switch (qNum) {
-
-                            case 1:
-                                image.setImageResource(R.drawable.c1_l1_q1);
-                                break;
-                            case 2:
-                                image.setImageResource(R.drawable.c1_l1_q2);
-                                break;
-                            case 3:
-                                image.setImageResource(R.drawable.c1_l1_q3);
-                                break;
-                            case 4:
-                                image.setImageResource(R.drawable.c1_l1_q4);
-                                break;
-                            case 5:
-                                image.setImageResource(R.drawable.c1_l1_q5);
-                                break;
-                            case 6:
-                                image.setImageResource(R.drawable.c1_l1_q6);
-                                break;
-                            case 7:
-                                image.setImageResource(R.drawable.c1_l1_q7);
-                                break;
-                            default:
-                                break;
-
-
-                        }
-
-                        break; // end Lesson 1
-
-                    case 2:
-                        switch (qNum) {
-                            case 1:
-                                image.setImageResource(R.drawable.c1_l2_q1);
-                                break;
-                            case 2:
-                                image.setImageResource(R.drawable.c1_l2_q2);
-                                break;
-                            case 3:
-                                image.setImageResource(R.drawable.c1_l2_q3);
-                                break;
-                            case 4:
-                                image.setImageResource(R.drawable.c1_l2_q4);
-                                break;
-                            case 5:
-                                image.setImageResource(R.drawable.c1_l2_q5);
-                                break;
-                            default:
-                                break;
-
-
-                        }
-                        break;
-
-                    default:
-                        break; // end Chapter 1 Lesson 2
-
-
-                }
-                break; // end Chapter 1
-
-            case 2:
-                switch (lessonNum) {
-                    case 1:
-                        switch (qNum) {
-                            case 1:
-                                image.setImageResource(R.drawable.c2_l1_q1);
-                                break;
-                            case 2:
-                                image.setImageResource(R.drawable.c2_l1_q2);
-                                break;
-                            case 3:
-                                image.setImageResource(R.drawable.c2_l1_q3);
-                                break;
-
-                            default:
-                                break;
-
-
-                        }
-
-                        break; // end Chapter 2 Lesson 1
-
-                    case 2:
-                        switch (qNum) {
-                            case 1:
-                                image.setImageResource(R.drawable.c2_l2_q1);
-                                break;
-                            case 2:
-                                image.setImageResource(R.drawable.c2_l2_q2);
-                                break;
-                            case 3:
-                                image.setImageResource(R.drawable.c2_l2_q3);
-                                break;
-                            case 4:
-                                image.setImageResource(R.drawable.c2_l2_q4);
-                                break;
-                            case 5:
-                                image.setImageResource(R.drawable.c2_l2_q5);
-                                break;
-                            case 6:
-                                image.setImageResource(R.drawable.c2_l2_q6);
-                                break;
-                            case 7:
-                                image.setImageResource(R.drawable.c2_l2_q7);
-                                break;
-
-                            default:
-                                break; // end Chapter 2 Lesson 2
-
-
-                        }
-                        break;
-
-                    case 3:
-                        switch (qNum) {
-                            case 1:
-                                image.setImageResource(R.drawable.c2_l3_q1);
-                                break;
-                            case 2:
-                                image.setImageResource(R.drawable.c2_l3_q2);
-                                break;
-                            case 3:
-                                image.setImageResource(R.drawable.c2_l3_q3);
-                                break;
-                            case 4:
-                                image.setImageResource(R.drawable.c2_l3_q4);
-                                break;
-
-                            default:
-                                break;
-
-                        }
-                        break;
-
-                    default:
-                        break; // end Chapter 2 Lesson 3
-
-                }
-                break;  // end Chapter 2
-
-            case 3:
-                switch (lessonNum) {
-                    case 1:
-                        switch (qNum) {
-                            case 1:
-                                image.setImageResource(R.drawable.c3_l1_q1);
-                                break;
-                            case 2:
-                                image.setImageResource(R.drawable.c3_l1_q2);
-                                break;
-                            case 3:
-                                image.setImageResource(R.drawable.c3_l1_q3);
-                                break;
-                            case 4:
-                                image.setImageResource(R.drawable.c3_l1_q4);
-                                break;
-                            case 5:
-                                image.setImageResource(R.drawable.c3_l1_q5);
-                                break;
-
-                            default:
-                                break;
-
-
-                        }
-
-                        break; // end Chapter 3 Lesson 1
-
-                    case 2:
-                        switch (qNum) {
-                            case 1:
-                                image.setImageResource(R.drawable.c3_l2_q1);
-                                break;
-                            case 2:
-                                image.setImageResource(R.drawable.c3_l2_q2);
-                                break;
-                            case 3:
-                                image.setImageResource(R.drawable.c3_l2_q3);
-                                break;
-                            case 4:
-                                image.setImageResource(R.drawable.c3_l2_q4);
-                                break;
-                            case 5:
-                                image.setImageResource(R.drawable.c3_l2_q5);
-                                break;
-
-                            default:
-                                break;
-
-
-                        }
-                        break;
-
-                    default:
-                        break; // end Chapter 3 Lesson 2
-
-                }
-                break;
-
-            case 4:
-                switch (lessonNum) {
-                    case 1:
-                        switch (qNum) {
-                            case 1:
-                                image.setImageResource(R.drawable.c4_l1_q1);
-                                break;
-                            case 2:
-                                image.setImageResource(R.drawable.c4_l1_q2);
-                                break;
-
-                            default:
-                                break;
-
-
-                        }
-
-                        break; // end Chapter 4 Lesson 1
-
-                    case 2:
-                        switch (qNum) {
-                            case 1:
-                                image.setImageResource(R.drawable.c4_l2_q1);
-                                break;
-                            case 2:
-                                image.setImageResource(R.drawable.c4_l2_q2);
-                                break;
-                            case 3:
-                                image.setImageResource(R.drawable.c4_l2_q3);
-                                break;
-                            case 4:
-                                image.setImageResource(R.drawable.c4_l2_q4);
-                                break;
-
-                            default:
-                                break;
-
-
-                        }
-                        break;  // end Chapter 4 Lesson 2
-
-                    case 3:
-                        switch (qNum) {
-                            case 1:
-                                image.setImageResource(R.drawable.c4_l3_q1);
-                                break;
-                            case 2:
-                                image.setImageResource(R.drawable.c4_l3_q2);
-                                break;
-                            case 3:
-                                image.setImageResource(R.drawable.c4_l3_q3);
-                                break;
-                            case 4:
-                                image.setImageResource(R.drawable.c4_l3_q4);
-                                break;
-                            case 5:
-                                image.setImageResource(R.drawable.c4_l3_q5);
-                                break;
-
-                            default:
-                                break;
-
-                        }
-
-                        break;  // end Chapter 4 Lesson 3
-
-                    default:
-                        break;
-
-                }
-                break;  // end Chapter 4
-
-            case 5:
-                switch (lessonNum) {
-                    case 1:
-                        switch (qNum) {
-                            case 1:
-                                image.setImageResource(R.drawable.c5_l1_q1);
-                                break;
-                            case 2:
-                                image.setImageResource(R.drawable.c5_l1_q2);
-                                break;
-                            case 3:
-                                image.setImageResource(R.drawable.c5_l1_q3);
-                                break;
-
-                            default:
-                                break;
-
-
-                        }
-
-                        break;  // end Chapter 5 Lesson 1
-
-                    case 2:
-                        switch (qNum) {
-                            case 1:
-                                image.setImageResource(R.drawable.c5_l2_q1);
-                                break;
-                            case 2:
-                                image.setImageResource(R.drawable.c5_l2_q2);
-                                break;
-                            case 3:
-                                image.setImageResource(R.drawable.c5_l2_q3);
-                                break;
-                            case 4:
-                                image.setImageResource(R.drawable.c5_l2_q4);
-                                break;
-                            case 5:
-                                image.setImageResource(R.drawable.c5_l2_q5);
-                                break;
-
-                            default:
-                                break;
-
-
-                        }
-                        break;  // end Chapter 5 Lesson 2
-
-                    default:
-                        break;
-
-                }
-                break;
-
-            default:
-
-                break;
-
-
-        }
-
-
-    }
+//    public void getQuestionImage(ImageView image) {
+//        System.out.println("Getting Question Image");
+//
+//        switch (chapterNum) {
+//
+//            case 1:
+//                switch (lessonNum) {
+//                    case 1:
+//                        switch (qNum) {
+//
+//                            case 1:
+//                                image.setImageResource(R.drawable.c1_l1_q1);
+//                                break;
+//                            case 2:
+//                                image.setImageResource(R.drawable.c1_l1_q2);
+//                                break;
+//                            case 3:
+//                                image.setImageResource(R.drawable.c1_l1_q3);
+//                                break;
+//                            case 4:
+//                                image.setImageResource(R.drawable.c1_l1_q4);
+//                                break;
+//                            case 5:
+//                                image.setImageResource(R.drawable.c1_l1_q5);
+//                                break;
+//                            case 6:
+//                                image.setImageResource(R.drawable.c1_l1_q6);
+//                                break;
+//                            case 7:
+//                                image.setImageResource(R.drawable.c1_l1_q7);
+//                                break;
+//                            default:
+//                                break;
+//
+//
+//                        }
+//
+//                        break; // end Lesson 1
+//
+//                    case 2:
+//                        switch (qNum) {
+//                            case 1:
+//                                image.setImageResource(R.drawable.c1_l2_q1);
+//                                break;
+//                            case 2:
+//                                image.setImageResource(R.drawable.c1_l2_q2);
+//                                break;
+//                            case 3:
+//                                image.setImageResource(R.drawable.c1_l2_q3);
+//                                break;
+//                            case 4:
+//                                image.setImageResource(R.drawable.c1_l2_q4);
+//                                break;
+//                            case 5:
+//                                image.setImageResource(R.drawable.c1_l2_q5);
+//                                break;
+//                            default:
+//                                break;
+//
+//
+//                        }
+//                        break;
+//
+//                    default:
+//                        break; // end Chapter 1 Lesson 2
+//
+//
+//                }
+//                break; // end Chapter 1
+//
+//            case 2:
+//                switch (lessonNum) {
+//                    case 1:
+//                        switch (qNum) {
+//                            case 1:
+//                                image.setImageResource(R.drawable.c2_l1_q1);
+//                                break;
+//                            case 2:
+//                                image.setImageResource(R.drawable.c2_l1_q2);
+//                                break;
+//                            case 3:
+//                                image.setImageResource(R.drawable.c2_l1_q3);
+//                                break;
+//
+//                            default:
+//                                break;
+//
+//
+//                        }
+//
+//                        break; // end Chapter 2 Lesson 1
+//
+//                    case 2:
+//                        switch (qNum) {
+//                            case 1:
+//                                image.setImageResource(R.drawable.c2_l2_q1);
+//                                break;
+//                            case 2:
+//                                image.setImageResource(R.drawable.c2_l2_q2);
+//                                break;
+//                            case 3:
+//                                image.setImageResource(R.drawable.c2_l2_q3);
+//                                break;
+//                            case 4:
+//                                image.setImageResource(R.drawable.c2_l2_q4);
+//                                break;
+//                            case 5:
+//                                image.setImageResource(R.drawable.c2_l2_q5);
+//                                break;
+//                            case 6:
+//                                image.setImageResource(R.drawable.c2_l2_q6);
+//                                break;
+//                            case 7:
+//                                image.setImageResource(R.drawable.c2_l2_q7);
+//                                break;
+//
+//                            default:
+//                                break; // end Chapter 2 Lesson 2
+//
+//
+//                        }
+//                        break;
+//
+//                    case 3:
+//                        switch (qNum) {
+//                            case 1:
+//                                image.setImageResource(R.drawable.c2_l3_q1);
+//                                break;
+//                            case 2:
+//                                image.setImageResource(R.drawable.c2_l3_q2);
+//                                break;
+//                            case 3:
+//                                image.setImageResource(R.drawable.c2_l3_q3);
+//                                break;
+//                            case 4:
+//                                image.setImageResource(R.drawable.c2_l3_q4);
+//                                break;
+//
+//                            default:
+//                                break;
+//
+//                        }
+//                        break;
+//
+//                    default:
+//                        break; // end Chapter 2 Lesson 3
+//
+//                }
+//                break;  // end Chapter 2
+//
+//            case 3:
+//                switch (lessonNum) {
+//                    case 1:
+//                        switch (qNum) {
+//                            case 1:
+//                                image.setImageResource(R.drawable.c3_l1_q1);
+//                                break;
+//                            case 2:
+//                                image.setImageResource(R.drawable.c3_l1_q2);
+//                                break;
+//                            case 3:
+//                                image.setImageResource(R.drawable.c3_l1_q3);
+//                                break;
+//                            case 4:
+//                                image.setImageResource(R.drawable.c3_l1_q4);
+//                                break;
+//                            case 5:
+//                                image.setImageResource(R.drawable.c3_l1_q5);
+//                                break;
+//
+//                            default:
+//                                break;
+//
+//
+//                        }
+//
+//                        break; // end Chapter 3 Lesson 1
+//
+//                    case 2:
+//                        switch (qNum) {
+//                            case 1:
+//                                image.setImageResource(R.drawable.c3_l2_q1);
+//                                break;
+//                            case 2:
+//                                image.setImageResource(R.drawable.c3_l2_q2);
+//                                break;
+//                            case 3:
+//                                image.setImageResource(R.drawable.c3_l2_q3);
+//                                break;
+//                            case 4:
+//                                image.setImageResource(R.drawable.c3_l2_q4);
+//                                break;
+//                            case 5:
+//                                image.setImageResource(R.drawable.c3_l2_q5);
+//                                break;
+//
+//                            default:
+//                                break;
+//
+//
+//                        }
+//                        break;
+//
+//                    default:
+//                        break; // end Chapter 3 Lesson 2
+//
+//                }
+//                break;
+//
+//            case 4:
+//                switch (lessonNum) {
+//                    case 1:
+//                        switch (qNum) {
+//                            case 1:
+//                                image.setImageResource(R.drawable.c4_l1_q1);
+//                                break;
+//                            case 2:
+//                                image.setImageResource(R.drawable.c4_l1_q2);
+//                                break;
+//
+//                            default:
+//                                break;
+//
+//
+//                        }
+//
+//                        break; // end Chapter 4 Lesson 1
+//
+//                    case 2:
+//                        switch (qNum) {
+//                            case 1:
+//                                image.setImageResource(R.drawable.c4_l2_q1);
+//                                break;
+//                            case 2:
+//                                image.setImageResource(R.drawable.c4_l2_q2);
+//                                break;
+//                            case 3:
+//                                image.setImageResource(R.drawable.c4_l2_q3);
+//                                break;
+//                            case 4:
+//                                image.setImageResource(R.drawable.c4_l2_q4);
+//                                break;
+//
+//                            default:
+//                                break;
+//
+//
+//                        }
+//                        break;  // end Chapter 4 Lesson 2
+//
+//                    case 3:
+//                        switch (qNum) {
+//                            case 1:
+//                                image.setImageResource(R.drawable.c4_l3_q1);
+//                                break;
+//                            case 2:
+//                                image.setImageResource(R.drawable.c4_l3_q2);
+//                                break;
+//                            case 3:
+//                                image.setImageResource(R.drawable.c4_l3_q3);
+//                                break;
+//                            case 4:
+//                                image.setImageResource(R.drawable.c4_l3_q4);
+//                                break;
+//                            case 5:
+//                                image.setImageResource(R.drawable.c4_l3_q5);
+//                                break;
+//
+//                            default:
+//                                break;
+//
+//                        }
+//
+//                        break;  // end Chapter 4 Lesson 3
+//
+//                    default:
+//                        break;
+//
+//                }
+//                break;  // end Chapter 4
+//
+//            case 5:
+//                switch (lessonNum) {
+//                    case 1:
+//                        switch (qNum) {
+//                            case 1:
+//                                image.setImageResource(R.drawable.c5_l1_q1);
+//                                break;
+//                            case 2:
+//                                image.setImageResource(R.drawable.c5_l1_q2);
+//                                break;
+//                            case 3:
+//                                image.setImageResource(R.drawable.c5_l1_q3);
+//                                break;
+//
+//                            default:
+//                                break;
+//
+//
+//                        }
+//
+//                        break;  // end Chapter 5 Lesson 1
+//
+//                    case 2:
+//                        switch (qNum) {
+//                            case 1:
+//                                image.setImageResource(R.drawable.c5_l2_q1);
+//                                break;
+//                            case 2:
+//                                image.setImageResource(R.drawable.c5_l2_q2);
+//                                break;
+//                            case 3:
+//                                image.setImageResource(R.drawable.c5_l2_q3);
+//                                break;
+//                            case 4:
+//                                image.setImageResource(R.drawable.c5_l2_q4);
+//                                break;
+//                            case 5:
+//                                image.setImageResource(R.drawable.c5_l2_q5);
+//                                break;
+//
+//                            default:
+//                                break;
+//
+//
+//                        }
+//                        break;  // end Chapter 5 Lesson 2
+//
+//                    default:
+//                        break;
+//
+//                }
+//                break;
+//
+//            default:
+//
+//                break;
+//
+//
+//        }
+//
+//
+//    }
 
     /*
 

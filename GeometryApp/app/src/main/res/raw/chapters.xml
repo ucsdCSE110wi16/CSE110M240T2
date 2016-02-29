@@ -41,7 +41,9 @@
             </test>
         </lesson>
         <lesson title='Points, Lines, Planes' completed='0'>
-            <body>Point: A point is a geometric object that signifies a location, but has no size in itself.##Lines, line segments, rays are all collections of points.##Plane: A plane is a flat, two-dimensional surface that extends infinitely far.##It is the two-dimensional analogue of a point (zero dimensions), a line (one dimension).##Collinear Points: Points are collinear if they lie on the same line.##Coplanar Points: Points are coplanar if they both lie on the same plane.</body>
+            <body>Point: A point is a geometric object that signifies a location, but has no size in itself.
+				Lines, line segments, rays are all collections of points.##Plane: A plane is a flat, two-dimensional surface that extends infinitely far.
+				It is the two-dimensional analogue of a point (zero dimensions), a line (one dimension).##Collinear Points: Points are collinear if they lie on the same line.##Coplanar Points: Points are coplanar if they both lie on the same plane.</body>
             <test>
                 <question number='1' type='MCQ' completed='0'>
                     <image>c1_l2_q1.png</image>

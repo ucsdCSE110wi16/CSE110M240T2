@@ -33,6 +33,8 @@ public class LessonDescription extends FragmentActivity {
     Context ctx;
     String chapterTitle;
     String lessonTitle;
+    ArrayList<String> lessonDescriptions;
+
     int currLesson;
     int chapterNum;
     int numQuestions;
@@ -64,6 +66,7 @@ public class LessonDescription extends FragmentActivity {
         currLesson = getIntent().getExtras().getInt("LessonNum");
         numQuestions = getIntent().getExtras().getInt("NumQuestions");
         chapterTitle = getIntent().getExtras().getString("ChapterTitle");
+        lessonDescriptions = getIntent().getExtras().getStringArrayList("LessonDescription");
         // End get extras
 
         // Start ActionBar
@@ -105,6 +108,7 @@ public class LessonDescription extends FragmentActivity {
         // end ActionBar
 
 
+
         //TextView text = (TextView) findViewById(R.id.lessonDescription);
 
         //text.setText(description);
@@ -136,43 +140,53 @@ public class LessonDescription extends FragmentActivity {
     }
 
     private class MyPagerAdapter extends FragmentPagerAdapter {
-       // private int num_items = 3;
+        private int num_items;
+        private ArrayList<String> lessonDescriptions = null;
+        private ArrayList<Integer> pageImages = null;
 
         public MyPagerAdapter (FragmentManager fragmentManager) {
             super(fragmentManager);
             System.out.println("Inside PagerAdapter");
-
+            lessonDescriptions = getIntent().getExtras().getStringArrayList("LessonDescription");
+            pageImages = getIntent().getExtras().getIntegerArrayList("PageImages");
+            if (lessonDescriptions != null) {
+                num_items = lessonDescriptions.size();
+            }
         }
 
 
 
         @Override
         public Fragment getItem(int position) {
-            switch (position) {
-                case 0:
-                    return LessonFragment.newInstance(getIntent().getExtras());
-                case 1:
-                    return LessonFragment.newInstance(getIntent().getExtras());
-                case 2:
-                    return LessonFragment.newInstance(getIntent().getExtras());
-                default:
-                    return null;
+            //switch (position) {
+              //  case 0:
+                //getIntent().putExtra("Position", position);
+                getIntent().putExtra("CurrentDescription", lessonDescriptions.get(position));
+                getIntent().putExtra("CurrentImage", pageImages.get(position));
 
-            }
+                return LessonFragment.newInstance(getIntent().getExtras());
+                //case 1:
+              //      return LessonFragment.newInstance(getIntent().getExtras());
+                //case 2:
+                //    return LessonFragment.newInstance(getIntent().getExtras());
+                //default:
+                  //  return null;
+
+            //}
 
         }
 
         @Override
         public int getCount() {
-            return 3;
+            return num_items;
         }
 
-//        @Override
-//        public CharSequence getPageTitle(int position) {
-//
-//            return "Page " + position;
-//
-//        }
+        @Override
+        public CharSequence getPageTitle(int position) {
+
+            return "Page " + (position+1);
+
+        }
 
     }
 

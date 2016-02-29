@@ -113,6 +113,10 @@ public class LessonList extends Activity {
                     LessonXML lessonXML = new LessonXML(chapterNum, lesson, ctx);
 
                     ArrayList<String> lessonDescription = lessonXML.getBody();
+
+                    Drawables draw = new Drawables(chapterNum, lesson);
+                    ArrayList<Integer> pageImages = draw.getPagesImagesArray();
+
                     String lessonTitle = lessonXML.getTitle();
                     int lessonNum = lessonXML.getLessonNumber();
                     int numQuestions = lessonXML.getNumQuestions();
@@ -122,7 +126,8 @@ public class LessonList extends Activity {
                     System.out.println("LessonNum: " + lessonNum);
                     System.out.println("NumQuestions: " + numQuestions);
 
-                    newIntent.putExtra("LessonDescription", lessonDescription); //FIXME: CHANGE LATER TO SEND WHOLE ARRAYLIST
+                    newIntent.putExtra("LessonDescription", lessonDescription);
+                    newIntent.putExtra("PageImages", pageImages);
                     newIntent.putExtra("LessonTitle", lessonTitle);
                     newIntent.putExtra("ChapterNum", chapterNum);
                     newIntent.putExtra("ChapterTitle", chapterTitle);
