@@ -16,17 +16,17 @@
                 <question number='3' type='Check' completed='0'>
                     <image>c1_l1_q3.png</image>
                     <responses>BC##DE##AC</responses>
-                    <answer>1##2##3</answer>
+                    <answer>BC##DE##AC</answer>
                 </question>
                 <question number='4' type='Check' completed='0'>
                     <image>c1_l1_q4.png</image>
                     <responses>AB##CE##AC</responses>
-                    <answer>1##2</answer>
+                    <answer>AB##CE</answer>
                 </question>
                 <question number='5' type='Check' completed='0'>
                     <image>c1_l1_q5.png</image>
                     <responses>BC##AB##DE</responses>
-                    <answer>1##3</answer>
+                    <answer>BC##DE</answer>
                 </question>
                 <question number='6' type='MCQ' completed='0'>
                     <image>c1_l1_q6.png</image>
@@ -173,7 +173,7 @@
                 <question number='3' type='Check' completed='0'>
                     <image>c3_l1_q3.png</image>
                     <responses>Rhombus##Square##Parallelogram##Rectangle</responses>
-                    <answer>3</answer>
+                    <answer>Parallelogram</answer>
                 </question>
                 <question number='4' type='Check' completed='0'>
                     <image>c3_l1_q4.png</image>
@@ -183,7 +183,7 @@
                 <question number='5' type='Check' completed='0'>
                     <image>c3_l1_q5.png</image>
                     <responses>Rhombus##Square##Parallelogram##Rectangle</responses>
-                    <answer>1##2##3##4</answer>
+                    <answer>Rhombus##Square##Parallelogram##Rectangle</answer>
                 </question>
             </test>
         </lesson>
