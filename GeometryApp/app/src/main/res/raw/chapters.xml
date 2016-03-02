@@ -299,7 +299,7 @@
     <chapter5 title='Perimeter, Area, and Volume' completed='0'>
     	<lesson title='Advanced Area of Triangles' completed='0'>
         	<body>On a basic level: a triangle has an area formula of: Area = (1/2) Base x Height ##
-        		  In this lesson we'll go over the areas of an equilateral triangle (all equal sides)##
+        		  In this lesson we'll go over the areas of an equilateral triangle (all equal sides)
 	        </body>
 	        <test>
 	            !types: MCQ = Multiple Choice, Check -> Check Boxes, Text -> Free response
@@ -320,12 +320,13 @@
 	        </test>
 	    </lesson>
 	    <lesson title='Volume and Surface Area' completed='0'>
-	        <body>In this lesson we'll be looking at Volume and surface areas: 
-	        	when thinking about the surface area, you essentially calculate the outer area: ##
+	        <body>In this lesson we'll be looking at Volume and Surface Areas: 
+	        	When thinking about the surface area, you essentially calculate the outer area:
 	        	Here we'll go over the basics of some simple 3 dimensional shapes ##
 	         	Surface Area of a Cube: Edge Length x Edge Length x 6 ##
-	  			Area of a Cube: Edge Length x Edge Length x Edge Length ##
-	  			Area of a Cylinder: Radius ^ 2 x Pi x Height or Area of the circle x height ##
+	  			Volume of a Cube: Edge Length x Edge Length x Edge Length ##
+			Surface Area of a Cylinder: 2 x Pi x Radius ^ 2 + Height x 2 x Pi x Radius ##
+	  			Volume of a Cylinder: Radius ^ 2 x Pi x Height or Area of the circle x height ##
 	        </body>
 	        <test>
 	            !types: MCQ = Multiple Choice, Check -> Check Boxes, Text -> Free response
