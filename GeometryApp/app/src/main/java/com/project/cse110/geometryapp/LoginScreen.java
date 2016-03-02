@@ -111,8 +111,9 @@ public class LoginScreen extends Activity {
                     public void onAuthenticated(AuthData authData) {
 
                         System.out.println("User ID: " + authData.getUid() + ", Provider: " + authData.getProvider());
-                        User user = new User(authData.getUid(), authData.getProviderData().get("email").toString(), ref.child("/user/"+authData.getUid()).getRef());
-                        user.storeUserInfo(getApplicationContext());
+                        User user = new User(authData.getUid(), authData.getProviderData().get("email").toString(), ref.child("/users/"+authData.getUid()).getRef());
+                        Preferences user_info= new Preferences();
+                        user_info.storeUserInfo(user, getApplicationContext());
                         Intent newIntent = new Intent(LoginScreen.this, Main.class);
                         startActivity(newIntent);
                         editTextEmail.setText("");

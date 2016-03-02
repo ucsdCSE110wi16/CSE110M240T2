@@ -133,7 +133,6 @@ public class QuestionList extends Activity {
 
                     ArrayList<String> responses = qXML.getResponses();
                     ArrayList<String> answers = qXML.getAnswers();
-                    String image = qXML.getImageName();
                     String questionType = qXML.getQuestionType();
 
                     Intent newIntent;
@@ -147,9 +146,12 @@ public class QuestionList extends Activity {
 
                         newIntent = new Intent(QuestionList.this, TextQuestion.class);
 
-                    } else {
+                    } else if (questionType.equals("Check")){
 
-                        System.out.println("Check Question Clicked");
+                        newIntent = new Intent(QuestionList.this, CheckQuestion.class);
+                        newIntent.putExtra("Responses", responses);
+
+                    } else {
                         return;
 
                     }
@@ -159,8 +161,6 @@ public class QuestionList extends Activity {
                     newIntent.putExtra("LessonNum", lessonNum);
                     newIntent.putExtra("LessonTitle", lessonTitle);
                     newIntent.putExtra("QuestionNum", currQuestion);
-                    newIntent.putExtra("QuestionImage", image);
-                    newIntent.putExtra("QuestionType", questionType);
                     newIntent.putExtra("Answers", answers);
 
 

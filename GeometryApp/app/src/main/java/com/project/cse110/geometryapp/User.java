@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
@@ -17,6 +18,7 @@ import java.util.Stack;
 /**
  * Created by Migal on 2/22/2016.
  */
+@JsonIgnoreProperties({"ref"})
 public class User {
     String uid;
     String email;
@@ -82,10 +84,13 @@ public class User {
     }
 
     public void updateQuestion(String chapter, String lesson, String question){
+        System.out.println("IN UPDATE");
+        System.out.println(ref.child("data/"+chapter+"/"+lesson+"/"+question).getRef());
         ref.child("data/"+chapter+"/"+lesson+"/"+question).setValue(true);
         ref.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
+                System.out.println("CHANGING DATA");
                 User.this.data = (Map) dataSnapshot.child("data").getValue();
             }
 
@@ -124,47 +129,48 @@ public class User {
             }
         });
     }
+    public boolean retrieveQuestion(String chapter, String lesson, String question){
+        try {
+            Map chapterMap = (Map) getData().get("c"+chapter);
+            try{
+                Map lessonMap = (Map) chapterMap.get("l"+lesson);
+                try{
+                    return (boolean) lessonMap.get("q"+question);
+                }catch(NullPointerException e){
+                    System.out.println("Unlisted Question");
+                }
 
-    public void storeUserInfo(Context context){
-        SharedPreferences user_info = PreferenceManager.getDefaultSharedPreferences(context);
-        SharedPreferences.Editor editor = user_info.edit();
-        editor.putString("uid", getUid());
-        editor.putString("email", getEmail());
-        editor.putString("ref", getRef().toString());
-        editor.apply();
+            }catch(NullPointerException e){
+                System.out.println("Unlisted Lesson");
+            }
+        }catch(NullPointerException e) {
+            System.out.println("Unlisted Chapter");
+        }
+        return false;
     }
+    public boolean retrieveLesson(String chapter, String lesson){
+        try {
+            Map chapterMap = (Map) getData().get("c"+chapter);
+            try{
+                Map lessonMap = (Map) chapterMap.get("l"+lesson);
+                return (boolean) lessonMap.get("complete");
 
-
-    public String retrieveUIDInfo(Context context){
-        SharedPreferences user_info = PreferenceManager.getDefaultSharedPreferences(context);
-        return user_info.getString("uid", "");
+            }catch(NullPointerException e){
+                System.out.println("Unlisted Lesson");
+            }
+        }catch(NullPointerException e) {
+            System.out.println("Unlisted Chapter");
+        }
+        return false;
     }
-
-    public String retrieveEmailInfo(Context context){
-        SharedPreferences user_info = PreferenceManager.getDefaultSharedPreferences(context);
-        return user_info.getString("email", "");
-    }
-
-    public Firebase retrieveRefInfo(Context context){
-        SharedPreferences user_info = PreferenceManager.getDefaultSharedPreferences(context);
-        String ref = user_info.getString("ref", "");
-        return new Firebase(ref);
-    }
-
-    public User retrieveUserInfo(Context context){
-        return new User(retrieveUIDInfo(context), retrieveEmailInfo(context), retrieveRefInfo(context));
-    }
-
-    public boolean checkForUserInfo(Context context){
-        SharedPreferences user_info = PreferenceManager.getDefaultSharedPreferences(context);
-        return user_info.contains("uid");
-    }
-
-    public void clearUserInfo(Context context){
-        SharedPreferences user_info = PreferenceManager.getDefaultSharedPreferences(context);
-        SharedPreferences.Editor editor = user_info.edit();
-        editor.clear();
-        editor.apply();
+    public boolean retrieveChapter(String chapter){
+        try {
+            Map chapterMap = (Map) getData().get("c"+chapter);
+            return (boolean) chapterMap.get("complete");
+        }catch(NullPointerException e) {
+            System.out.println("Unlisted Chapter");
+        }
+        return false;
     }
 
 }
