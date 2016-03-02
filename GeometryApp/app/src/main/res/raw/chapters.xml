@@ -189,7 +189,7 @@
         </lesson>
         <lesson title='Quadrilateral Proofs and Angles' completed='0'>
             <body>Adjacent angles of a parallelogram are supplementary: Their sum equals 180.
-				Opposite angles of a parallelogram are equivalent.##The angles of bases of an isosceles triangle are equal.##Area of a parallelogram is base x the bisecting height: A = bh.</body>
+				Opposite angles of a parallelogram are equivalent.##Area of a parallelogram is base x the bisecting height: A = bh.</body>
             <test>
                 <question number='1' type='Text' completed='0'>
                     <image>c3_l2_q1.png</image>
@@ -244,7 +244,11 @@
 			</test>
 	</lesson>
 	<lesson title='Standard Equation of a Circle' completed='0'>
-		<body>General format of circle equation: ax^2 + by^2 + cx + dy + e = 0##Center-radius form of circle:  (x - h)^2 + (y - k)^2 = r^2##The center of the circle is easily found using this equation : (h,k)##The radius of the circle is also easily found : (r).</body>
+		<body>General format of circle equation:
+		ax^2 + by^2 + cx + dy + e = 0##Center-radius form of circle:
+		(x - h)^2 + (y - k)^2 = r^2
+		The center of the circle is easily found using this equation : (h,k)
+		The radius of the circle is also easily found : (r).</body>
 			<test>
 				<question number='1' type ='Text' completed='0'>
 					<image>c4_l2_q1.png</image>
