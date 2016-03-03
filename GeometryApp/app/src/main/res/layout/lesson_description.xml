@@ -48,7 +48,7 @@
         android:layout_height="wrap_content"
         android:background="@color/purple"
         android:textColor="@color/white"
-        android:text="Next"
+        android:text="Done"
         android:id="@+id/next"
         android:layout_gravity="center"
         android:layout_margin="20dp" />
