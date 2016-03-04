@@ -74,7 +74,7 @@
             <ImageButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/circles"
+                android:src="@drawable/quadrilaterals"
                 android:id="@+id/topic3"
                 android:layout_column="2"
                 android:background="@null"/>
@@ -96,7 +96,7 @@
             <ImageButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/congruence"
+                android:src="@drawable/circles"
                 android:id="@+id/topic4"
                 android:background="@null"/>
         </TableRow>
@@ -118,7 +118,7 @@
             <ImageButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/quadrilaterals"
+                android:src="@drawable/geometric_constructions"
                 android:id="@+id/topic5"
                 android:layout_column="2"
                 android:background="@null" />
