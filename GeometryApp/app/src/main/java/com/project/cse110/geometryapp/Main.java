@@ -96,8 +96,8 @@ public class Main extends Activity {
             @Override
             public void onClick(View v) {
                 User user = new User();
-                Preferences user_info = new Preferences();
-                user_info.clearUserInfo(getApplicationContext());
+                Preferences user_info = new Preferences(getApplicationContext());
+                user_info.clearUserInfo();
                 Intent newIntent = new Intent(Main.this, LoginScreen.class);
                 newIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(newIntent);
