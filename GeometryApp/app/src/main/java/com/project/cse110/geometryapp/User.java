@@ -49,10 +49,10 @@ public class User {
     private Map createLessons(int num_questions){
         Map lesson = new HashMap();
         int i = 1;
-        lesson.put("complete", false);
+        lesson.put("complete", (int)0);
         while (i <= num_questions){
             String q_number = "q"+Integer.toString(i);
-            lesson.put(q_number, false);
+            lesson.put(q_number, (int)0);
             i++;
         }
         return lesson;
@@ -61,10 +61,10 @@ public class User {
     private Map createChapter(int num_lessons, int[] question_numbers){
         Map chapter = new HashMap();
         int i = 1;
-        chapter.put("complete", false);
+        chapter.put("complete", (int)0);
         while (i <= num_lessons){
             String l_number = "l"+Integer.toString(i);
-            chapter.put(l_number, createLessons(question_numbers[i-1]));
+            chapter.put(l_number, createLessons(question_numbers[i - 1]));
             i++;
         }
         return chapter;
@@ -83,14 +83,15 @@ public class User {
         this.data = data;
     }
 
-    public void updateQuestion(String chapter, String lesson, String question){
-        System.out.println("IN UPDATE");
-        System.out.println(ref.child("data/"+chapter+"/"+lesson+"/"+question).getRef());
-        ref.child("data/"+chapter+"/"+lesson+"/"+question).setValue(true);
+    public void updateQuestion(String chapter, String lesson, String question, boolean answer){
+        if(answer) {
+            ref.child("data/" + chapter + "/" + lesson + "/" + question).setValue(1);
+        } else{
+            ref.child("data/" + chapter + "/" + lesson + "/" + question).setValue(-1);
+        }
         ref.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                System.out.println("CHANGING DATA");
                 User.this.data = (Map) dataSnapshot.child("data").getValue();
             }
 
@@ -101,8 +102,12 @@ public class User {
         });
     }
 
-    public void updateLesson(String chapter, String lesson){
-        ref.child("data/"+chapter+"/"+lesson+"/complete").setValue(true);
+    public void updateLesson(String chapter, String lesson, boolean answer){
+        if (answer) {
+            ref.child("data/" + chapter + "/" + lesson + "/complete").setValue(1);
+        } else{
+            ref.child("data/" + chapter + "/" + lesson + "/complete").setValue(-1);
+        }
         ref.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -115,8 +120,12 @@ public class User {
             }
         });
     }
-    public void updateChapter(String chapter){
-        ref.child("data/"+chapter+"/complete").setValue(true);
+    public void updateChapter(String chapter, boolean answer){
+        if (answer) {
+            ref.child("data/" + chapter + "/complete").setValue(1);
+        } else {
+            ref.child("data/" + chapter + "/complete").setValue(-1);
+        }
         ref.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -129,13 +138,13 @@ public class User {
             }
         });
     }
-    public boolean retrieveQuestion(String chapter, String lesson, String question){
+    public int retrieveQuestion(String chapter, String lesson, String question){
         try {
             Map chapterMap = (Map) getData().get("c"+chapter);
             try{
                 Map lessonMap = (Map) chapterMap.get("l"+lesson);
                 try{
-                    return (boolean) lessonMap.get("q"+question);
+                    return (int) lessonMap.get("q"+question);
                 }catch(NullPointerException e){
                     System.out.println("Unlisted Question");
                 }
@@ -146,14 +155,14 @@ public class User {
         }catch(NullPointerException e) {
             System.out.println("Unlisted Chapter");
         }
-        return false;
+        return 0;
     }
-    public boolean retrieveLesson(String chapter, String lesson){
+    public int retrieveLesson(String chapter, String lesson){
         try {
             Map chapterMap = (Map) getData().get("c"+chapter);
             try{
                 Map lessonMap = (Map) chapterMap.get("l"+lesson);
-                return (boolean) lessonMap.get("complete");
+                return (int) lessonMap.get("complete");
 
             }catch(NullPointerException e){
                 System.out.println("Unlisted Lesson");
@@ -161,16 +170,16 @@ public class User {
         }catch(NullPointerException e) {
             System.out.println("Unlisted Chapter");
         }
-        return false;
+        return 0;
     }
-    public boolean retrieveChapter(String chapter){
+    public int retrieveChapter(String chapter){
         try {
             Map chapterMap = (Map) getData().get("c"+chapter);
-            return (boolean) chapterMap.get("complete");
+            return (int) chapterMap.get("complete");
         }catch(NullPointerException e) {
             System.out.println("Unlisted Chapter");
         }
-        return false;
+        return 0;
     }
 
 }
