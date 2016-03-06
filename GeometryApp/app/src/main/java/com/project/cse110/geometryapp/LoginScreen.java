@@ -116,8 +116,6 @@ public class LoginScreen extends Activity {
                         user_info.storeUserInfo(user);
                         Intent newIntent = new Intent(LoginScreen.this, Main.class);
                         startActivity(newIntent);
-                        editTextEmail.setText("");
-                        editTextPassword.setText("");
 
                     }
 
@@ -144,10 +142,16 @@ public class LoginScreen extends Activity {
 
 
                 startActivity(newIntent);
-                editTextEmail.setText("");
-                editTextPassword.setText("");
+
             }
         });
+
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        finish();
 
     }
 }
