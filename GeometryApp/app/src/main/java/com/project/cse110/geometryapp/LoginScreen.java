@@ -91,7 +91,7 @@ public class LoginScreen extends Activity {
             }
         });
 
-        /*boolean networkConnected;
+        boolean networkConnected;
         boolean internetConnected;
         networkConnected = isNetworkAvailable();
         internetConnected = isOnline();
@@ -100,7 +100,7 @@ public class LoginScreen extends Activity {
             dialogBuilder.setMessage("No internet connection");
             dialog = dialogBuilder.create();
             dialog.show();
-        }*/
+        }
 
         editTextEmail = (EditText) findViewById(R.id.etUsername);
         editTextPassword = (EditText) findViewById(R.id.etPassword);
@@ -163,7 +163,7 @@ public class LoginScreen extends Activity {
     }
 
 
-    /*private boolean isNetworkAvailable() {
+    private boolean isNetworkAvailable() {
         dialogBuilder = new AlertDialog.Builder(this);
         dialogBuilder.setCancelable(false);
         dialogBuilder.setNeutralButton("Ok", new DialogInterface.OnClickListener() {
@@ -191,7 +191,7 @@ public class LoginScreen extends Activity {
             e.printStackTrace();
         }
         return false;
-    }*/
+    }
 
 
 }
