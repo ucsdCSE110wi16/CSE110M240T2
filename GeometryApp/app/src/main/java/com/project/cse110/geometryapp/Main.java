@@ -207,7 +207,7 @@ public class Main extends Activity {
 
                 Intent topic5Intent = new Intent(Main.this, LessonList.class);
 
-                ChapterXML chap = new ChapterXML(4, ctx);
+                ChapterXML chap = new ChapterXML(5, ctx);
                 String title = chap.getTitle();
                 int numLessons = chap.getNumLessons();
                 int chapNum = chap.getChapterNumber();
