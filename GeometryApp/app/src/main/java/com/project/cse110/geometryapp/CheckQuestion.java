@@ -26,6 +26,8 @@ public class CheckQuestion extends Activity {
 
     Intent thisIntent;
     Context ctx;
+    Preferences myPreferences;
+    User myUser;
 
     AlertDialog dialog;
     AlertDialog.Builder dialogBuilder;
@@ -46,6 +48,9 @@ public class CheckQuestion extends Activity {
 
         thisIntent = this.getIntent();
         ctx = this;
+
+        myPreferences = new Preferences(this);
+        myUser = myPreferences.retrieveUserInfo();
 
         // Start ActionBar
         ActionBar ab = getActionBar();
@@ -152,9 +157,11 @@ public class CheckQuestion extends Activity {
                 if ((numAnswers == numChecks) && (numAnswers == answers.size())) {
                     System.out.print("All Correct Answers Clicked");
                     dialogBuilder.setMessage("Correct!");
+                    myUser.updateQuestion(Integer.toString(chapterNum), Integer.toString(lessonNum), Integer.toString(qNum), true);
 
                 } else {
                     dialogBuilder.setMessage("Incorrect!");
+                    myUser.updateQuestion(Integer.toString(chapterNum), Integer.toString(lessonNum), Integer.toString(qNum), false);
 
                 }
 

@@ -126,12 +126,15 @@ public class RegisterScreen extends Activity {
                         @Override
                         public void onError(FirebaseError firebaseError) {
                             // there was an error
-                            System.out.println("There was an error reg istering your account: " + firebaseError.getMessage());
+                            System.out.println("There was an error registering your account: " + firebaseError.getMessage());
 
                             if (firebaseError.getMessage().equals("The specified email address is invalid.")) {
                                 dialogBuilder.setMessage("Invalid Email Address");
                             } else if (firebaseError.getMessage().equals("The specified email address is already in use.")) {
                                 dialogBuilder.setMessage("The Email Address is already in use");
+                            } else {
+                                dialogBuilder.setMessage("Please Check Your Internet Connection");
+
                             }
 
                             dialogBuilder.setNeutralButton("Ok", new DialogInterface.OnClickListener() {
@@ -175,6 +178,14 @@ public class RegisterScreen extends Activity {
     public void onStop() {
         super.onStop();
         finish();
+
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent newIntent = new Intent(RegisterScreen.this, LoginScreen.class);
+        startActivity(newIntent);
 
     }
 }

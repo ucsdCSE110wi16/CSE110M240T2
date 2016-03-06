@@ -24,6 +24,8 @@ public class MCQuestion extends Activity {
 
     Intent thisIntent;
     Context ctx;
+    Preferences myPreferences;
+    User myUser;
 
     AlertDialog answerAlert;
     AlertDialog.Builder dialogBuilder;
@@ -46,6 +48,8 @@ public class MCQuestion extends Activity {
 
         thisIntent = this.getIntent();
         ctx = this;
+        myPreferences = new Preferences(this);
+        myUser = myPreferences.retrieveUserInfo();
 
 
         // Start ActionBar
@@ -134,12 +138,11 @@ public class MCQuestion extends Activity {
                     if (myButtonNum == correctAnswer) {
                         System.out.println("Correct Answer");
                         dialogBuilder.setMessage("Correct!");
-                        setStaticArray(1, true);
+                        myUser.updateQuestion(Integer.toString(chapterNum), Integer.toString(lessonNum), Integer.toString(qNum), true);
                     } else {
                         System.out.println("Incorrect Answer");
                         dialogBuilder.setMessage("Incorrect!");
-                        setStaticArray(-1, false);
-
+                        myUser.updateQuestion(Integer.toString(chapterNum), Integer.toString(lessonNum), Integer.toString(qNum), false);
                     }
 
                     dialogBuilder.setNeutralButton("Ok", new DialogInterface.OnClickListener() {
@@ -523,113 +526,113 @@ public class MCQuestion extends Activity {
         Set the buttons to green or red based on correct or incorrect answers
 
      */
-    public void setStaticArray(int value, boolean correct) {
-        switch (chapterNum) {
-
-            case 1:
-                switch (lessonNum) {
-                    case 1:
-                        QuestionList.c1l1[qNum-1] = value;
-
-                        if (correct) {
-                            QuestionList.numQuestionsCorrectC1L1++;
-                        }
-
-                        break; // end Lesson 1
-
-                    case 2:
-                        QuestionList.c1l2[qNum-1] = value;
-                        if (correct) {
-                            QuestionList.numQuestionsCorrectC1L2++;
-                        }
-                        break;
-
-                    default:
-                        break; // end Chapter 1 Lesson 2
-
-
-                }
-                break; // end Chapter 1
-
-            case 2:
-                switch (lessonNum) {
-                    case 1:
-                        QuestionList.c2l1[qNum-1] = value;
-                        if (correct) {
-                            QuestionList.numQuestionsCorrectC2L1++;
-                        }
-                        break; // end Chapter 2 Lesson 1
-
-                    case 2:
-                        QuestionList.c2l2[qNum-1] = value;
-                        if (correct) {
-                            QuestionList.numQuestionsCorrectC2L2++;
-                        }
-                        break;  // end Chapter 2 Lesson 2
-
-                    case 3:
-                        QuestionList.c2l3[qNum-1] = value;
-                        if (correct) {
-                            QuestionList.numQuestionsCorrectC2L3++;
-                        }
-                        break;
-
-                    default:
-                        break; // end Chapter 2 Lesson 3
-
-                }
-                break;  // end Chapter 2
-
-            case 3:
-                switch (lessonNum) {
-                    case 1:
-                        QuestionList.c3l1[qNum-1] = value;
-                        if (correct) {
-                            QuestionList.numQuestionsCorrectC3L1++;
-                        }
-                        break; // end Chapter 3 Lesson 1
-
-                    case 2:
-                        QuestionList.c3l2[qNum-1] = value;
-                        if (correct) {
-                            QuestionList.numQuestionsCorrectC3L2++;
-                        }
-                        break;
-
-                    default:
-                        break; // end Chapter 3 Lesson 2
-
-                }
-                break;
-
-            case 4:
-                switch (lessonNum) {
-                    case 1:
-                        QuestionList.c4l1[qNum-1] = value;
-                        if (correct) {
-                            QuestionList.numQuestionsCorrectC4L1++;
-                        }
-                        break; // end Chapter 4 Lesson 1
-
-                    case 2:
-                        QuestionList.c4l2[qNum-1] = value;
-                        if (correct) {
-                            QuestionList.numQuestionsCorrectC4L2++;
-                        }
-                        break;  // end Chapter 4 Lesson 2
-
-                    case 3:
-                        QuestionList.c4l3[qNum-1] = value;
-                        if (correct) {
-                            QuestionList.numQuestionsCorrectC4L3++;
-                        }
-                        break;  // end Chapter 4 Lesson 3
-
-                    default:
-                        break;
-
-                }
-                break;  // end Chapter 4
+//    public void setStaticArray(int value, boolean correct) {
+//        switch (chapterNum) {
+//
+//            case 1:
+//                switch (lessonNum) {
+//                    case 1:
+//                        QuestionList.c1l1[qNum-1] = value;
+//
+//                        if (correct) {
+//                            QuestionList.numQuestionsCorrectC1L1++;
+//                        }
+//
+//                        break; // end Lesson 1
+//
+//                    case 2:
+//                        QuestionList.c1l2[qNum-1] = value;
+//                        if (correct) {
+//                            QuestionList.numQuestionsCorrectC1L2++;
+//                        }
+//                        break;
+//
+//                    default:
+//                        break; // end Chapter 1 Lesson 2
+//
+//
+//                }
+//                break; // end Chapter 1
+//
+//            case 2:
+//                switch (lessonNum) {
+//                    case 1:
+//                        QuestionList.c2l1[qNum-1] = value;
+//                        if (correct) {
+//                            QuestionList.numQuestionsCorrectC2L1++;
+//                        }
+//                        break; // end Chapter 2 Lesson 1
+//
+//                    case 2:
+//                        QuestionList.c2l2[qNum-1] = value;
+//                        if (correct) {
+//                            QuestionList.numQuestionsCorrectC2L2++;
+//                        }
+//                        break;  // end Chapter 2 Lesson 2
+//
+//                    case 3:
+//                        QuestionList.c2l3[qNum-1] = value;
+//                        if (correct) {
+//                            QuestionList.numQuestionsCorrectC2L3++;
+//                        }
+//                        break;
+//
+//                    default:
+//                        break; // end Chapter 2 Lesson 3
+//
+//                }
+//                break;  // end Chapter 2
+//
+//            case 3:
+//                switch (lessonNum) {
+//                    case 1:
+//                        QuestionList.c3l1[qNum-1] = value;
+//                        if (correct) {
+//                            QuestionList.numQuestionsCorrectC3L1++;
+//                        }
+//                        break; // end Chapter 3 Lesson 1
+//
+//                    case 2:
+//                        QuestionList.c3l2[qNum-1] = value;
+//                        if (correct) {
+//                            QuestionList.numQuestionsCorrectC3L2++;
+//                        }
+//                        break;
+//
+//                    default:
+//                        break; // end Chapter 3 Lesson 2
+//
+//                }
+//                break;
+//
+//            case 4:
+//                switch (lessonNum) {
+//                    case 1:
+//                        QuestionList.c4l1[qNum-1] = value;
+//                        if (correct) {
+//                            QuestionList.numQuestionsCorrectC4L1++;
+//                        }
+//                        break; // end Chapter 4 Lesson 1
+//
+//                    case 2:
+//                        QuestionList.c4l2[qNum-1] = value;
+//                        if (correct) {
+//                            QuestionList.numQuestionsCorrectC4L2++;
+//                        }
+//                        break;  // end Chapter 4 Lesson 2
+//
+//                    case 3:
+//                        QuestionList.c4l3[qNum-1] = value;
+//                        if (correct) {
+//                            QuestionList.numQuestionsCorrectC4L3++;
+//                        }
+//                        break;  // end Chapter 4 Lesson 3
+//
+//                    default:
+//                        break;
+//
+//                }
+//                break;  // end Chapter 4
 
 //            case 5:
 //                switch (lessonNum) {
@@ -648,13 +651,13 @@ public class MCQuestion extends Activity {
 //                }
 //                break;
 
-            default:
-
-                break;
-
-
-        }
-
-    }
+//            default:
+//
+//                break;
+//
+//
+//        }
+//
+//    }
 
 }
