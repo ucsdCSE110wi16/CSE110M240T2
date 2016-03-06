@@ -33,7 +33,8 @@ import android.widget.EditText;
 import com.firebase.client.Firebase;
 import com.firebase.client.AuthData;
 import com.firebase.client.FirebaseError;
-
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 //package com.firebase.samples.logindemo;
 
 
@@ -90,6 +91,16 @@ public class LoginScreen extends Activity {
             }
         });
 
+        boolean networkConnected;
+        boolean internetConnected;
+        networkConnected = isNetworkAvailable();
+        internetConnected = isOnline();
+
+        if (networkConnected == false && internetConnected == false ) {
+            dialogBuilder.setMessage("No internet connection");
+            dialog = dialogBuilder.create();
+            dialog.show();
+        }
 
         editTextEmail = (EditText) findViewById(R.id.etUsername);
         editTextPassword = (EditText) findViewById(R.id.etPassword);
@@ -111,8 +122,8 @@ public class LoginScreen extends Activity {
                     public void onAuthenticated(AuthData authData) {
 
                         System.out.println("User ID: " + authData.getUid() + ", Provider: " + authData.getProvider());
-                        User user = new User(authData.getUid(), authData.getProviderData().get("email").toString(), ref.child("/users/"+authData.getUid()).getRef());
-                        Preferences user_info= new Preferences(getApplicationContext());
+                        User user = new User(authData.getUid(), authData.getProviderData().get("email").toString(), ref.child("/users/" + authData.getUid()).getRef());
+                        Preferences user_info = new Preferences(getApplicationContext());
                         user_info.storeUserInfo(user);
                         Intent newIntent = new Intent(LoginScreen.this, Main.class);
                         startActivity(newIntent);
@@ -150,4 +161,37 @@ public class LoginScreen extends Activity {
         });
 
     }
+
+
+    private boolean isNetworkAvailable() {
+        dialogBuilder = new AlertDialog.Builder(this);
+        dialogBuilder.setCancelable(false);
+        dialogBuilder.setNeutralButton("Ok", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+                System.out.println("Inside OK");
+
+            }
+        });
+        ConnectivityManager connectivityManager
+                = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+        return activeNetworkInfo != null && activeNetworkInfo.isConnected();
+    }
+
+    public Boolean isOnline() {
+        try {
+            Process p1 = java.lang.Runtime.getRuntime().exec("ping -c 1 www.google.com");
+            int returnVal = p1.waitFor();
+            boolean reachable = (returnVal==0);
+            return reachable;
+        } catch (Exception e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+
 }
