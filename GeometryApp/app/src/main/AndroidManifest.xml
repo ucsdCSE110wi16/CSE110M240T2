@@ -24,14 +24,18 @@
 
         <activity
             android:name=".SplashScreen"
-            android:theme="@style/AppTheme.NoActionBar" >
+            android:theme="@style/AppTheme.NoActionBar"
+            android:screenOrientation="portrait">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".LoginScreen" >
+
+        <activity android:name=".LoginScreen"
+            android:screenOrientation="portrait">
             <intent-filter>
 
                 <!-- <action android:name="android.intent.action.MAIN" /> -->
@@ -39,7 +43,8 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".RegisterScreen" >
+        <activity android:name=".RegisterScreen"
+            android:screenOrientation="portrait">
             <intent-filter>
 
                 <!-- <action android:name="android.intent.action.MAIN" /> -->
@@ -47,7 +52,8 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".Main" >
+        <activity android:name=".Main"
+            android:screenOrientation="portrait">
             <intent-filter>
 
                 <!-- <action android:name="android.intent.action.MAIN" /> -->
@@ -55,9 +61,11 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".LessonList" >
+        <activity android:name=".LessonList"
+            android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".MCQuestion" >
+        <activity android:name=".MCQuestion"
+            android:screenOrientation="portrait">
             <intent-filter>
 
                 <!-- <action android:name="android.intent.action.MAIN" /> -->
@@ -65,7 +73,8 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".TextQuestion" >
+        <activity android:name=".TextQuestion"
+            android:screenOrientation="portrait">
             <intent-filter>
 
                 <!-- <action android:name="android.intent.action.MAIN" /> -->
@@ -73,7 +82,8 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".CheckQuestion" >
+        <activity android:name=".CheckQuestion"
+            android:screenOrientation="portrait">
             <intent-filter>
 
                 <!-- <action android:name="android.intent.action.MAIN" /> -->
@@ -81,7 +91,8 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".LessonDescription" >
+        <activity android:name=".LessonDescription"
+            android:screenOrientation="portrait">
             <intent-filter>
 
                 <!-- <action android:name="android.intent.action.MAIN" /> -->
@@ -89,7 +100,8 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".QuestionList" >
+        <activity android:name=".QuestionList"
+            android:screenOrientation="portrait">
             <intent-filter>
 
                 <!-- <action android:name="android.intent.action.MAIN" /> -->
