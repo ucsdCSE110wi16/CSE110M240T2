@@ -303,16 +303,16 @@
 	        </body>
 	        <test>
 	            !types: MCQ = Multiple Choice, Check -> Check Boxes, Text -> Free response
-	            <question number='1' type='MCQ'>
+	            <question number='1' type='MCQ' completed='0'>
 	                <image>c5_l1_q1.png</image>
 	                <responses>A##B##C##D</responses>
 	                <answer>2</answer>
 	            </question>
-	            <question number='2' type='Text'>
+	            <question number='2' type='Text' completed='0'>
 	                <image>c5_l1_q2.png</image>
 	                <answer>84</answer>
 	            </question>
-	            <question number='3' type='MCQ'>
+	            <question number='3' type='MCQ' completed='0'>
 	                <image>c5_l1_q3.png</image>
 	                <responses>A##B##C##D</responses>
 	                <answer>1</answer>
@@ -326,23 +326,23 @@
 	        </body>
 	        <test>
 	            !types: MCQ = Multiple Choice, Check -> Check Boxes, Text -> Free response
-	            <question number='1' type='Text'>
+	            <question number='1' type='Text' completed='0'>
 	                <image>c5_l2_q1.png</image>
 	                <answer>54</answer>
 	            </question>
-	            <question number='2' type='Text'>
+	            <question number='2' type='Text' completed='0'>
 	                <image>c5_l2_q2.png</image>
 	                <answer>175</answer>
 	            </question>
-	            <question number='3' type='Text'>
+	            <question number='3' type='Text' completed='0' >
 	                <image>c5_l2_q3.png</image>
 	                <answer>168</answer>
 	            </question>
-	            <question number='4' type='Text'>
+	            <question number='4' type='Text' completed='0'>
 	                <image>c5_l2_q4.png</image>
 	                <answer>72</answer>
 	            </question>
-	            <question number='5' type='Text'>
+	            <question number='5' type='Text' completed='0'>
 	                <image>c5_l2_q5.png</image>
 	 				<responses>A##B##C##D</responses>
 	                <answer>3</answer>

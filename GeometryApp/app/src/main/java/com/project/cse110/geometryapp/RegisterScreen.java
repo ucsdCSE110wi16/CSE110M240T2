@@ -94,15 +94,15 @@ public class RegisterScreen extends Activity {
             @Override
             public void onClick(View v) {
 
-                boolean networkConnected;
-                boolean internetConnected;
-                networkConnected = isNetworkAvailable();
-                internetConnected = isOnline();
-                if (networkConnected == false && internetConnected == false ) {
-                    dialogBuilder.setMessage("No internet connection");
-                    dialog = dialogBuilder.create();
-                    dialog.show();
-                }
+//                boolean networkConnected;
+//                boolean internetConnected;
+//                networkConnected = isNetworkAvailable();
+//                internetConnected = isOnline();
+//                if (networkConnected == false && internetConnected == false ) {
+//                    dialogBuilder.setMessage("No internet connection");
+//                    dialog = dialogBuilder.create();
+//                    dialog.show();
+//                }
 
                 final String emailID = editTextEmail.getText().toString();
                 String password = editTextPassword.getText().toString();
@@ -147,7 +147,16 @@ public class RegisterScreen extends Activity {
                             } else if (firebaseError.getMessage().equals("The specified email address is already in use.")) {
                                 dialogBuilder.setMessage("The Email Address is already in use");
                             } else {
-                                dialogBuilder.setMessage("Please Check Your Internet Connection");
+                                boolean networkConnected;
+                                boolean internetConnected;
+                                networkConnected = isNetworkAvailable();
+                                internetConnected = isOnline();
+                                if (networkConnected == false && internetConnected == false ) {
+                                    dialogBuilder.setMessage("Please Check Your Internet Connection");
+                                } else {
+                                    dialogBuilder.setMessage("Error Connecting to Database");
+                                    
+                                }
 
                             }
 
@@ -203,13 +212,7 @@ public class RegisterScreen extends Activity {
                 = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
         boolean connected;
-        connected =  activeNetworkInfo != null && activeNetworkInfo.isConnected();
-        if (connected = false ) {
-            dialogBuilder.setMessage("No internet connection");
-            dialog = dialogBuilder.create();
-            dialog.show();
-        }
-        return connected;
+        return activeNetworkInfo != null && activeNetworkInfo.isConnected();
     }
 
     public Boolean isOnline() {
