@@ -203,13 +203,7 @@ public class RegisterScreen extends Activity {
                 = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
         boolean connected;
-        connected =  activeNetworkInfo != null && activeNetworkInfo.isConnected();
-        if (connected = false ) {
-            dialogBuilder.setMessage("No internet connection");
-            dialog = dialogBuilder.create();
-            dialog.show();
-        }
-        return connected;
+        return activeNetworkInfo != null && activeNetworkInfo.isConnected();
     }
 
     public Boolean isOnline() {
