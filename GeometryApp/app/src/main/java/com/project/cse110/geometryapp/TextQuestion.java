@@ -47,8 +47,8 @@ public class TextQuestion extends Activity{
 
         thisIntent = this.getIntent();
         ctx = this;
-        myPreferences = new Preferences(this);
-        myUser = myPreferences.retrieveUserInfo();
+//        myPreferences = new Preferences(this);
+//        myUser = myPreferences.retrieveUserInfo();
 
         // Start ActionBar
         ActionBar ab = getActionBar();
