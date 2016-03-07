@@ -122,13 +122,15 @@ public class CheckQuestion extends Activity {
                 myLayout = (LinearLayout) findViewById(R.id.bottomBoxes);
             }
 
-            LinearLayout.LayoutParams layParam = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+            LinearLayout.LayoutParams layParam = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT, 1f);
             layParam.setMargins(10, 10, 10, 10);
 
             // Add the buttons with the layout params
             myLayout.addView(newCheck, layParam);
 
             newCheck.setText(responses.get(i));
+            newCheck.setTextSize(20);
+
         }
 
         Button submitButton = (Button) findViewById(R.id.checkSubmit);

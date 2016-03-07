@@ -55,7 +55,7 @@ public class Drawables {
                 switch (lessonNum) {
 
                     case 1:
-                        array.add(-1);
+                        array.add(R.drawable.c2_l1_1);
                         array.add(R.drawable.c2_l1_2);
                         array.add(R.drawable.c2_l1_3);
                         array.add(R.drawable.c2_l1_4);
@@ -76,7 +76,7 @@ public class Drawables {
 
                     case 3:
                         array.add(R.drawable.c2_l3_1);
-                        array.add(-1);
+                        array.add(R.drawable.c2_l3_2);
 
                         return array;
 
@@ -102,7 +102,7 @@ public class Drawables {
 
                     case 2:
                         array.add(R.drawable.c3_l2_1);
-                        array.add(-1);
+                        array.add(R.drawable.c3_l2_2);
                         array.add(R.drawable.c3_l2_3);
 
                         return array;
@@ -120,15 +120,14 @@ public class Drawables {
                         array.add(R.drawable.c4_l1_2);
                         array.add(R.drawable.c4_l1_3);
                         array.add(R.drawable.c4_l1_4);
-                        array.add(-1);
+                        array.add(R.drawable.c4_l1_5);
 
                         return array;
 
                     case 2:
-                        array.add(-1);
+                        array.add(R.drawable.c4_l2_1);
                         array.add(R.drawable.c4_l2_2);
-                        array.add(-1);
-                        array.add(-1);
+
 
                         return array;
 
@@ -146,18 +145,18 @@ public class Drawables {
                 switch(lessonNum) {
 
                     case 1:
-                        array.add(-1);
-                        array.add(-1);
+                        array.add(R.drawable.c5_l1_1);
+                        array.add(R.drawable.c5_l1_2);
 
                         return array;
 
 
                     case 2:
                         array.add(-1);
-                        array.add(-1);
-                        array.add(-1);
-                        array.add(-1);
-                        array.add(-1);
+                        array.add(R.drawable.c5_l2_2);
+                        array.add(R.drawable.c5_l2_3);
+                        array.add(R.drawable.c5_l2_4);
+                        array.add(R.drawable.c5_l2_5);
 
                         return array;
 

@@ -33,6 +33,7 @@
                 android:id="@+id/topBoxes"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:weightSum="2"
                 android:layout_weight="1"/>
 
             <LinearLayout
@@ -40,6 +41,7 @@
                 android:id="@+id/bottomBoxes"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:weightSum="2"
                 android:layout_weight="1"/>
         </LinearLayout>
 
