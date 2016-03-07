@@ -26,7 +26,6 @@ public class CheckQuestion extends Activity {
 
     Intent thisIntent;
     Context ctx;
-    Preferences myPreferences;
     User myUser;
 
     AlertDialog dialog;
@@ -49,8 +48,7 @@ public class CheckQuestion extends Activity {
         thisIntent = this.getIntent();
         ctx = this;
 
-//        myPreferences = new Preferences(this);
-//        myUser = myPreferences.retrieveUserInfo();
+        myUser = new User();
 
         // Start ActionBar
         ActionBar ab = getActionBar();

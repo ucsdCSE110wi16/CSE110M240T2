@@ -22,6 +22,7 @@ public class LessonList extends Activity {
 
     Intent thisIntent;
     Context ctx;
+    User myUser;
     TextView myProgress;
 
     int lessonNum;
@@ -40,6 +41,7 @@ public class LessonList extends Activity {
 
         thisIntent = this.getIntent();
         ctx = this;
+        myUser = new User();
 
 
         // Start ActionBar
@@ -68,7 +70,7 @@ public class LessonList extends Activity {
         titleText.setText(chapterTitle);
 
         // Fill in progress
-        checkProgress();
+        //checkProgress();
 
         homeButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -147,83 +149,48 @@ public class LessonList extends Activity {
 
         }
 
+        int numDone = checkDone();
+        String textToShow = ""+ numDone + "/" + lessonNum;
+        myProgress.setText(textToShow);
+
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        checkProgress();
+        int numDone = checkDone();
+        String textToShow = ""+ numDone + "/" + lessonNum;
+        myProgress.setText(textToShow);
 
     }
 
-    public void checkProgress() {
+    public int checkDone() {
 
-        String myString;
-        switch (chapterNum) {
+            System.out.print("Inside CheckDone");
+            int numLessons = 0;
+            for (int i = 0; i < myButtons.size(); i++) {
+                Button thisButton = myButtons.get(i);
+                int index = i + 1;
+                int check = myUser.retrieveQuestion(Integer.toString(chapterNum), Integer.toString(lessonNum), Integer.toString(index));
 
-            case 1:
+                System.out.println("After getting check");
 
-                if (QuestionList.numQuestionsCorrectC1L2 == 4) {
-
-                    myButtons.get(1).setBackgroundColor(Color.GREEN);
-                    myString = "1/" + lessonNum;
-                    myProgress.setText(myString);
+                if (check == -1) {
+                    System.out.println("Set Red");
+                    thisButton.setBackgroundColor(getResources().getColor(R.color.red));
+                } else if (check == 1) {
+                    System.out.println("Set Green");
+                    thisButton.setBackgroundColor(getResources().getColor(R.color.green));
+                    numLessons++;
 
                 } else {
-
-                    myButtons.get(1).setBackgroundColor(getResources().getColor(R.color.peter));
-                    myString = "0/" + lessonNum;
-                    myProgress.setText(myString);
+                    System.out.print("Default color");
+                    thisButton.setBackgroundColor(getResources().getColor(R.color.peter));
 
                 }
 
-                break; // end Chapter 1
-
-            case 2:
-
-                myString = "0/" + lessonNum;
-                myProgress.setText(myString);
-
-                break;  // end Chapter 2
-
-            case 3:
-
-                myString = "0/" + lessonNum;
-                myProgress.setText(myString);
-
-                break;
-
-            case 4:
-
-                myString = "0/" + lessonNum;
-                myProgress.setText(myString);
-
-                break;  // end Chapter 4
-
-//            case 5:
-//                switch (lessonNum) {
-//                    case 1:
-//                        QuestionList.c5l1[qNum-1] = value;
-//
-//                        break;  // end Chapter 5 Lesson 1
-//
-//                    case 2:
-//                        QuestionList.c5l2[qNum-1] = value;
-//                        break;  // end Chapter 5 Lesson 2
-//
-//                    default:
-//                        break;
-//
-//                }
-//                break;
-
-            default:
-
-                break;
-
-
-        }
-
-    }
+            }
+            return numLessons;
+   }
 
 }

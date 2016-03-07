@@ -48,6 +48,7 @@ public class MCQuestion extends Activity {
 
         thisIntent = this.getIntent();
         ctx = this;
+        myUser = new User();
 //        myPreferences = new Preferences(this);
 //        myUser = myPreferences.retrieveUserInfo();
 
@@ -139,10 +140,12 @@ public class MCQuestion extends Activity {
                     if (myButtonNum == correctAnswer) {
                         System.out.println("Correct Answer");
                         dialogBuilder.setMessage("Correct!");
+                        System.out.println(User.data);
                         myUser.updateQuestion(Integer.toString(chapterNum), Integer.toString(lessonNum), Integer.toString(qNum), true);
                     } else {
                         System.out.println("Incorrect Answer");
                         dialogBuilder.setMessage("Incorrect!");
+                        System.out.println(User.data);
                         myUser.updateQuestion(Integer.toString(chapterNum), Integer.toString(lessonNum), Integer.toString(qNum), false);
                     }
 
