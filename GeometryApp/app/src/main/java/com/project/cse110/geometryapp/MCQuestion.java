@@ -48,8 +48,8 @@ public class MCQuestion extends Activity {
 
         thisIntent = this.getIntent();
         ctx = this;
-        myPreferences = new Preferences(this);
-        myUser = myPreferences.retrieveUserInfo();
+//        myPreferences = new Preferences(this);
+//        myUser = myPreferences.retrieveUserInfo();
 
 
         // Start ActionBar
@@ -116,7 +116,7 @@ public class MCQuestion extends Activity {
             Button newButton = new Button(this);
 
             newButton.setTextColor(getResources().getColor(R.color.white));
-            newButton.setBackgroundColor(getResources().getColor(R.color.purple));
+            newButton.setBackgroundColor(getResources().getColor(R.color.peter));
 
             LinearLayout myLayout = (LinearLayout) findViewById(R.id.linearButtonLayout);
             LinearLayout.LayoutParams layParam = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);

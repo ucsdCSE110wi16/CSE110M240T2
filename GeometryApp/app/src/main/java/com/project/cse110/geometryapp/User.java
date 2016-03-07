@@ -85,9 +85,9 @@ public class User {
 
     public void updateQuestion(String chapter, String lesson, String question, boolean answer){
         if(answer) {
-            ref.child("data/" + chapter + "/" + lesson + "/" + question).setValue(1);
+            ref.child("data/c" + chapter + "/l" + lesson + "/q" + question).setValue(1);
         } else{
-            ref.child("data/" + chapter + "/" + lesson + "/" + question).setValue(-1);
+            ref.child("data/c" + chapter + "/l" + lesson + "/q" + question).setValue(-1);
         }
         ref.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -104,9 +104,9 @@ public class User {
 
     public void updateLesson(String chapter, String lesson, boolean answer){
         if (answer) {
-            ref.child("data/" + chapter + "/" + lesson + "/complete").setValue(1);
+            ref.child("data/c" + chapter + "/l" + lesson + "/complete").setValue(1);
         } else{
-            ref.child("data/" + chapter + "/" + lesson + "/complete").setValue(-1);
+            ref.child("data/c" + chapter + "/l" + lesson + "/complete").setValue(-1);
         }
         ref.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -122,9 +122,9 @@ public class User {
     }
     public void updateChapter(String chapter, boolean answer){
         if (answer) {
-            ref.child("data/" + chapter + "/complete").setValue(1);
+            ref.child("data/c" + chapter + "/complete").setValue(1);
         } else {
-            ref.child("data/" + chapter + "/complete").setValue(-1);
+            ref.child("data/c" + chapter + "/complete").setValue(-1);
         }
         ref.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
