@@ -12,7 +12,8 @@
         android:layout_weight="0.5"
         android:layout_gravity="center"
         android:id="@+id/home"
-        android:background="@android:color/white"
+        android:background="@color/peter"
+        android:textColor="@color/white"
         android:text="Home"
         android:textSize="15dp"
         android:contentDescription="Home"/>
@@ -21,6 +22,8 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="2"
+        android:background="@color/peter"
+        android:textColor="@color/white"
         android:textSize="20dp"
         android:maxHeight="30dp"
         android:layout_marginLeft="15dp"
@@ -28,17 +31,18 @@
         android:layout_gravity="center"
         android:gravity="center"
         android:id="@+id/actionBarTitle"
-        android:text="Geometry"
+        android:text="Gedu"
         tools:ignore="contentDescription"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textColor="@color/white"
         android:textSize="15dp"
         android:layout_weight="0.5"
         android:layout_gravity="center"
         android:id="@+id/progress"
-        android:background="@android:color/white" />
+        android:background="@color/peter" />
     <!--android:background="?android:selectableItemBackground" -->
 
 </LinearLayout>

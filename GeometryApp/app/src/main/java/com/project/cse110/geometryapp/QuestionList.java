@@ -119,7 +119,7 @@ public class QuestionList extends Activity {
 
             newButton.setText("Question " + (i+1));
             newButton.setTextColor(getResources().getColor(R.color.white));
-            newButton.setBackgroundColor(getResources().getColor(R.color.purple));
+            newButton.setBackgroundColor(getResources().getColor(R.color.peter));
             checkDone(newButton, i);
 
             qNum = i+1;

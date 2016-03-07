@@ -76,7 +76,7 @@ public class RegisterScreen extends Activity {
         myProgress.setVisibility(View.INVISIBLE);
         homeButton.setVisibility(View.INVISIBLE);
 
-        titleBar.setText("Geometry App");
+        //titleBar.setText("Geometry App");
 
         // Create the dialog builder
         dialogBuilder = new AlertDialog.Builder(this);
