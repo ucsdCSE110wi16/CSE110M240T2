@@ -313,7 +313,7 @@
 	            <question number='3' type='MCQ' completed='0'>
 	                <image>c5_l1_q3.png</image>
 	                <responses>A##B##C##D</responses>
-	                <answer>1</answer>
+	                <answer>4</answer>
 	            </question>
 	        </test>
 	    </lesson>
@@ -341,7 +341,7 @@
 	                <image>c5_l2_q4.png</image>
 	                <answer>72</answer>
 	            </question>
-	            <question number='5' type='Text' completed='0'>
+	            <question number='5' type='MCQ' completed='0'>
 	                <image>c5_l2_q5.png</image>
 	 				<responses>A##B##C##D</responses>
 	                <answer>3</answer>
