@@ -23,7 +23,7 @@ public class User {
     String uid;
     String email;
     public static Map data;
-    Firebase ref;
+    private static Firebase ref;
 
     public User(){}
 
