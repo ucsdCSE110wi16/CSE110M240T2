@@ -53,10 +53,10 @@ public class User {
     private Map createLessons(int num_questions){
         Map lesson = new HashMap();
         int i = 1;
-        lesson.put("complete", (int)0);
+        lesson.put("complete", "0");
         while (i <= num_questions){
             String q_number = "q"+Integer.toString(i);
-            lesson.put(q_number, (int)0);
+            lesson.put(q_number, "0");
             i++;
         }
         return lesson;
@@ -65,7 +65,7 @@ public class User {
     private Map createChapter(int num_lessons, int[] question_numbers){
         Map chapter = new HashMap();
         int i = 1;
-        chapter.put("complete", (int)0);
+        chapter.put("complete", "0");
         while (i <= num_lessons){
             String l_number = "l"+Integer.toString(i);
             chapter.put(l_number, createLessons(question_numbers[i - 1]));
@@ -90,22 +90,23 @@ public class User {
     public void updateQuestion(String chapter, String lesson, String question, boolean answer){
         Map lessonMap = retrieveLessonMap(chapter, lesson);
         if(answer) {
-            ref.child("data/c" + chapter + "/l" + lesson + "/q" + question).setValue(1);
-            lessonMap.put("q" + question, 1);
+            System.out.println("IN UPDATEQ "+ ref);
+            ref.child("data/c" + chapter + "/l" + lesson + "/q" + question).setValue("1");
+            lessonMap.put("q" + question, "1");
         } else{
-            ref.child("data/c" + chapter + "/l" + lesson + "/q" + question).setValue(-1);
-            lessonMap.put("q" + question, -1);
+            ref.child("data/c" + chapter + "/l" + lesson + "/q" + question).setValue("-1");
+            lessonMap.put("q" + question, "-1");
         }
     }
 
     public void updateLesson(String chapter, String lesson, boolean answer){
         Map lessonMap = retrieveLessonMap(chapter, lesson);
         if (answer) {
-            ref.child("data/c" + chapter + "/l" + lesson + "/complete").setValue(1);
-            lessonMap.put("complete", 1);
+            ref.child("data/c" + chapter + "/l" + lesson + "/complete").setValue((int)1);
+            lessonMap.put("complete", "1");
         } else{
-            ref.child("data/c" + chapter + "/l" + lesson + "/complete").setValue(-1);
-            lessonMap.put("complete", -1);
+            ref.child("data/c" + chapter + "/l" + lesson + "/complete").setValue((int)-1);
+            lessonMap.put("complete", "-1");
         }
 
 
@@ -113,11 +114,11 @@ public class User {
     public void updateChapter(String chapter, boolean answer){
         Map chapterMap = retrieveChapterMap(chapter);
         if (answer) {
-            ref.child("data/c" + chapter + "/complete").setValue(1);
-            chapterMap.put("complete", 1 );
+            ref.child("data/c" + chapter + "/complete").setValue((int)1);
+            chapterMap.put("complete", "1");
         } else {
-            ref.child("data/c" + chapter + "/complete").setValue(-1);
-            chapterMap.put("complete", 1);
+            ref.child("data/c" + chapter + "/complete").setValue((int)-1);
+            chapterMap.put("complete", "-1");
         }
     }
 
@@ -136,6 +137,7 @@ public class User {
             Map chapterMap = (Map) getData().get("c" + chapter);
             try {
                 Map lessonMap = (Map) chapterMap.get("l" + lesson);
+                System.out.println("LESSON MAP "+lessonMap);
                 return lessonMap;
 
             } catch (NullPointerException e) {
@@ -144,13 +146,15 @@ public class User {
         } catch (NullPointerException e) {
             System.out.println("Unlisted Chapter");
         }
+        System.out.println("RETURNING NULL");
         return null;
     }
 
     public int retrieveQuestion(String chapter, String lesson, String question){
         Map lessonMap = retrieveLessonMap(chapter, lesson);
         try{
-            return (int) lessonMap.get("q"+question);
+            System.out.println(lessonMap.get("q" + question));
+            return Integer.valueOf((String) lessonMap.get("q"+question));
         }catch(NullPointerException e){
             System.out.println("Unlisted Question");
         }
@@ -159,7 +163,7 @@ public class User {
     public int retrieveLesson(String chapter, String lesson){
         Map lessonMap = retrieveLessonMap(chapter, lesson);
         if (lessonMap != null){
-            return (int) lessonMap.get("complete");
+            return Integer.valueOf((String) lessonMap.get("complete"));
         }
         return 0;
     }
@@ -167,7 +171,7 @@ public class User {
     public int retrieveChapter(String chapter) {
         Map chapterMap = retrieveChapterMap(chapter);
         if (chapterMap != null) {
-            return (int) chapterMap.get("complete");
+            return Integer.valueOf((String) chapterMap.get("complete"));
         }
         return 0;
     }
