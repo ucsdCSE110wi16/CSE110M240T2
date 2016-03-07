@@ -76,10 +76,10 @@ public class User {
 
     public void createData(){
         Map data = new HashMap();
-        int[] lesson_numbers = {2,3,2,1};
-        int[][] question_numbers = {new int[]{7,4},new int[]{3,7,4}, new int[]{5,5}, new int[]{5,4,5}};
+        int[] lesson_numbers = {2,3,2,1,2};
+        int[][] question_numbers = {new int[]{7,4},new int[]{3,7,4}, new int[]{5,5}, new int[]{5,4,5}, new int[]{3,5}};
         int i = 1;
-        while (i <= 4){
+        while (i <= 5){
             String c_number = "c"+Integer.valueOf(i);
             data.put(c_number, createChapter(lesson_numbers[i - 1], question_numbers[i - 1]));
             i++;
