@@ -76,7 +76,7 @@ public class User {
 
     public void createData(){
         Map data = new HashMap();
-        int[] lesson_numbers = {2,3,2,1,2};
+        int[] lesson_numbers = {2,3,2,3,2};
         int[][] question_numbers = {new int[]{7,4},new int[]{3,7,4}, new int[]{5,5}, new int[]{5,4,5}, new int[]{3,5}};
         int i = 1;
         while (i <= 5){

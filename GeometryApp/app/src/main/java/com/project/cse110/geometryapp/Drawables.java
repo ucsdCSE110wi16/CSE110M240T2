@@ -353,6 +353,12 @@ public class Drawables {
                                 return (R.drawable.c4_l1_q1);
                             case 2:
                                 return (R.drawable.c4_l1_q2);
+                            case 3:
+                                return (R.drawable.c4_l1_q3);
+                            case 4:
+                                return (R.drawable.c4_l1_q4);
+                            case 5:
+                                return (R.drawable.c4_l1_q5);
 
                             default:
                                 return -1;
