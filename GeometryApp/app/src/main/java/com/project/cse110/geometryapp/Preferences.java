@@ -4,7 +4,12 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
+import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
+import com.firebase.client.FirebaseError;
+import com.firebase.client.ValueEventListener;
+
+import java.util.Map;
 
 /**
  * Created by Migal on 2/29/2016.
@@ -40,7 +45,21 @@ public class Preferences {
     }
 
     public User retrieveUserInfo(){
-        return new User(retrieveUIDInfo(), retrieveEmailInfo(), retrieveRefInfo());
+        final User user =  new User(retrieveRefInfo());
+        user.getRef().addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                //User holder = dataSnapshot.getValue(holder);
+                user.data = (Map) dataSnapshot.child("data").getValue();
+                System.out.println("HERE"+user.data);
+            }
+
+            @Override
+            public void onCancelled(FirebaseError firebaseError) {
+
+            }
+        });
+        return user;
     }
 
     public boolean checkForUserInfo(){
