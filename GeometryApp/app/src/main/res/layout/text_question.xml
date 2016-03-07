@@ -15,6 +15,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/textQuestionImage"
             android:layout_gravity="center_horizontal"
+            android:layout_margin="10dp"
             android:layout_weight="3.5"/>
 
         <LinearLayout
@@ -28,7 +29,7 @@
             <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:inputType="numberSigned"
+                android:inputType="textUri"
                 android:ems="10"
                 android:imeOptions="flagNoExtractUi|actionGo"
                 android:background="@drawable/login_field"
