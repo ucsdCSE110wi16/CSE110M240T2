@@ -22,10 +22,14 @@ import java.util.Stack;
 public class User {
     String uid;
     String email;
-    Map data;
+    public static Map data;
     Firebase ref;
 
     public User(){}
+
+    public User(Firebase ref){
+        this.ref = ref;
+    }
 
     public User(String uid, String email, Firebase ref){
         this.uid = uid;
