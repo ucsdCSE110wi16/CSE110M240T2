@@ -26,10 +26,10 @@ public class TextQuestion extends Activity{
 
     Intent thisIntent;
     Context ctx;
-    Preferences myPreferences;
     User myUser;
 
     EditText answerText;
+    Button submit;
     AlertDialog dialog;
     AlertDialog.Builder dialogBuilder;
 
@@ -47,7 +47,6 @@ public class TextQuestion extends Activity{
 
         thisIntent = this.getIntent();
         ctx = this;
-//        myPreferences = new Preferences(this);
         myUser = new User();
 
         // Start ActionBar
@@ -84,7 +83,7 @@ public class TextQuestion extends Activity{
 
         answerText = (EditText) findViewById(R.id.answerText);
         ImageView questionImage = (ImageView) findViewById(R.id.textQuestionImage);
-        Button submit = (Button) findViewById(R.id.submitButton);
+        submit = (Button) findViewById(R.id.submitButton);
         answerText.clearFocus();
 
         // Create the dialog builder
@@ -104,10 +103,6 @@ public class TextQuestion extends Activity{
         Drawables draw = new Drawables(chapterNum, lessonNum);
         int image = draw.getQuestionImage(qNum);
         questionImage.setImageResource(image);
-
-        //getQuestionImage(questionImage);
-
-
 
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -145,6 +140,7 @@ public class TextQuestion extends Activity{
             }
         });
 
+        checkComplete();
 
     }
 
@@ -156,145 +152,19 @@ public class TextQuestion extends Activity{
 
     }
 
+    public void checkComplete() {
 
-//    /*
-//
-//    Set the buttons to green or red based on correct or incorrect answers
-//
-//    */
-//    public void setStaticArray(int value, boolean correct) {
-//        switch (chapterNum) {
-//
-//            case 1:
-//                switch (lessonNum) {
-//                    case 1:
-//                        QuestionList.c1l1[qNum-1] = value;
-//
-//                        if (correct) {
-//                            QuestionList.numQuestionsCorrectC1L1++;
-//                        }
-//
-//                        break; // end Lesson 1
-//
-//                    case 2:
-//                        QuestionList.c1l2[qNum-1] = value;
-//                        if (correct) {
-//                            QuestionList.numQuestionsCorrectC1L2++;
-//                        }
-//                        break;
-//
-//                    default:
-//                        break; // end Chapter 1 Lesson 2
-//
-//
-//                }
-//                break; // end Chapter 1
-//
-//            case 2:
-//                switch (lessonNum) {
-//                    case 1:
-//                        QuestionList.c2l1[qNum-1] = value;
-//                        if (correct) {
-//                            QuestionList.numQuestionsCorrectC2L1++;
-//                        }
-//                        break; // end Chapter 2 Lesson 1
-//
-//                    case 2:
-//                        QuestionList.c2l2[qNum-1] = value;
-//                        if (correct) {
-//                            QuestionList.numQuestionsCorrectC2L2++;
-//                        }
-//                        break;  // end Chapter 2 Lesson 2
-//
-//                    case 3:
-//                        QuestionList.c2l3[qNum-1] = value;
-//                        if (correct) {
-//                            QuestionList.numQuestionsCorrectC2L3++;
-//                        }
-//                        break;
-//
-//                    default:
-//                        break; // end Chapter 2 Lesson 3
-//
-//                }
-//                break;  // end Chapter 2
-//
-//            case 3:
-//                switch (lessonNum) {
-//                    case 1:
-//                        QuestionList.c3l1[qNum-1] = value;
-//                        if (correct) {
-//                            QuestionList.numQuestionsCorrectC3L1++;
-//                        }
-//                        break; // end Chapter 3 Lesson 1
-//
-//                    case 2:
-//                        QuestionList.c3l2[qNum-1] = value;
-//                        if (correct) {
-//                            QuestionList.numQuestionsCorrectC3L2++;
-//                        }
-//                        break;
-//
-//                    default:
-//                        break; // end Chapter 3 Lesson 2
-//
-//                }
-//                break;
-//
-//            case 4:
-//                switch (lessonNum) {
-//                    case 1:
-//                        QuestionList.c4l1[qNum-1] = value;
-//                        if (correct) {
-//                            QuestionList.numQuestionsCorrectC4L1++;
-//                        }
-//                        break; // end Chapter 4 Lesson 1
-//
-//                    case 2:
-//                        QuestionList.c4l2[qNum-1] = value;
-//                        if (correct) {
-//                            QuestionList.numQuestionsCorrectC4L2++;
-//                        }
-//                        break;  // end Chapter 4 Lesson 2
-//
-//                    case 3:
-//                        QuestionList.c4l3[qNum-1] = value;
-//                        if (correct) {
-//                            QuestionList.numQuestionsCorrectC4L3++;
-//                        }
-//                        break;  // end Chapter 4 Lesson 3
-//
-//                    default:
-//                        break;
-//
-//                }
-//                break;  // end Chapter 4
-//
-////            case 5:
-////                switch (lessonNum) {
-////                    case 1:
-////                        QuestionList.c5l1[qNum-1] = value;
-////
-////                        break;  // end Chapter 5 Lesson 1
-////
-////                    case 2:
-////                        QuestionList.c5l2[qNum-1] = value;
-////                        break;  // end Chapter 5 Lesson 2
-////
-////                    default:
-////                        break;
-////
-////                }
-////                break;
-//
-//            default:
-//
-//                break;
-//
-//
-//        }
-//
-//    }
+        int done = myUser.retrieveQuestion(Integer.toString(chapterNum), Integer.toString(lessonNum), Integer.toString(qNum));
+
+        if (done == 1) {
+
+            answerText.setText(answers.get(0));
+            answerText.setFocusable(false);
+            submit.setClickable(false);
+
+        }
+
+    }
 
 
 }

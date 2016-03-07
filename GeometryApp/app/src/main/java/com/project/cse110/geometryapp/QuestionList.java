@@ -211,6 +211,11 @@ public class QuestionList extends Activity {
             }
 
         }
+        if (numQuestions == this.numQuestions) {
+            System.out.println("Q == Q");
+            myUser.updateLesson(Integer.toString(chapterNum), Integer.toString(lessonNum), true);
+
+        }
         return numQuestions;
 
     } // end CheckDone

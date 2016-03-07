@@ -171,7 +171,7 @@ public class LessonList extends Activity {
             for (int i = 0; i < myButtons.size(); i++) {
                 Button thisButton = myButtons.get(i);
                 int index = i + 1;
-                int check = myUser.retrieveQuestion(Integer.toString(chapterNum), Integer.toString(lessonNum), Integer.toString(index));
+                int check = myUser.retrieveLesson(Integer.toString(chapterNum), Integer.toString(index));
 
                 System.out.println("After getting check");
 
