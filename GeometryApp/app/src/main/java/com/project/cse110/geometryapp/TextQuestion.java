@@ -85,6 +85,7 @@ public class TextQuestion extends Activity{
         answerText = (EditText) findViewById(R.id.answerText);
         ImageView questionImage = (ImageView) findViewById(R.id.textQuestionImage);
         Button submit = (Button) findViewById(R.id.submitButton);
+        answerText.clearFocus();
 
         // Create the dialog builder
         dialogBuilder = new AlertDialog.Builder(this);
