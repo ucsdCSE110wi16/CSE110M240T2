@@ -155,7 +155,7 @@ public class RegisterScreen extends Activity {
                                     dialogBuilder.setMessage("Please Check Your Internet Connection");
                                 } else {
                                     dialogBuilder.setMessage("Error Connecting to Database");
-                                    
+
                                 }
 
                             }
