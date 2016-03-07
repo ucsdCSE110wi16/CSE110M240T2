@@ -119,8 +119,9 @@ public class MCQuestion extends Activity {
             newButton.setBackgroundColor(getResources().getColor(R.color.peter));
 
             LinearLayout myLayout = (LinearLayout) findViewById(R.id.linearButtonLayout);
-            LinearLayout.LayoutParams layParam = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+            LinearLayout.LayoutParams layParam = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT, 1f);
             layParam.setMargins(10, 10, 10, 10);
+            myLayout.setWeightSum(responses.size());
 
             // Add the buttons with the layout params
             myLayout.addView(newButton, layParam);
