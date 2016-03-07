@@ -77,7 +77,7 @@ public class LoginScreen extends Activity {
         myProgress.setVisibility(View.INVISIBLE);
         homeButton.setVisibility(View.INVISIBLE);
 
-        titleBar.setText("Geometry App");
+        //titleBar.setText("Geometry App");
 
         // Create the dialog box
         dialogBuilder = new AlertDialog.Builder(this);
@@ -91,16 +91,7 @@ public class LoginScreen extends Activity {
             }
         });
 
-        boolean networkConnected;
-        boolean internetConnected;
-        networkConnected = isNetworkAvailable();
-        internetConnected = isOnline();
 
-        if (networkConnected == false && internetConnected == false ) {
-            dialogBuilder.setMessage("No internet connection");
-            dialog = dialogBuilder.create();
-            dialog.show();
-        }
 
         editTextEmail = (EditText) findViewById(R.id.etUsername);
         editTextPassword = (EditText) findViewById(R.id.etPassword);
@@ -113,6 +104,20 @@ public class LoginScreen extends Activity {
                 System.out.println("Login Button clicked");
                 String emailID = editTextEmail.getText().toString();
                 String password = editTextPassword.getText().toString();
+
+                // Check for internet connection
+                boolean networkConnected;
+                boolean internetConnected;
+                networkConnected = isNetworkAvailable();
+                internetConnected = isOnline();
+
+                if (networkConnected == false && internetConnected == false ) {
+                    dialogBuilder.setMessage("No internet connection");
+                    dialog = dialogBuilder.create();
+                    dialog.show();
+                    return;
+                }
+                System.out.println("Past network check");
 
                 final Firebase ref = new Firebase("https://cse110geometry.firebaseio.com");
                 //Query queryRef = ref.orderByChild("email").equalTo(R.id.etUsername);
@@ -142,6 +147,7 @@ public class LoginScreen extends Activity {
                         dialog.show();
                     }
                 });
+
 
             }
         });

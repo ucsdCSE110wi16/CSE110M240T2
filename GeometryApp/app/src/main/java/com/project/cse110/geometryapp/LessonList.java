@@ -104,7 +104,7 @@ public class LessonList extends Activity {
             myLayout.addView(newButton, layParam);
             //newButton.setGravity(Gravity.CENTER_HORIZONTAL | Gravity.CENTER_VERTICAL);
             newButton.setText(lessonTitles.get(i));
-            newButton.setBackgroundColor(getResources().getColor(R.color.purple));
+            newButton.setBackgroundColor(getResources().getColor(R.color.peter));
             newButton.setTextColor(getResources().getColor(R.color.white));
 
 
@@ -171,7 +171,7 @@ public class LessonList extends Activity {
 
                 } else {
 
-                    myButtons.get(1).setBackgroundColor(getResources().getColor(R.color.purple));
+                    myButtons.get(1).setBackgroundColor(getResources().getColor(R.color.peter));
                     myString = "0/" + lessonNum;
                     myProgress.setText(myString);
 
