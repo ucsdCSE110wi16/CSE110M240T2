@@ -102,10 +102,10 @@ public class User {
     public void updateLesson(String chapter, String lesson, boolean answer){
         Map lessonMap = retrieveLessonMap(chapter, lesson);
         if (answer) {
-            ref.child("data/c" + chapter + "/l" + lesson + "/complete").setValue((int)1);
+            ref.child("data/c" + chapter + "/l" + lesson + "/complete").setValue("1");
             lessonMap.put("complete", "1");
         } else{
-            ref.child("data/c" + chapter + "/l" + lesson + "/complete").setValue((int)-1);
+            ref.child("data/c" + chapter + "/l" + lesson + "/complete").setValue("-1");
             lessonMap.put("complete", "-1");
         }
 
@@ -114,10 +114,10 @@ public class User {
     public void updateChapter(String chapter, boolean answer){
         Map chapterMap = retrieveChapterMap(chapter);
         if (answer) {
-            ref.child("data/c" + chapter + "/complete").setValue((int)1);
+            ref.child("data/c" + chapter + "/complete").setValue("1");
             chapterMap.put("complete", "1");
         } else {
-            ref.child("data/c" + chapter + "/complete").setValue((int)-1);
+            ref.child("data/c" + chapter + "/complete").setValue("-1");
             chapterMap.put("complete", "-1");
         }
     }
