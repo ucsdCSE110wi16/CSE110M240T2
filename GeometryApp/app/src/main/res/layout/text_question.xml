@@ -30,6 +30,7 @@
                 android:layout_height="wrap_content"
                 android:inputType="numberSigned"
                 android:ems="10"
+                android:imeOptions="flagNoExtractUi|actionGo"
                 android:background="@drawable/login_field"
                 android:hint="Answer"
                 android:textColorHint="@color/lightGrey"
