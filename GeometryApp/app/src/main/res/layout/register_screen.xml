@@ -2,21 +2,23 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:padding="10dp"
     android:orientation="vertical"
-    android:background="@color/lightBlue"
+    android:background="@color/white"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <TextView
         android:layout_width="wrap_content"
         android:text="E-Mail"
-        android:textColor="@color/white"
+        android:textColor="@color/peter"
         android:layout_height="wrap_content"
         android:textSize="20dp" />
 
     <EditText
         android:id="@+id/regUsername"
         android:layout_width="match_parent"
-        android:textColor="@color/white"
+        android:textColor="@color/peter"
+        android:hint="Username"
+        android:textColorHint="@color/lightGrey"
         android:layout_marginBottom="10dp"
         android:layout_height="wrap_content"
         android:textStyle="bold"
@@ -24,14 +26,16 @@
 
     <TextView
         android:layout_width="wrap_content"
-        android:textColor="@color/white"
+        android:textColor="@color/peter"
         android:text="Password"
         android:layout_height="wrap_content"
         android:textSize="20dp" />
 
     <EditText
         android:id="@+id/regPassword"
-        android:textColor="@color/white"
+        android:textColor="@color/peter"
+        android:hint="Password"
+        android:textColorHint="@color/lightGrey"
         android:layout_width="match_parent"
         android:layout_marginBottom="10dp"
         android:inputType="textPassword"
@@ -41,14 +45,16 @@
 
     <TextView
         android:layout_width="wrap_content"
-        android:textColor="@color/white"
+        android:textColor="@color/peter"
         android:text="Confirm Password"
         android:layout_height="wrap_content"
         android:textSize="20dp" />
 
     <EditText
         android:id="@+id/confirmPassword"
-        android:textColor="@color/white"
+        android:textColor="@color/peter"
+        android:hint="Confirm Password"
+        android:textColorHint="@color/lightGrey"
         android:layout_width="match_parent"
         android:layout_marginBottom="10dp"
         android:inputType="textPassword"
@@ -59,7 +65,7 @@
     <Button
         android:id="@+id/bRegister"
         android:text="Register"
-        android:background="@color/purple"
+        android:background="@color/peter"
         android:textColor="@color/white"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

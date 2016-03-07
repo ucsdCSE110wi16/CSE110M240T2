@@ -140,6 +140,30 @@ public class Drawables {
                         return array;
 
 
+                } // end lesson 4
+
+            case 5:
+                switch(lessonNum) {
+
+                    case 1:
+                        array.add(-1);
+                        array.add(-1);
+
+                        return array;
+
+
+                    case 2:
+                        array.add(-1);
+                        array.add(-1);
+                        array.add(-1);
+                        array.add(-1);
+                        array.add(-1);
+
+                        return array;
+
+                    default:
+                        return null;
+
                 }
 
             default:

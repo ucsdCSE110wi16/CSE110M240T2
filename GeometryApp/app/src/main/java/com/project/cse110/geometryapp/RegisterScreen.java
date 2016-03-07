@@ -4,8 +4,11 @@ import android.app.ActionBar;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Application;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.widget.EditText;
@@ -73,7 +76,7 @@ public class RegisterScreen extends Activity {
         myProgress.setVisibility(View.INVISIBLE);
         homeButton.setVisibility(View.INVISIBLE);
 
-        titleBar.setText("Geometry App");
+        //titleBar.setText("Geometry App");
 
         // Create the dialog builder
         dialogBuilder = new AlertDialog.Builder(this);
@@ -90,6 +93,17 @@ public class RegisterScreen extends Activity {
         registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+//                boolean networkConnected;
+//                boolean internetConnected;
+//                networkConnected = isNetworkAvailable();
+//                internetConnected = isOnline();
+//                if (networkConnected == false && internetConnected == false ) {
+//                    dialogBuilder.setMessage("No internet connection");
+//                    dialog = dialogBuilder.create();
+//                    dialog.show();
+//                }
+
                 final String emailID = editTextEmail.getText().toString();
                 String password = editTextPassword.getText().toString();
                 String confirmPassword = editConfirmPassword.getText().toString();
@@ -126,12 +140,24 @@ public class RegisterScreen extends Activity {
                         @Override
                         public void onError(FirebaseError firebaseError) {
                             // there was an error
-                            System.out.println("There was an error reg istering your account: " + firebaseError.getMessage());
+                            System.out.println("There was an error registering your account: " + firebaseError.getMessage());
 
                             if (firebaseError.getMessage().equals("The specified email address is invalid.")) {
                                 dialogBuilder.setMessage("Invalid Email Address");
                             } else if (firebaseError.getMessage().equals("The specified email address is already in use.")) {
                                 dialogBuilder.setMessage("The Email Address is already in use");
+                            } else {
+                                boolean networkConnected;
+                                boolean internetConnected;
+                                networkConnected = isNetworkAvailable();
+                                internetConnected = isOnline();
+                                if (networkConnected == false && internetConnected == false ) {
+                                    dialogBuilder.setMessage("Please Check Your Internet Connection");
+                                } else {
+                                    dialogBuilder.setMessage("Error Connecting to Database");
+                                    
+                                }
+
                             }
 
                             dialogBuilder.setNeutralButton("Ok", new DialogInterface.OnClickListener() {
@@ -171,10 +197,49 @@ public class RegisterScreen extends Activity {
 
     }
 
+    private boolean isNetworkAvailable() {
+        dialogBuilder = new AlertDialog.Builder(this);
+        dialogBuilder.setCancelable(false);
+        dialogBuilder.setNeutralButton("Ok", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+                System.out.println("Inside OK");
+
+            }
+        });
+        ConnectivityManager connectivityManager
+                = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+        boolean connected;
+        return activeNetworkInfo != null && activeNetworkInfo.isConnected();
+    }
+
+    public Boolean isOnline() {
+        try {
+            Process p1 = java.lang.Runtime.getRuntime().exec("ping -c 1 www.google.com");
+            int returnVal = p1.waitFor();
+            boolean reachable = (returnVal==0);
+            return reachable;
+        } catch (Exception e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        return false;
+    }
+
     @Override
     public void onStop() {
         super.onStop();
         finish();
+
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent newIntent = new Intent(RegisterScreen.this, LoginScreen.class);
+        startActivity(newIntent);
 
     }
 }

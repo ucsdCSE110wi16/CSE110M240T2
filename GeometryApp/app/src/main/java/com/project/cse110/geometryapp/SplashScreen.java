@@ -33,7 +33,7 @@ public class SplashScreen extends Activity {
                 } finally {
                     // Start the next intent, the MainActivity
                     Preferences user_info = new Preferences(getApplicationContext());
-                    if (user_info.checkForUserInfo()){
+                   if (user_info.checkForUserInfo()){
                         Intent main = new Intent(SplashScreen.this, Main.class);
                         startActivity(main);
                     }else {

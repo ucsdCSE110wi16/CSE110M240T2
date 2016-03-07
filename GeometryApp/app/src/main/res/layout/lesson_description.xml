@@ -46,7 +46,7 @@
     <Button
         android:layout_width="140dp"
         android:layout_height="wrap_content"
-        android:background="@color/purple"
+        android:background="@color/peter"
         android:textColor="@color/white"
         android:text="Done"
         android:id="@+id/next"
