@@ -26,12 +26,12 @@ public class CheckQuestion extends Activity {
 
     Intent thisIntent;
     Context ctx;
-    Preferences myPreferences;
     User myUser;
 
     AlertDialog dialog;
     AlertDialog.Builder dialogBuilder;
     ArrayList<CheckBox> checks;
+    Button submitButton;
 
     String chapterTitle;
     int chapterNum;
@@ -49,8 +49,7 @@ public class CheckQuestion extends Activity {
         thisIntent = this.getIntent();
         ctx = this;
 
-//        myPreferences = new Preferences(this);
-//        myUser = myPreferences.retrieveUserInfo();
+        myUser = new User();
 
         // Start ActionBar
         ActionBar ab = getActionBar();
@@ -111,9 +110,6 @@ public class CheckQuestion extends Activity {
             CheckBox newCheck = new CheckBox(this);
             checks.add(newCheck);
 
-//            newCheck.setTextColor(getResources().getColor(R.color.white));
-//            newCheck.setBackgroundColor(getResources().getColor(R.color.purple));
-
             LinearLayout myLayout;
 
             if (i < 2) {
@@ -133,7 +129,7 @@ public class CheckQuestion extends Activity {
 
         }
 
-        Button submitButton = (Button) findViewById(R.id.checkSubmit);
+        submitButton = (Button) findViewById(R.id.checkSubmit);
 
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -184,6 +180,7 @@ public class CheckQuestion extends Activity {
             }
         });
 
+        checkComplete();
 
 
     }
@@ -192,6 +189,42 @@ public class CheckQuestion extends Activity {
     public void onStop() {
         super.onStop();
         finish();
+
+    }
+
+    /*
+        Check if the question has been completed.
+        Select the correct answers and
+
+     */
+    public void checkComplete() {
+
+        int done = myUser.retrieveQuestion(Integer.toString(chapterNum), Integer.toString(lessonNum), Integer.toString(qNum));
+
+        if (done == 1) {
+
+            // Check every CheckBox
+            for (int i = 0; i < checks.size(); i++) {
+
+                CheckBox currBox = checks.get(i);
+
+                // Check for every answer
+                for (int j = 0; j < answers.size(); j++) {
+                    String ans = answers.get(j);
+
+                    if (currBox.getText().equals(ans)) {
+
+                        currBox.setChecked(true);
+
+                    }
+                }
+
+                currBox.setClickable(false);
+
+            }
+
+            submitButton.setClickable(false);
+        }
 
     }
 

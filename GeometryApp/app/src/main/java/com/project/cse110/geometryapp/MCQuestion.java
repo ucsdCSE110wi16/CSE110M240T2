@@ -24,7 +24,6 @@ public class MCQuestion extends Activity {
 
     Intent thisIntent;
     Context ctx;
-    Preferences myPreferences;
     User myUser;
 
     AlertDialog answerAlert;
@@ -39,6 +38,7 @@ public class MCQuestion extends Activity {
     String chapterTitle;
     ArrayList<String> responses;
     ArrayList<String> answers;
+    ArrayList<Button> myButtons;
 
     @Override
     public void onCreate(Bundle savedInstance) {
@@ -48,9 +48,7 @@ public class MCQuestion extends Activity {
 
         thisIntent = this.getIntent();
         ctx = this;
-//        myPreferences = new Preferences(this);
-//        myUser = myPreferences.retrieveUserInfo();
-
+        myUser = new User();
 
         // Start ActionBar
         ActionBar ab = getActionBar();
@@ -109,11 +107,12 @@ public class MCQuestion extends Activity {
         int imageDrawable = draw.getQuestionImage(qNum);
         image.setImageResource(imageDrawable);
 
-        //getQuestionImage(image);
+        myButtons = new ArrayList<>();
 
         // Create MC buttons
         for (int i = 0; i < responses.size(); i++) {
             Button newButton = new Button(this);
+            myButtons.add(newButton);
 
             newButton.setTextColor(getResources().getColor(R.color.white));
             newButton.setBackgroundColor(getResources().getColor(R.color.peter));
@@ -139,10 +138,12 @@ public class MCQuestion extends Activity {
                     if (myButtonNum == correctAnswer) {
                         System.out.println("Correct Answer");
                         dialogBuilder.setMessage("Correct!");
+                        System.out.println(User.data);
                         myUser.updateQuestion(Integer.toString(chapterNum), Integer.toString(lessonNum), Integer.toString(qNum), true);
                     } else {
                         System.out.println("Incorrect Answer");
                         dialogBuilder.setMessage("Incorrect!");
+                        System.out.println(User.data);
                         myUser.updateQuestion(Integer.toString(chapterNum), Integer.toString(lessonNum), Integer.toString(qNum), false);
                     }
 
@@ -162,6 +163,8 @@ public class MCQuestion extends Activity {
 
         }
 
+        checkComplete();
+
     }
 
 
@@ -172,493 +175,31 @@ public class MCQuestion extends Activity {
 
     }
 
-
     /*
-        Called to set the image of the question.
-        Param: the image view to set the png for.
-
+        Checks if the question has been completed correctly
      */
-//    public void getQuestionImage(ImageView image) {
-//        System.out.println("Getting Question Image");
-//
-//        switch (chapterNum) {
-//
-//            case 1:
-//                switch (lessonNum) {
-//                    case 1:
-//                        switch (qNum) {
-//
-//                            case 1:
-//                                image.setImageResource(R.drawable.c1_l1_q1);
-//                                break;
-//                            case 2:
-//                                image.setImageResource(R.drawable.c1_l1_q2);
-//                                break;
-//                            case 3:
-//                                image.setImageResource(R.drawable.c1_l1_q3);
-//                                break;
-//                            case 4:
-//                                image.setImageResource(R.drawable.c1_l1_q4);
-//                                break;
-//                            case 5:
-//                                image.setImageResource(R.drawable.c1_l1_q5);
-//                                break;
-//                            case 6:
-//                                image.setImageResource(R.drawable.c1_l1_q6);
-//                                break;
-//                            case 7:
-//                                image.setImageResource(R.drawable.c1_l1_q7);
-//                                break;
-//                            default:
-//                                break;
-//
-//
-//                        }
-//
-//                        break; // end Lesson 1
-//
-//                    case 2:
-//                        switch (qNum) {
-//                            case 1:
-//                                image.setImageResource(R.drawable.c1_l2_q1);
-//                                break;
-//                            case 2:
-//                                image.setImageResource(R.drawable.c1_l2_q2);
-//                                break;
-//                            case 3:
-//                                image.setImageResource(R.drawable.c1_l2_q3);
-//                                break;
-//                            case 4:
-//                                image.setImageResource(R.drawable.c1_l2_q4);
-//                                break;
-//                            case 5:
-//                                image.setImageResource(R.drawable.c1_l2_q5);
-//                                break;
-//                            default:
-//                                break;
-//
-//
-//                        }
-//                        break;
-//
-//                    default:
-//                        break; // end Chapter 1 Lesson 2
-//
-//
-//                }
-//                break; // end Chapter 1
-//
-//            case 2:
-//                switch (lessonNum) {
-//                    case 1:
-//                        switch (qNum) {
-//                            case 1:
-//                                image.setImageResource(R.drawable.c2_l1_q1);
-//                                break;
-//                            case 2:
-//                                image.setImageResource(R.drawable.c2_l1_q2);
-//                                break;
-//                            case 3:
-//                                image.setImageResource(R.drawable.c2_l1_q3);
-//                                break;
-//
-//                            default:
-//                                break;
-//
-//
-//                        }
-//
-//                        break; // end Chapter 2 Lesson 1
-//
-//                    case 2:
-//                        switch (qNum) {
-//                            case 1:
-//                                image.setImageResource(R.drawable.c2_l2_q1);
-//                                break;
-//                            case 2:
-//                                image.setImageResource(R.drawable.c2_l2_q2);
-//                                break;
-//                            case 3:
-//                                image.setImageResource(R.drawable.c2_l2_q3);
-//                                break;
-//                            case 4:
-//                                image.setImageResource(R.drawable.c2_l2_q4);
-//                                break;
-//                            case 5:
-//                                image.setImageResource(R.drawable.c2_l2_q5);
-//                                break;
-//                            case 6:
-//                                image.setImageResource(R.drawable.c2_l2_q6);
-//                                break;
-//                            case 7:
-//                                image.setImageResource(R.drawable.c2_l2_q7);
-//                                break;
-//
-//                            default:
-//                                break; // end Chapter 2 Lesson 2
-//
-//
-//                        }
-//                        break;
-//
-//                    case 3:
-//                        switch (qNum) {
-//                            case 1:
-//                                image.setImageResource(R.drawable.c2_l3_q1);
-//                                break;
-//                            case 2:
-//                                image.setImageResource(R.drawable.c2_l3_q2);
-//                                break;
-//                            case 3:
-//                                image.setImageResource(R.drawable.c2_l3_q3);
-//                                break;
-//                            case 4:
-//                                image.setImageResource(R.drawable.c2_l3_q4);
-//                                break;
-//
-//                            default:
-//                                break;
-//
-//                        }
-//                        break;
-//
-//                    default:
-//                        break; // end Chapter 2 Lesson 3
-//
-//                }
-//                break;  // end Chapter 2
-//
-//            case 3:
-//                switch (lessonNum) {
-//                    case 1:
-//                        switch (qNum) {
-//                            case 1:
-//                                image.setImageResource(R.drawable.c3_l1_q1);
-//                                break;
-//                            case 2:
-//                                image.setImageResource(R.drawable.c3_l1_q2);
-//                                break;
-//                            case 3:
-//                                image.setImageResource(R.drawable.c3_l1_q3);
-//                                break;
-//                            case 4:
-//                                image.setImageResource(R.drawable.c3_l1_q4);
-//                                break;
-//                            case 5:
-//                                image.setImageResource(R.drawable.c3_l1_q5);
-//                                break;
-//
-//                            default:
-//                                break;
-//
-//
-//                        }
-//
-//                        break; // end Chapter 3 Lesson 1
-//
-//                    case 2:
-//                        switch (qNum) {
-//                            case 1:
-//                                image.setImageResource(R.drawable.c3_l2_q1);
-//                                break;
-//                            case 2:
-//                                image.setImageResource(R.drawable.c3_l2_q2);
-//                                break;
-//                            case 3:
-//                                image.setImageResource(R.drawable.c3_l2_q3);
-//                                break;
-//                            case 4:
-//                                image.setImageResource(R.drawable.c3_l2_q4);
-//                                break;
-//                            case 5:
-//                                image.setImageResource(R.drawable.c3_l2_q5);
-//                                break;
-//
-//                            default:
-//                                break;
-//
-//
-//                        }
-//                        break;
-//
-//                    default:
-//                        break; // end Chapter 3 Lesson 2
-//
-//                }
-//                break;
-//
-//            case 4:
-//                switch (lessonNum) {
-//                    case 1:
-//                        switch (qNum) {
-//                            case 1:
-//                                image.setImageResource(R.drawable.c4_l1_q1);
-//                                break;
-//                            case 2:
-//                                image.setImageResource(R.drawable.c4_l1_q2);
-//                                break;
-//
-//                            default:
-//                                break;
-//
-//
-//                        }
-//
-//                        break; // end Chapter 4 Lesson 1
-//
-//                    case 2:
-//                        switch (qNum) {
-//                            case 1:
-//                                image.setImageResource(R.drawable.c4_l2_q1);
-//                                break;
-//                            case 2:
-//                                image.setImageResource(R.drawable.c4_l2_q2);
-//                                break;
-//                            case 3:
-//                                image.setImageResource(R.drawable.c4_l2_q3);
-//                                break;
-//                            case 4:
-//                                image.setImageResource(R.drawable.c4_l2_q4);
-//                                break;
-//
-//                            default:
-//                                break;
-//
-//
-//                        }
-//                        break;  // end Chapter 4 Lesson 2
-//
-//                    case 3:
-//                        switch (qNum) {
-//                            case 1:
-//                                image.setImageResource(R.drawable.c4_l3_q1);
-//                                break;
-//                            case 2:
-//                                image.setImageResource(R.drawable.c4_l3_q2);
-//                                break;
-//                            case 3:
-//                                image.setImageResource(R.drawable.c4_l3_q3);
-//                                break;
-//                            case 4:
-//                                image.setImageResource(R.drawable.c4_l3_q4);
-//                                break;
-//                            case 5:
-//                                image.setImageResource(R.drawable.c4_l3_q5);
-//                                break;
-//
-//                            default:
-//                                break;
-//
-//                        }
-//
-//                        break;  // end Chapter 4 Lesson 3
-//
-//                    default:
-//                        break;
-//
-//                }
-//                break;  // end Chapter 4
-//
-//            case 5:
-//                switch (lessonNum) {
-//                    case 1:
-//                        switch (qNum) {
-//                            case 1:
-//                                image.setImageResource(R.drawable.c5_l1_q1);
-//                                break;
-//                            case 2:
-//                                image.setImageResource(R.drawable.c5_l1_q2);
-//                                break;
-//                            case 3:
-//                                image.setImageResource(R.drawable.c5_l1_q3);
-//                                break;
-//
-//                            default:
-//                                break;
-//
-//
-//                        }
-//
-//                        break;  // end Chapter 5 Lesson 1
-//
-//                    case 2:
-//                        switch (qNum) {
-//                            case 1:
-//                                image.setImageResource(R.drawable.c5_l2_q1);
-//                                break;
-//                            case 2:
-//                                image.setImageResource(R.drawable.c5_l2_q2);
-//                                break;
-//                            case 3:
-//                                image.setImageResource(R.drawable.c5_l2_q3);
-//                                break;
-//                            case 4:
-//                                image.setImageResource(R.drawable.c5_l2_q4);
-//                                break;
-//                            case 5:
-//                                image.setImageResource(R.drawable.c5_l2_q5);
-//                                break;
-//
-//                            default:
-//                                break;
-//
-//
-//                        }
-//                        break;  // end Chapter 5 Lesson 2
-//
-//                    default:
-//                        break;
-//
-//                }
-//                break;
-//
-//            default:
-//
-//                break;
-//
-//
-//        }
-//
-//
-//    }
+    private void checkComplete() {
 
-    /*
 
-        Set the buttons to green or red based on correct or incorrect answers
+        int done = myUser.retrieveQuestion(Integer.toString(chapterNum), Integer.toString(lessonNum), Integer.toString(qNum));
+        System.out.println("Done Value: " + done);
 
-     */
-//    public void setStaticArray(int value, boolean correct) {
-//        switch (chapterNum) {
-//
-//            case 1:
-//                switch (lessonNum) {
-//                    case 1:
-//                        QuestionList.c1l1[qNum-1] = value;
-//
-//                        if (correct) {
-//                            QuestionList.numQuestionsCorrectC1L1++;
-//                        }
-//
-//                        break; // end Lesson 1
-//
-//                    case 2:
-//                        QuestionList.c1l2[qNum-1] = value;
-//                        if (correct) {
-//                            QuestionList.numQuestionsCorrectC1L2++;
-//                        }
-//                        break;
-//
-//                    default:
-//                        break; // end Chapter 1 Lesson 2
-//
-//
-//                }
-//                break; // end Chapter 1
-//
-//            case 2:
-//                switch (lessonNum) {
-//                    case 1:
-//                        QuestionList.c2l1[qNum-1] = value;
-//                        if (correct) {
-//                            QuestionList.numQuestionsCorrectC2L1++;
-//                        }
-//                        break; // end Chapter 2 Lesson 1
-//
-//                    case 2:
-//                        QuestionList.c2l2[qNum-1] = value;
-//                        if (correct) {
-//                            QuestionList.numQuestionsCorrectC2L2++;
-//                        }
-//                        break;  // end Chapter 2 Lesson 2
-//
-//                    case 3:
-//                        QuestionList.c2l3[qNum-1] = value;
-//                        if (correct) {
-//                            QuestionList.numQuestionsCorrectC2L3++;
-//                        }
-//                        break;
-//
-//                    default:
-//                        break; // end Chapter 2 Lesson 3
-//
-//                }
-//                break;  // end Chapter 2
-//
-//            case 3:
-//                switch (lessonNum) {
-//                    case 1:
-//                        QuestionList.c3l1[qNum-1] = value;
-//                        if (correct) {
-//                            QuestionList.numQuestionsCorrectC3L1++;
-//                        }
-//                        break; // end Chapter 3 Lesson 1
-//
-//                    case 2:
-//                        QuestionList.c3l2[qNum-1] = value;
-//                        if (correct) {
-//                            QuestionList.numQuestionsCorrectC3L2++;
-//                        }
-//                        break;
-//
-//                    default:
-//                        break; // end Chapter 3 Lesson 2
-//
-//                }
-//                break;
-//
-//            case 4:
-//                switch (lessonNum) {
-//                    case 1:
-//                        QuestionList.c4l1[qNum-1] = value;
-//                        if (correct) {
-//                            QuestionList.numQuestionsCorrectC4L1++;
-//                        }
-//                        break; // end Chapter 4 Lesson 1
-//
-//                    case 2:
-//                        QuestionList.c4l2[qNum-1] = value;
-//                        if (correct) {
-//                            QuestionList.numQuestionsCorrectC4L2++;
-//                        }
-//                        break;  // end Chapter 4 Lesson 2
-//
-//                    case 3:
-//                        QuestionList.c4l3[qNum-1] = value;
-//                        if (correct) {
-//                            QuestionList.numQuestionsCorrectC4L3++;
-//                        }
-//                        break;  // end Chapter 4 Lesson 3
-//
-//                    default:
-//                        break;
-//
-//                }
-//                break;  // end Chapter 4
+        // Check for complete
+        if (done == 1) {
 
-//            case 5:
-//                switch (lessonNum) {
-//                    case 1:
-//                        QuestionList.c5l1[qNum-1] = value;
-//
-//                        break;  // end Chapter 5 Lesson 1
-//
-//                    case 2:
-//                        QuestionList.c5l2[qNum-1] = value;
-//                        break;  // end Chapter 5 Lesson 2
-//
-//                    default:
-//                        break;
-//
-//                }
-//                break;
+            for (int i = 0; i < myButtons.size(); i++) {
+                Button currButton = myButtons.get(i);
+                currButton.setClickable(false);
 
-//            default:
-//
-//                break;
-//
-//
-//        }
-//
-//    }
+                if ((i+1) == correctAnswer ) {
+                    currButton.setBackgroundColor(getResources().getColor(R.color.green));
+                }
+
+            }
+
+        }
+
+    }
+
 
 }

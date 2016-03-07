@@ -19,13 +19,25 @@ public class Preferences {
 
     public Preferences(Context context){this.context = context;}
 
-    public void storeUserInfo(User user){
+    public void storeUserInfo(final User user){
         SharedPreferences user_info = PreferenceManager.getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = user_info.edit();
         editor.putString("uid", user.getUid());
         editor.putString("email", user.getEmail());
         editor.putString("ref", user.getRef().toString());
         editor.apply();
+        user.getRef().addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                dataSnapshot.getValue(User.class);
+                System.out.println("HERE" + user.data);
+            }
+
+            @Override
+            public void onCancelled(FirebaseError firebaseError) {
+
+            }
+        });
     }
 
     public String retrieveUIDInfo(){

@@ -4,7 +4,8 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white">
+    android:background="@color/white"
+    android:focusableInTouchMode="true">
 
     <TextView
         android:layout_width="wrap_content"
@@ -19,6 +20,8 @@
         android:textColor="@color/peter"
         android:hint="Username"
         android:ems="10"
+        android:inputType="textEmailAddress"
+        android:imeOptions="flagNoExtractUi|actionNext"
         android:background="@drawable/login_field"
         android:textColorHint="@color/lightGrey"
         android:layout_marginBottom="10dp"
@@ -39,6 +42,7 @@
         android:textColor="@color/peter"
         android:hint="Password"
         android:ems="10"
+        android:imeOptions="flagNoExtractUi|actionGo"
         android:background="@drawable/login_field"
         android:textColorHint="@color/lightGrey"
         android:layout_marginBottom="10dp"

@@ -22,38 +22,18 @@ public class QuestionList extends Activity {
 
     Intent thisIntent;
     Context ctx;
+    User myUser;
+
     TextView myProgress;
     String lessonTitle;
     String chapterTitle;
+    int numQuestionsCorrect;
     int chapterNum;
     int numQuestions;
     int lessonNum;
     int qNum;
 
-    static int numQuestionsCorrectC1L1 = 0;
-    static int numQuestionsCorrectC1L2 = 0;
-    static int numQuestionsCorrectC2L1 = 0;
-    static int numQuestionsCorrectC2L2 = 0;
-    static int numQuestionsCorrectC2L3 = 0;
-    static int numQuestionsCorrectC3L1 = 0;
-    static int numQuestionsCorrectC3L2 = 0;
-    static int numQuestionsCorrectC4L1 = 0;
-    static int numQuestionsCorrectC4L2 = 0;
-    static int numQuestionsCorrectC4L3 = 0;
-
-
     ArrayList<Button> myButtons = new ArrayList<Button>();
-    static int[] c1l1 = {0, 0, 0, 0, 0, 0, 0};
-    static int[] c1l2 = {0, 0, 0, 0};
-    static int[] c2l1 = {0, 0, 0};
-    static int[] c2l2 = {0, 0, 0, 0, 0, 0, 0};
-    static int[] c2l3 = {0, 0, 0, 0};
-    static int[] c3l1 = {0, 0, 0, 0, 0};
-    static int[] c3l2 = {0, 0, 0, 0, 0};
-    static int[] c4l1 = {0, 0, 0, 0, 0};
-    static int[] c4l2 = {0, 0, 0, 0};
-    static int[] c4l3 = {0, 0, 0, 0, 0};
-
 
     @Override
     public void onCreate(Bundle savedInstance) {
@@ -63,6 +43,11 @@ public class QuestionList extends Activity {
 
         thisIntent = this.getIntent();
         ctx = this;
+
+        System.out.println("Inside QList OnCreate");
+
+        myUser = new User();
+        numQuestionsCorrect = 0;
 
         // Start ActionBar
         ActionBar ab = getActionBar();
@@ -107,6 +92,7 @@ public class QuestionList extends Activity {
 
         titleBar.setText(chapterTitle);
 
+        System.out.println("About to create buttons....");
         for (int i = 0; i < numQuestions; i++) {
 
             Button newButton = new Button(this);
@@ -116,11 +102,14 @@ public class QuestionList extends Activity {
             layParam.setMargins(20, 20, 20, 20);
             myLayout.addView(newButton, layParam);
 
+            System.out.println("After layout");
 
-            newButton.setText("Question " + (i+1));
+            newButton.setText("Question " + (i + 1));
             newButton.setTextColor(getResources().getColor(R.color.white));
             newButton.setBackgroundColor(getResources().getColor(R.color.peter));
-            checkDone(newButton, i);
+
+            System.out.println("After color set");
+            //checkDone(newButton, i);
 
             qNum = i+1;
 
@@ -173,201 +162,62 @@ public class QuestionList extends Activity {
 
         }
 
+        int numDone = checkDone();
+        String textToShow = ""+ numDone + "/" + numQuestions;
+        myProgress.setText(textToShow);
+
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        System.out.println("Onresume");
-        for (int i = 0; i < myButtons.size(); i++) {
-            checkDone(myButtons.get(i), i);
-        }
+        System.out.println("Onresume in QList");
+        System.out.println(User.data);
+        int numDone = checkDone();
+
+        String textToShow = ""+ numDone + "/" + numQuestions;
+        myProgress.setText(textToShow);
 
     }
 
     /*
         Set the button colors based on correct or incorrect
+        Returns the total number of correct questions
 
      */
-    public void checkDone(Button newButton, int index) {
+    public int checkDone() {
 
-        String myString;
-        switch (chapterNum) {
+        System.out.print("Inside CheckDone");
+        int numQuestions = 0;
+        for (int i = 0; i < myButtons.size(); i++) {
+            Button thisButton = myButtons.get(i);
+            int index = i + 1;
+            int check = myUser.retrieveQuestion(Integer.toString(chapterNum), Integer.toString(lessonNum), Integer.toString(index));
 
-            case 1:
-                switch (lessonNum) {
-                    case 1:
-                        if (c1l1[index] == 1) {
-                            newButton.setBackgroundColor(Color.GREEN);
-                        } else if (c1l1[index] == -1) {
-                            newButton.setBackgroundColor(Color.RED);
-                        }
+            System.out.println("After getting check");
 
-                        myString = numQuestionsCorrectC1L1 + "/" + numQuestions;
-                        myProgress.setText(myString);
+            if (check == -1) {
+                System.out.println("Set Red");
+                thisButton.setBackgroundColor(getResources().getColor(R.color.red));
+            } else if (check == 1) {
+                System.out.println("Set Green");
+                thisButton.setBackgroundColor(getResources().getColor(R.color.green));
+                numQuestions++;
 
-                        break; // end Lesson 1
+            } else {
+                System.out.print("Default color");
+                thisButton.setBackgroundColor(getResources().getColor(R.color.peter));
 
-                    case 2:
-                        if (c1l2[index] == 1) {
-                            newButton.setBackgroundColor(Color.GREEN);
-                        } else if (c1l2[index] == -1) {
-                            newButton.setBackgroundColor(Color.RED);
-                        }
-
-                        myString = numQuestionsCorrectC1L2 + "/" + numQuestions;
-                        myProgress.setText(myString);
-                        break;
-
-                    default:
-                        break; // end Chapter 1 Lesson 2
-
-
-                }
-                break; // end Chapter 1
-
-            case 2:
-                switch (lessonNum) {
-                    case 1:
-                        if (c2l1[index] == 1) {
-                            newButton.setBackgroundColor(Color.GREEN);
-                        } else if (c2l1[index] == -1) {
-                            newButton.setBackgroundColor(Color.RED);
-                        }
-                        myString = numQuestionsCorrectC2L1 + "/" + numQuestions;
-                        myProgress.setText(myString);
-
-                        break; // end Chapter 2 Lesson 1
-
-                    case 2:
-                        if (c2l2[index] == 1) {
-                            newButton.setBackgroundColor(Color.GREEN);
-                        } else if (c2l2[index] == -1) {
-                            newButton.setBackgroundColor(Color.RED);
-                        }
-
-                        myString = numQuestionsCorrectC2L2 + "/" + numQuestions;
-                        myProgress.setText(myString);
-
-                        break;  // end Chapter 2 Lesson 2
-
-                    case 3:
-                        if (c2l3[index] == 1) {
-                            newButton.setBackgroundColor(Color.GREEN);
-                        } else if (c2l3[index] == -1) {
-                            newButton.setBackgroundColor(Color.RED);
-                        }
-
-                        myString = numQuestionsCorrectC2L3 + "/" + numQuestions;
-                        myProgress.setText(myString);
-
-                        break;
-
-                    default:
-                        break; // end Chapter 2 Lesson 3
-
-                }
-                break;  // end Chapter 2
-
-            case 3:
-                switch (lessonNum) {
-                    case 1:
-                        if (c3l1[index] == 1) {
-                            newButton.setBackgroundColor(Color.GREEN);
-                        } else if (c3l1[index] == -1) {
-                            newButton.setBackgroundColor(Color.RED);
-                        }
-
-                        myString = numQuestionsCorrectC3L1 + "/" + numQuestions;
-                        myProgress.setText(myString);
-
-                        break; // end Chapter 3 Lesson 1
-
-                    case 2:
-                        if (c3l2[index] == 1) {
-                            newButton.setBackgroundColor(Color.GREEN);
-                        } else if (c3l2[index] == -1) {
-                            newButton.setBackgroundColor(Color.RED);
-                        }
-
-                        myString = numQuestionsCorrectC3L2 + "/" + numQuestions;
-                        myProgress.setText(myString);
-
-                        break;
-
-                    default:
-                        break; // end Chapter 3 Lesson 2
-
-                }
-                break;
-
-            case 4:
-                switch (lessonNum) {
-                    case 1:
-                        if (c4l1[index] == 1) {
-                            newButton.setBackgroundColor(Color.GREEN);
-                        } else if (c4l1[index] == -1) {
-                            newButton.setBackgroundColor(Color.RED);
-                        }
-
-                        myString = numQuestionsCorrectC4L1 + "/" + numQuestions;
-                        myProgress.setText(myString);
-
-                        break; // end Chapter 4 Lesson 1
-
-                    case 2:
-                        if (c4l2[index] == 1) {
-                            newButton.setBackgroundColor(Color.GREEN);
-                        } else if (c4l2[index] == -1) {
-                            newButton.setBackgroundColor(Color.RED);
-                        }
-
-                        myString = numQuestionsCorrectC4L2 + "/" + numQuestions;
-                        myProgress.setText(myString);
-
-                        break;  // end Chapter 4 Lesson 2
-
-                    case 3:
-                        if (c4l3[index] == 1) {
-                            newButton.setBackgroundColor(Color.GREEN);
-                        } else if (c4l3[index] == -1) {
-                            newButton.setBackgroundColor(Color.RED);
-                        }
-
-                        myString = numQuestionsCorrectC4L3 + "/" + numQuestions;
-                        myProgress.setText(myString);
-
-                        break;  // end Chapter 4 Lesson 3
-
-                    default:
-                        break;
-
-                }
-                break;  // end Chapter 4
-
-//            case 5:
-//                switch (lessonNum) {
-//                    case 1:
-//                        QuestionList.c5l1[qNum-1] = value;
-//
-//                        break;  // end Chapter 5 Lesson 1
-//
-//                    case 2:
-//                        QuestionList.c5l2[qNum-1] = value;
-//                        break;  // end Chapter 5 Lesson 2
-//
-//                    default:
-//                        break;
-//
-//                }
-//                break;
-
-            default:
-
-                break;
-
+            }
 
         }
+        if (numQuestions == this.numQuestions) {
+            System.out.println("Q == Q");
+            myUser.updateLesson(Integer.toString(chapterNum), Integer.toString(lessonNum), true);
+
+        }
+        return numQuestions;
+
     } // end CheckDone
 
 
