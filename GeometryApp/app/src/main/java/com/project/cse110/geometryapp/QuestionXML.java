@@ -28,7 +28,6 @@ public class QuestionXML {
     private int chapterNumber;
     private int lessonNumber;
     private String lessonTitle;
-    private int completed;
 
     public QuestionXML(int chapterNumber, int lessonNumber, String lessonTitle, int questionNumber, Context context) {
         this.chapterNumber = chapterNumber;
@@ -41,7 +40,6 @@ public class QuestionXML {
         NodeList list = builder.getNodeList(location);
         Node currQuestion = list.item(questionNumber - 1);
         this.questionNumber = Integer.parseInt(currQuestion.getAttributes().getNamedItem("number").getNodeValue());
-        this.completed = Integer.parseInt(currQuestion.getAttributes().getNamedItem("completed").getNodeValue());
         this.questionType = currQuestion.getAttributes().getNamedItem("type").getNodeValue();
         NodeList content = currQuestion.getChildNodes();
         this.imageName = content.item(1).getTextContent();
@@ -99,18 +97,4 @@ public class QuestionXML {
         return lessonTitle;
     }
 
-    public int getCompleted() {
-
-        return completed;
-    }
-
-    public void setCompleted(Context context) {
-//        DocParser builder = new DocParser(context);
-//        String location = "/chapters/chapter" + chapterNumber + "/lesson[@title='" + lessonTitle + "']/test/question";
-//        NodeList list = builder.getNodeList(location);
-//        Node currQuestion = list.item(this.questionNumber-1);
-//        currQuestion.getAttributes().getNamedItem("completed").setTextContent("1");
-//        this.completed = Integer.parseInt(currQuestion.getAttributes().getNamedItem("completed").getNodeValue());
-//        builder.closeStream();
-    }
 }
