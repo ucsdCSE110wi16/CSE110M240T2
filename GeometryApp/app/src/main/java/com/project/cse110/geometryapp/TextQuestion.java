@@ -115,13 +115,15 @@ public class TextQuestion extends Activity{
                 if (userAnswer.equals(answers.get(0))) {
                     System.out.println("Correct Answer");
                     dialogBuilder.setMessage("Correct!");
-                    myUser.updateQuestion(Integer.toString(chapterNum), Integer.toString(lessonNum), Integer.toString(qNum), true);
-
+                    try {
+                        myUser.updateQuestion(Integer.toString(chapterNum), Integer.toString(lessonNum), Integer.toString(qNum), true);
+                    } catch (Exception e) {}
                 } else {
                     System.out.println("Incorrect Answer");
                     dialogBuilder.setMessage("Incorrect");
-                    myUser.updateQuestion(Integer.toString(chapterNum), Integer.toString(lessonNum), Integer.toString(qNum), false);
-
+                    try {
+                        myUser.updateQuestion(Integer.toString(chapterNum), Integer.toString(lessonNum), Integer.toString(qNum), false);
+                    } catch (Exception e) {}
                 }
 
                 dialogBuilder.setNeutralButton("Ok", new DialogInterface.OnClickListener() {
