@@ -1,4 +1,5 @@
 package com.project.cse110.geometryapp;
+import android.app.Activity;
 import android.test.ActivityInstrumentationTestCase2;
 
 /**
@@ -12,6 +13,9 @@ import android.test.suitebuilder.annotation.LargeTest;
 
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
+
+import java.util.concurrent.TimeUnit;
+
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.typeText;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
@@ -46,6 +50,8 @@ public class TestLogin {
     @Test
     public void testUser() {
         System.out.println("TESTING USER LOGIN..........");
+        Activity currActivity = mActivityRule.getActivity();
+
         // Type text and then press the button.
         onView(withId(R.id.etUsername)).perform(typeText(usernameToType), closeSoftKeyboard());
         onView(withId(R.id.etPassword)).perform(typeText(passwordToType), closeSoftKeyboard());
@@ -53,6 +59,18 @@ public class TestLogin {
         // Check that the text was changed
         onView(withId(R.id.etUsername)).check(matches(withText(usernameToType)));
         onView(withId(R.id.bLogin)).perform(click());
+
+        try {
+            TimeUnit.SECONDS.sleep(7);
+        } catch (Exception e) {
+
+        }
+
+        Activity afterActivity = mActivityRule.getActivity();
+
+        System.out.println(currActivity.toString());
+        System.out.println(afterActivity.toString());
+
         //onView(withId(R.id.registerButton)).perform(click());
 
     }

@@ -138,13 +138,15 @@ public class MCQuestion extends Activity {
                     if (myButtonNum == correctAnswer) {
                         System.out.println("Correct Answer");
                         dialogBuilder.setMessage("Correct!");
-                        System.out.println(User.data);
-                        myUser.updateQuestion(Integer.toString(chapterNum), Integer.toString(lessonNum), Integer.toString(qNum), true);
+                        try {
+                            myUser.updateQuestion(Integer.toString(chapterNum), Integer.toString(lessonNum), Integer.toString(qNum), true);
+                        } catch(Exception e) {}
                     } else {
                         System.out.println("Incorrect Answer");
                         dialogBuilder.setMessage("Incorrect!");
-                        System.out.println(User.data);
-                        myUser.updateQuestion(Integer.toString(chapterNum), Integer.toString(lessonNum), Integer.toString(qNum), false);
+                        try {
+                            myUser.updateQuestion(Integer.toString(chapterNum), Integer.toString(lessonNum), Integer.toString(qNum), false);
+                        } catch(Exception e) {}
                     }
 
                     dialogBuilder.setNeutralButton("Ok", new DialogInterface.OnClickListener() {

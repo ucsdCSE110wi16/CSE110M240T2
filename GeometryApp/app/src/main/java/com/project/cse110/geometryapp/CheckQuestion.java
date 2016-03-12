@@ -155,12 +155,14 @@ public class CheckQuestion extends Activity {
                 if ((numAnswers == numChecks) && (numAnswers == answers.size())) {
                     System.out.print("All Correct Answers Clicked");
                     dialogBuilder.setMessage("Correct!");
-                    myUser.updateQuestion(Integer.toString(chapterNum), Integer.toString(lessonNum), Integer.toString(qNum), true);
-
+                    try {
+                        myUser.updateQuestion(Integer.toString(chapterNum), Integer.toString(lessonNum), Integer.toString(qNum), true);
+                    } catch(Exception e) {}
                 } else {
                     dialogBuilder.setMessage("Incorrect!");
-                    myUser.updateQuestion(Integer.toString(chapterNum), Integer.toString(lessonNum), Integer.toString(qNum), false);
-
+                    try {
+                        myUser.updateQuestion(Integer.toString(chapterNum), Integer.toString(lessonNum), Integer.toString(qNum), false);
+                    } catch (Exception e) {}
                 }
 
                 dialogBuilder.setNeutralButton("Ok", new DialogInterface.OnClickListener() {
