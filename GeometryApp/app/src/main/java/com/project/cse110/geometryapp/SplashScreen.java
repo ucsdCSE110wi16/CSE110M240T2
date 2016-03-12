@@ -10,7 +10,7 @@ import com.firebase.client.Firebase;
 /**
  * Created by devinhickey on 1/26/16.
  * Creates a Launch SplashScreen for the App.
- * Displays for 3 seconds before calling the MainActivity
+ * Displays for 3 seconds before calling the Main
  * Intent which enters the app.
  */
 public class SplashScreen extends Activity {
@@ -34,7 +34,7 @@ public class SplashScreen extends Activity {
                     System.out.println("Error When Running Thread");
 
                 } finally {
-                    // Start the next intent, the MainActivity
+                    // Start the next intent, the Main
                     Preferences user_info = new Preferences(getApplicationContext());
                    if (user_info.checkForUserInfo()){
                        User user = user_info.retrieveUserInfo();

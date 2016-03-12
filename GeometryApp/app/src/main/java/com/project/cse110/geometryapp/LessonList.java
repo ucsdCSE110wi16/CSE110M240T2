@@ -69,9 +69,6 @@ public class LessonList extends Activity {
         chapterTitle = this.getIntent().getExtras().getString("ChapterTitle");
         titleText.setText(chapterTitle);
 
-        // Fill in progress
-        //checkProgress();
-
         homeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -104,7 +101,6 @@ public class LessonList extends Activity {
 
             // Add the buttons with the layout params
             myLayout.addView(newButton, layParam);
-            //newButton.setGravity(Gravity.CENTER_HORIZONTAL | Gravity.CENTER_VERTICAL);
             newButton.setText(lessonTitles.get(i));
             newButton.setBackgroundColor(getResources().getColor(R.color.peter));
             newButton.setTextColor(getResources().getColor(R.color.white));

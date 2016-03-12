@@ -40,7 +40,6 @@ import java.util.Map;
 
 public class Main extends Activity {
 
-    DrawLine drawLine;
     Context ctx;
 
     /**
@@ -61,12 +60,6 @@ public class Main extends Activity {
         ImageButton third = (ImageButton) findViewById(R.id.topic3);
         ImageButton fourth = (ImageButton) findViewById(R.id.topic4);
         ImageButton fifth = (ImageButton) findViewById(R.id.topic5);
-
-        //ViewGroup.LayoutParams param = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
-
-//        drawLine = new DrawLine(this, first, second);
-//        this.addContentView(drawLine, param);
-        //setContentView(drawLine);
 
         ctx = this;
 
