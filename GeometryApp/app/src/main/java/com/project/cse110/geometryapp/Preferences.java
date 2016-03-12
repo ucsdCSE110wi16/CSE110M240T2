@@ -61,7 +61,6 @@ public class Preferences {
         user.getRef().addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                //User holder = dataSnapshot.getValue(holder);
                 user.data = (Map) dataSnapshot.child("data").getValue();
                 System.out.println("HERE"+user.data);
             }

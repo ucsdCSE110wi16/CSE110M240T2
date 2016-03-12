@@ -120,7 +120,7 @@ public class LoginScreen extends Activity {
                 System.out.println("Past network check");
 
                 final Firebase ref = new Firebase("https://cse110geometry.firebaseio.com");
-                //Query queryRef = ref.orderByChild("email").equalTo(R.id.etUsername);
+
 
                 ref.authWithPassword(emailID, password, new Firebase.AuthResultHandler() {
                     @Override
@@ -193,7 +193,6 @@ public class LoginScreen extends Activity {
             boolean reachable = (returnVal==0);
             return reachable;
         } catch (Exception e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
         return false;

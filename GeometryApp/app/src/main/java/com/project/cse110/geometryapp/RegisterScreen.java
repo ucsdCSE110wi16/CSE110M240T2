@@ -76,7 +76,6 @@ public class RegisterScreen extends Activity {
         myProgress.setVisibility(View.INVISIBLE);
         homeButton.setVisibility(View.INVISIBLE);
 
-        //titleBar.setText("Geometry App");
 
         // Create the dialog builder
         dialogBuilder = new AlertDialog.Builder(this);
@@ -94,16 +93,6 @@ public class RegisterScreen extends Activity {
             @Override
             public void onClick(View v) {
 
-//                boolean networkConnected;
-//                boolean internetConnected;
-//                networkConnected = isNetworkAvailable();
-//                internetConnected = isOnline();
-//                if (networkConnected == false && internetConnected == false ) {
-//                    dialogBuilder.setMessage("No internet connection");
-//                    dialog = dialogBuilder.create();
-//                    dialog.show();
-//                }
-
                 final String emailID = editTextEmail.getText().toString();
                 String password = editTextPassword.getText().toString();
                 String confirmPassword = editConfirmPassword.getText().toString();
@@ -112,7 +101,6 @@ public class RegisterScreen extends Activity {
                     System.out.println("Passwords match");
                     final Firebase ref = new Firebase("https://cse110geometry.firebaseio.com");
                     ref.createUser(emailID, password, new Firebase.ValueResultHandler<Map<String, Object>>() {
-                        //ref.createUser("bobtony@firebase.com", "correcthorsebatterystaple", new Firebase.ValueResultHandler<Map<String, Object>>() {
                         @Override
                         public void onSuccess(Map<String, Object> result) {
 
@@ -222,7 +210,6 @@ public class RegisterScreen extends Activity {
             boolean reachable = (returnVal==0);
             return reachable;
         } catch (Exception e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
         return false;
