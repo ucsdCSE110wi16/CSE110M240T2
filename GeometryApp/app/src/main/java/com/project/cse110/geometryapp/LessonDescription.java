@@ -39,9 +39,6 @@ public class LessonDescription extends FragmentActivity {
     int chapterNum;
     int numQuestions;
 
-    LessonFragment frag;
-    //MyPagerAdapter adapterViewPager;
-
     @Override
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -50,7 +47,6 @@ public class LessonDescription extends FragmentActivity {
         setContentView(R.layout.lesson_description);
 
         System.out.println("After SetContent View");
-        //frag = (LessonFragment) getFragmentManager().findFragmentById(R.id.fragment);
         ViewPager vpPager = (ViewPager) findViewById(R.id.vpPager);
         System.out.println("After VPager");
         vpPager.setAdapter(new MyPagerAdapter(getSupportFragmentManager()));
@@ -60,7 +56,6 @@ public class LessonDescription extends FragmentActivity {
         ctx = this;
 
         // Get extras
-        //ArrayList<String> description = getIntent().getExtras().getStringArrayList("LessonDescription");
         chapterNum = getIntent().getExtras().getInt("ChapterNum");
         lessonTitle = getIntent().getExtras().getString("LessonTitle");
         currLesson = getIntent().getExtras().getInt("LessonNum");
@@ -107,12 +102,6 @@ public class LessonDescription extends FragmentActivity {
 
         // end ActionBar
 
-
-
-        //TextView text = (TextView) findViewById(R.id.lessonDescription);
-
-        //text.setText(description);
-
         Button skipButton = (Button) findViewById(R.id.next);
         skipButton.setOnClickListener(new Button.OnClickListener() {
             public void onClick(View v) {
@@ -158,21 +147,11 @@ public class LessonDescription extends FragmentActivity {
 
         @Override
         public Fragment getItem(int position) {
-            //switch (position) {
-              //  case 0:
-                //getIntent().putExtra("Position", position);
-                getIntent().putExtra("CurrentDescription", lessonDescriptions.get(position));
-                getIntent().putExtra("CurrentImage", pageImages.get(position));
 
-                return LessonFragment.newInstance(getIntent().getExtras());
-                //case 1:
-              //      return LessonFragment.newInstance(getIntent().getExtras());
-                //case 2:
-                //    return LessonFragment.newInstance(getIntent().getExtras());
-                //default:
-                  //  return null;
+            getIntent().putExtra("CurrentDescription", lessonDescriptions.get(position));
+            getIntent().putExtra("CurrentImage", pageImages.get(position));
 
-            //}
+            return LessonFragment.newInstance(getIntent().getExtras());
 
         }
 

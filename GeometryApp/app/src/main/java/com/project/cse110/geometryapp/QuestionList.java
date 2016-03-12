@@ -109,7 +109,6 @@ public class QuestionList extends Activity {
             newButton.setBackgroundColor(getResources().getColor(R.color.peter));
 
             System.out.println("After color set");
-            //checkDone(newButton, i);
 
             qNum = i+1;
 
