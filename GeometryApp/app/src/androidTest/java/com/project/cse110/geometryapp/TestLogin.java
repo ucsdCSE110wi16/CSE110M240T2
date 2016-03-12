@@ -53,7 +53,7 @@ public class TestLogin {
         // Check that the text was changed
         onView(withId(R.id.etUsername)).check(matches(withText(usernameToType)));
         onView(withId(R.id.bLogin)).perform(click());
-        onView(withId(R.id.registerButton)).perform(click());
+        //onView(withId(R.id.registerButton)).perform(click());
 
     }
 /*

@@ -7,6 +7,8 @@ package com.project.cse110.geometryapp;
 import java.util.Random;
 import java.lang.String;
 import java.lang.*;
+import java.util.concurrent.TimeUnit;
+
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -18,6 +20,7 @@ import android.support.test.runner.AndroidJUnit4;
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.typeText;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
+import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.action.ViewActions.closeSoftKeyboard;
@@ -30,7 +33,7 @@ import static android.support.test.espresso.matcher.ViewMatchers.withText;
 @LargeTest
 public class TestRegister {
 
-    public static String generateString(Random rng, String characters, int length)
+    public String generateString(Random rng, String characters, int length)
     {
         char[] text = new char[length];
         for (int i = 0; i < length; i++)
@@ -54,9 +57,10 @@ public class TestRegister {
         // Specify a valid string.
 
         Random rng = new Random();
-        String characters = new String();
-        email = generateString(rng, characters, 5 );
-        email = email.concat("@gmail.com");
+
+        int i = rng.nextInt() % 1000;
+        email = "ice" + i + "@gmail.com";
+
         System.out.println(email);
         password = "123456";
         confirmPassword = "123456";
@@ -74,6 +78,14 @@ public class TestRegister {
         // Check that the text was changed
         onView(withId(R.id.regUsername)).check(matches(withText(email)));
         onView(withId(R.id.bRegister)).perform(click());
+        try {
+            TimeUnit.SECONDS.sleep(7);
+        } catch (Exception e) {
+
+        }
+
+        onView(withText("Account successfully created!")).check(matches(isDisplayed()));
+
         //onView(withId(R.id.registerButton)).perform(click());
 
     }
